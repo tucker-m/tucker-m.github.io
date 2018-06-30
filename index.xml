@@ -2,30 +2,30 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>My New Hugo Site</title>
-    <link>http://tucker-m.github.io:34376/</link>
+    <link>https://v5ic9nqpn52pibivtxw6.oasis.sandstorm.io/</link>
     <description>Recent content on My New Hugo Site</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 30 Jun 2018 00:04:29 -0600</lastBuildDate>
     
-	<atom:link href="http://tucker-m.github.io:34376/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://v5ic9nqpn52pibivtxw6.oasis.sandstorm.io/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Second Post</title>
-      <link>http://tucker-m.github.io:34376/posts/second-post/</link>
+      <link>https://v5ic9nqpn52pibivtxw6.oasis.sandstorm.io/posts/second-post/</link>
       <pubDate>Sat, 30 Jun 2018 00:04:29 -0600</pubDate>
       
-      <guid>http://tucker-m.github.io:34376/posts/second-post/</guid>
+      <guid>https://v5ic9nqpn52pibivtxw6.oasis.sandstorm.io/posts/second-post/</guid>
       <description>other post</description>
     </item>
     
     <item>
       <title>First Post</title>
-      <link>http://tucker-m.github.io:34376/posts/first-post/</link>
+      <link>https://v5ic9nqpn52pibivtxw6.oasis.sandstorm.io/posts/first-post/</link>
       <pubDate>Fri, 29 Jun 2018 23:53:37 -0600</pubDate>
       
-      <guid>http://tucker-m.github.io:34376/posts/first-post/</guid>
+      <guid>https://v5ic9nqpn52pibivtxw6.oasis.sandstorm.io/posts/first-post/</guid>
       <description>test
 def func return true end  </description>
     </item>
