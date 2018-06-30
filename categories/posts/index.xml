@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on My New Hugo Site</title>
-    <link>http://localhost:1313/categories/posts/</link>
+    <link>https://tucker-m.github.io:1313/categories/posts/</link>
     <description>Recent content in Posts on My New Hugo Site</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 29 Jun 2018 23:53:37 -0600</lastBuildDate>
     
-	<atom:link href="http://localhost:1313/categories/posts/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://tucker-m.github.io:1313/categories/posts/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>First Post</title>
-      <link>http://localhost:1313/posts/first-post/</link>
+      <link>https://tucker-m.github.io:1313/posts/first-post/</link>
       <pubDate>Fri, 29 Jun 2018 23:53:37 -0600</pubDate>
       
-      <guid>http://localhost:1313/posts/first-post/</guid>
+      <guid>https://tucker-m.github.io:1313/posts/first-post/</guid>
       <description>test
 def func return true end  </description>
     </item>
