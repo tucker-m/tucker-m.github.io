@@ -10955,7 +10955,9 @@ var component = function (vnode) {
                         }],
                     css: vnode.attrs.css
                 }),
-                m('div', { "class": vnode.attrs.css.content }, programList_1["default"]({ allPrograms: vnode.attrs.allPrograms })),
+                m('div', { "class": vnode.attrs.css.content }, (vnode.attrs.allPrograms.length == 0)
+                    ? m('p', "You haven't created any programs yet. Click 'New Program' at the top to create one.")
+                    : programList_1["default"]({ allPrograms: vnode.attrs.allPrograms })),
             ];
         }
     };
