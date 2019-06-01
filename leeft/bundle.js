@@ -11090,9 +11090,6 @@ exports["default"] = (function (vnode) {
             prescriptions: [],
             name: ''
         });
-        setTimeout(function () {
-            window.location.href = "#!/programs/" + program._id + "/workouts/" + (dayNum - 1) + "/edit";
-        }, 400);
     };
     var addRestDay = function () {
         program.schedule.push({ tag: 'rest' });
@@ -32180,6 +32177,7 @@ var component = function (vnode) {
         });
         return flattenedViewModels;
     };
+    var pageEditable = false;
     return {
         view: function (vnode) {
             var css = vnode.attrs.css;
@@ -32188,7 +32186,14 @@ var component = function (vnode) {
             var logViewModels = createGroupedViewModelsFromSetLogs(log);
             return [
                 topBar_1.TopBar({
-                    buttons: [],
+                    buttons: [{
+                            text: !pageEditable ? 'Make Changes' : 'Done',
+                            action: function () { pageEditable = !pageEditable; },
+                            secondState: {
+                                text: pageEditable ? 'EditWorkout' : 'Done Editing',
+                                action: function () { pageEditable = !pageEditable; }
+                            }
+                        }],
                     subTitle: {
                         text: "< " + log.workout.name,
                         url: vnode.attrs.programUrl
@@ -32212,7 +32217,7 @@ var component = function (vnode) {
                                     name: logViewModel.exercise.name,
                                     placeholder: 'Untitled Exercise',
                                     editButtonText: 'Enter sets',
-                                    showEditButton: true,
+                                    showEditButton: pageEditable,
                                     setOverlay: function () {
                                         var logVmString = JSON.stringify(logViewModel);
                                         var logVmClone = JSON.parse(logVmString);
@@ -32252,37 +32257,39 @@ var component = function (vnode) {
                                     }),
                                 ]),
                             ]),
-                            insertExerciseButton_1["default"]({
-                                css: css,
-                                onclick: function () {
-                                    var prescription = {
-                                        exercise: {
-                                            name: '',
-                                            setUnits: 'reps',
-                                            tag: 'exercise'
-                                        },
-                                        sets: 0,
-                                        amount: 0
-                                    };
-                                    vnode.attrs.setOverlay(exercise_2["default"], {
-                                        title: 'Insert new exercise',
-                                        prescription: prescription,
-                                        updatePrescription: function (newPrescription) {
-                                            var vms = exercise_1.createSetLogViewModelsFromPrescriptions([newPrescription]);
-                                            var groupedVm = {
-                                                exercise: newPrescription.exercise,
-                                                sets: vms
-                                            };
-                                            logViewModels.splice(index + 1, 0, groupedVm);
-                                            vnode.attrs.updateLog(flattenViewModelsIntoWorkoutLog(logViewModels));
-                                        },
-                                        css: css,
-                                        hideOverlay: function () {
-                                            vnode.attrs.setOverlay({ component: null, title: '' }, {});
-                                        }
-                                    });
-                                }
-                            })
+                            pageEditable
+                                ? insertExerciseButton_1["default"]({
+                                    css: css,
+                                    onclick: function () {
+                                        var prescription = {
+                                            exercise: {
+                                                name: '',
+                                                setUnits: 'reps',
+                                                tag: 'exercise'
+                                            },
+                                            sets: 0,
+                                            amount: 0
+                                        };
+                                        vnode.attrs.setOverlay(exercise_2["default"], {
+                                            title: 'Insert new exercise',
+                                            prescription: prescription,
+                                            updatePrescription: function (newPrescription) {
+                                                var vms = exercise_1.createSetLogViewModelsFromPrescriptions([newPrescription]);
+                                                var groupedVm = {
+                                                    exercise: newPrescription.exercise,
+                                                    sets: vms
+                                                };
+                                                logViewModels.splice(index + 1, 0, groupedVm);
+                                                vnode.attrs.updateLog(flattenViewModelsIntoWorkoutLog(logViewModels));
+                                            },
+                                            css: css,
+                                            hideOverlay: function () {
+                                                vnode.attrs.setOverlay({ component: null, title: '' }, {});
+                                            }
+                                        });
+                                    }
+                                })
+                                : null,
                         ]);
                     }),
                     m('p', log.comments),
@@ -32520,12 +32527,20 @@ var CalendarItem = function (vnode) {
         view: function (vnode) {
             var workout = vnode.attrs.workout;
             var workoutInfo = utils_1["default"].getNameAndClasses(workout, css);
+            var beingEdited = vnode.attrs.beingEdited;
+            var href = vnode.attrs.workoutUrl + (beingEdited ? '/edit' : '');
             return [
                 m('div', m('a', {
-                    href: vnode.attrs.workoutUrl,
+                    href: href,
                     oncreate: m.route.link,
                     "class": utils_1["default"].c(css.workoutTitle, workoutInfo.classes)
-                }, workoutInfo.name)),
+                }, workoutInfo.name), vnode.attrs.beingEdited
+                    ? m('a', {
+                        "class": utils_1["default"].c(css.button, css.small),
+                        oncreate: m.route.link,
+                        href: href
+                    }, 'Edit')
+                    : null),
                 m('div', { "class": css.workoutDescription }, m('div', [
                     m('p', workout.tag == 'workout' ? utils_1["default"].getWorkoutExercisesElement(workout, css) : ''),
                     m('p', { "class": css.lastWorkout }, vnode.attrs.beingEdited
