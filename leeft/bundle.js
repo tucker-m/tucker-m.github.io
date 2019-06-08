@@ -31318,6 +31318,7 @@ exports["default"] = {
     },
     numberColumn: {
         display: 'flex',
+        flexShrink: 0,
         boxSizing: 'border-box',
         justifyContent: 'center',
         alignItems: 'center',
@@ -32872,13 +32873,15 @@ exports["default"] = (function (vnode) {
                     ? m('td', { "class": css.td + " " + css.workoutRowActions }, [
                         vnode.attrs.moveUp
                             ? m('button', {
-                                onclick: vnode.attrs.moveUp
-                            }, 'U')
+                                onclick: vnode.attrs.moveUp,
+                                "class": css.button + " " + css.small
+                            }, 'Up')
                             : null,
                         vnode.attrs.moveDown
                             ? m('button', {
-                                onclick: vnode.attrs.moveDown
-                            }, 'D')
+                                onclick: vnode.attrs.moveDown,
+                                "class": css.button + " " + css.small
+                            }, 'Down')
                             : null,
                         m('button', {
                             "class": css.hollowSecondaryButton + " " + css.small,
