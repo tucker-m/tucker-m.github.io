@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 118);
+/******/ 	return __webpack_require__(__webpack_require__.s = 121);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -1327,7 +1327,7 @@ m.vnode = Vnode
 if (true) module["exports"] = m
 else window.m = m
 }());
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(98).setImmediate, __webpack_require__(4)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(100).setImmediate, __webpack_require__(3)))
 
 /***/ }),
 /* 1 */
@@ -1335,18 +1335,10 @@ else window.m = m
 
 "use strict";
 
-var __assign = (this && this.__assign) || Object.assign || function(t) {
-    for (var s, i = 1, n = arguments.length; i < n; i++) {
-        s = arguments[i];
-        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-            t[p] = s[p];
-    }
-    return t;
-};
 exports.__esModule = true;
-var pouchdb_1 = __webpack_require__(91);
-var pouchdb_find_1 = __webpack_require__(88);
-var mobx_1 = __webpack_require__(7);
+var pouchdb_1 = __webpack_require__(93);
+var pouchdb_find_1 = __webpack_require__(90);
+var mobx_1 = __webpack_require__(8);
 var db;
 var init = function () {
     pouchdb_1["default"].plugin(pouchdb_find_1["default"]);
@@ -1429,32 +1421,8 @@ var findLogsByWorkoutIdentifier = function (id) {
     });
 };
 var findExercisesByName = function (name) {
-    var regex = new RegExp(name.toLowerCase());
     return new Promise(function (resolve, reject) {
-        db.allDocs({ include_docs: true, startkey: 'program_', endkey: 'program_\ufff0' }).then(function (docs) {
-            var programs = docs.rows;
-            // loop through programs, picking out all exercises in them
-            var exercises = programs.flatMap(function (program) {
-                // Just get the workouts from the programs, not the rest days
-                var workoutsOnly = program.doc.schedule.filter(function (exercise) {
-                    return exercise.tag == 'workout';
-                });
-                return workoutsOnly.flatMap(function (workout) {
-                    return workout.prescriptions.map(function (prescription) {
-                        return prescription.exercise;
-                    }).filter(function (exercise) {
-                        return !!exercise.name.toLowerCase().match(regex);
-                    });
-                });
-            });
-            var stringifiedExercises = exercises.map(function (exercise) {
-                return JSON.stringify(exercise);
-            });
-            var removeDuplicates = exercises.filter(function (exercise, index) {
-                return stringifiedExercises.indexOf(JSON.stringify(exercise)) == index;
-            });
-            resolve(removeDuplicates);
-        });
+        resolve(['First', 'Second', 'Third']);
     });
 };
 var findWorkoutsByName = function (name, avoid) {
@@ -1507,37 +1475,9 @@ var findWorkoutsByName = function (name, avoid) {
         });
     });
 };
-function isFilledLog(setLogVm) {
-    return !!setLogVm.log;
-}
 function findLogsContainingExercise(exerciseName, priorTo) {
     return new Promise(function (resolve, reject) {
-        db.allDocs({
-            include_docs: true,
-            startkey: priorTo,
-            endkey: 'workoutlog_',
-            inclusive_end: false,
-            descending: true,
-            skip: 1
-        }).then(function (docs) {
-            // Goal: filter the array of workoutlogs so that
-            // they only have filled sets in them. This makes
-            // each workoutlog a filledworkoutlog.
-            var rows = docs.rows;
-            var logs = rows.map(function (row) { return row.doc; });
-            var filledWorkoutLogs = logs.map(function (log) {
-                var filledSetLogs = log.sets.filter(isFilledLog);
-                var filledSetLogsWithExercise = filledSetLogs.filter(function (set) {
-                    return set.exercise.name === exerciseName;
-                });
-                var filledWorkoutLog = __assign({}, log, { sets: filledSetLogsWithExercise });
-                return filledWorkoutLog;
-            });
-            var filledWorkoutLogsWithSets = filledWorkoutLogs.filter(function (log) {
-                return log.sets.length > 0;
-            });
-            resolve(filledWorkoutLogsWithSets);
-        });
+        resolve([]);
     });
 }
 function fetchSaveableRecord(id) {
@@ -1631,24 +1571,6 @@ exports["default"] = {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
-exports.__esModule = true;
-exports["default"] = {
-    edit: '#0BC7B1',
-    danger: '#F25652',
-    primary: '#5D15D9',
-    secondary: '#0BC7B1',
-    tertiary: '#0BC7B1',
-    four: '#6A44D9',
-    accentBackground: '#F1F0E2'
-};
-
-
-/***/ }),
-/* 3 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
  * Copyright 2014-2015, Facebook, Inc.
  * All rights reserved.
@@ -1710,10 +1632,10 @@ if (process.env.NODE_ENV !== 'production') {
 
 module.exports = warning;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
 
 /***/ }),
-/* 4 */
+/* 3 */
 /***/ (function(module, exports) {
 
 var g;
@@ -1740,7 +1662,104 @@ module.exports = g;
 
 
 /***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+exports.__esModule = true;
+exports["default"] = {
+    edit: '#0BC7B1',
+    danger: '#F25652',
+    primary: '#5D15D9',
+    secondary: '#0BC7B1',
+    tertiary: '#0BC7B1',
+    four: '#6A44D9',
+    accentBackground: '#F1F0E2'
+};
+
+
+/***/ }),
 /* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+exports.__esModule = true;
+var m = __webpack_require__(0);
+var formatDate = function (timestamp) {
+    var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    var date = new Date(timestamp);
+    var month = months[date.getMonth()];
+    var day = date.getDate();
+    var year = date.getFullYear();
+    var hour = date.getHours() % 12;
+    var meridian = (date.getHours() / 12) <= 1 ? 'am' : 'pm';
+    var minutes = date.getMinutes();
+    return month + ' ' + day + ', ' + year + ' at ' + hour + ':' + minutes.toString().padStart(2, '0') + meridian;
+};
+var shortDate = function (timestamp) {
+    var date = new Date(timestamp);
+    var today = new Date();
+    var month = date.getMonth() + 1;
+    var day = date.getDate();
+    var year = date.getFullYear();
+    var currentYear = today.getFullYear();
+    return month + "/" + day + (year == currentYear ? '' : '/' + year);
+};
+var c = function () {
+    var styles = [];
+    for (var _i = 0; _i < arguments.length; _i++) {
+        styles[_i] = arguments[_i];
+    }
+    return styles.join(' ');
+};
+var getName = function (obj) {
+    switch (obj.tag) {
+        case 'workout':
+            return obj.name ? obj.name : 'Untitled Workout';
+        case 'rest':
+            return 'Rest Day';
+        case 'program':
+            return obj.name ? obj.name : 'Untitled Program';
+        default: return obj.name;
+    }
+};
+var getNameAndClasses = function (obj, css) {
+    var classes = obj.name ? '' : css.untitled;
+    return {
+        name: getName(obj),
+        classes: classes
+    };
+};
+var getWorkoutExercises = function (workout) {
+    if (workout.prescriptions.length == 0) {
+        return 'This workout has no exercises.';
+    }
+    else {
+        return workout.prescriptions.map(function (prescription) {
+            return prescription.exerciseName;
+        }).join(', ');
+    }
+};
+var getWorkoutExercisesElement = function (workout, css, classes) {
+    if (classes === void 0) { classes = []; }
+    var untitledClass = workout.prescriptions.length == 0 ? css.untitled : '';
+    return m('span', {
+        "class": c.apply(void 0, classes.concat([untitledClass]))
+    }, getWorkoutExercises(workout));
+};
+exports["default"] = {
+    formatDate: formatDate,
+    shortDate: shortDate,
+    c: c,
+    getNameAndClasses: getNameAndClasses,
+    getWorkoutExercisesElement: getWorkoutExercisesElement
+};
+
+
+/***/ }),
+/* 6 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -1930,7 +1949,7 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1946,7 +1965,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _warning = __webpack_require__(3);
+var _warning = __webpack_require__(2);
 
 var _warning2 = _interopRequireDefault(_warning);
 
@@ -2103,7 +2122,7 @@ var StyleRule = function () {
 exports['default'] = StyleRule;
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6120,88 +6139,7 @@ if (typeof __MOBX_DEVTOOLS_GLOBAL_HOOK__ === "object") {
 
 
 
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(5), __webpack_require__(4)))
-
-/***/ }),
-/* 8 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-exports.__esModule = true;
-var m = __webpack_require__(0);
-var formatDate = function (timestamp) {
-    var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-    var date = new Date(timestamp);
-    var month = months[date.getMonth()];
-    var day = date.getDate();
-    var year = date.getFullYear();
-    var hour = date.getHours() % 12;
-    var meridian = (date.getHours() / 12) <= 1 ? 'am' : 'pm';
-    var minutes = date.getMinutes();
-    return month + ' ' + day + ', ' + year + ' at ' + hour + ':' + minutes.toString().padStart(2, '0') + meridian;
-};
-var shortDate = function (timestamp) {
-    var date = new Date(timestamp);
-    var today = new Date();
-    var month = date.getMonth() + 1;
-    var day = date.getDate();
-    var year = date.getFullYear();
-    var currentYear = today.getFullYear();
-    return month + "/" + day + (year == currentYear ? '' : '/' + year);
-};
-var c = function () {
-    var styles = [];
-    for (var _i = 0; _i < arguments.length; _i++) {
-        styles[_i] = arguments[_i];
-    }
-    return styles.join(' ');
-};
-var getName = function (obj) {
-    switch (obj.tag) {
-        case 'exercise':
-            return obj.name ? obj.name : 'Untitled Exercise';
-        case 'workout':
-            return obj.name ? obj.name : 'Untitled Workout';
-        case 'rest':
-            return 'Rest Day';
-        case 'program':
-            return obj.name ? obj.name : 'Untitled Program';
-        default: return obj.name;
-    }
-};
-var getNameAndClasses = function (obj, css) {
-    var classes = obj.name ? '' : css.untitled;
-    return {
-        name: getName(obj),
-        classes: classes
-    };
-};
-var getWorkoutExercises = function (workout) {
-    if (workout.prescriptions.length == 0) {
-        return 'This workout has no exercises.';
-    }
-    else {
-        return workout.prescriptions.map(function (prescription) {
-            return prescription.exercise.name;
-        }).join(', ');
-    }
-};
-var getWorkoutExercisesElement = function (workout, css, classes) {
-    if (classes === void 0) { classes = []; }
-    var untitledClass = workout.prescriptions.length == 0 ? css.untitled : '';
-    return m('span', {
-        "class": c.apply(void 0, classes.concat([untitledClass]))
-    }, getWorkoutExercises(workout));
-};
-exports["default"] = {
-    formatDate: formatDate,
-    shortDate: shortDate,
-    c: c,
-    getNameAndClasses: getNameAndClasses,
-    getWorkoutExercisesElement: getWorkoutExercisesElement
-};
-
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(6), __webpack_require__(3)))
 
 /***/ }),
 /* 9 */
@@ -6226,11 +6164,11 @@ var _linkRule = __webpack_require__(33);
 
 var _linkRule2 = _interopRequireDefault(_linkRule);
 
-var _StyleRule = __webpack_require__(6);
+var _StyleRule = __webpack_require__(7);
 
 var _StyleRule2 = _interopRequireDefault(_StyleRule);
 
-var _escape = __webpack_require__(83);
+var _escape = __webpack_require__(85);
 
 var _escape2 = _interopRequireDefault(_escape);
 
@@ -6464,10 +6402,10 @@ exports['default'] = RuleList;
 
 exports.__esModule = true;
 var m = __webpack_require__(0);
-var overlay_1 = __webpack_require__(130);
+var overlay_1 = __webpack_require__(133);
 var jss_1 = __webpack_require__(30);
-var jss_preset_default_1 = __webpack_require__(64);
-var styles_1 = __webpack_require__(116);
+var jss_preset_default_1 = __webpack_require__(66);
+var styles_1 = __webpack_require__(119);
 var PageComponent = function (vnode) {
     jss_1["default"].setup(jss_preset_default_1["default"]());
     var css = jss_1["default"].createStyleSheet(styles_1["default"]).attach().classes;
@@ -6567,15 +6505,15 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports['default'] = createRule;
 
-var _warning = __webpack_require__(3);
+var _warning = __webpack_require__(2);
 
 var _warning2 = _interopRequireDefault(_warning);
 
-var _StyleRule = __webpack_require__(6);
+var _StyleRule = __webpack_require__(7);
 
 var _StyleRule2 = _interopRequireDefault(_StyleRule);
 
-var _cloneStyle = __webpack_require__(82);
+var _cloneStyle = __webpack_require__(84);
 
 var _cloneStyle2 = _interopRequireDefault(_cloneStyle);
 
@@ -6701,7 +6639,7 @@ function toCssValue(value) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_inherits___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_inherits__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_immediate__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_immediate___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_immediate__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_pouchdb_errors__ = __webpack_require__(87);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_pouchdb_errors__ = __webpack_require__(89);
 /* harmony reexport (default from non-hamory) */ __webpack_require__.d(__webpack_exports__, "h", function() { return __WEBPACK_IMPORTED_MODULE_6_immediate___default.a; });
 
 
@@ -7521,8 +7459,8 @@ var uuid = __WEBPACK_IMPORTED_MODULE_0_uuid___default.a.v4;
 
 exports.__esModule = true;
 var m = __webpack_require__(0);
-var utils_1 = __webpack_require__(8);
-var components_1 = __webpack_require__(128);
+var utils_1 = __webpack_require__(5);
+var components_1 = __webpack_require__(131);
 var TopBarComponent = function (vnode) {
     var css = vnode.attrs.css;
     return {
@@ -7541,30 +7479,10 @@ var TopBarComponent = function (vnode) {
                 }
                 return components_1.TopBarButton(attrs);
             });
-            var bottomButtons;
-            if (vnode.attrs.bottomButtons) {
-                bottomButtons = vnode.attrs.bottomButtons.map(function (buttonAttr) {
-                    var attrs = {
-                        text: buttonAttr.text,
-                        action: buttonAttr.action,
-                        css: css
-                    };
-                    if (buttonAttr.secondState) {
-                        attrs['secondState'] = {
-                            text: buttonAttr.secondState.text,
-                            action: buttonAttr.secondState.action
-                        };
-                    }
-                    return m('button', {
-                        "class": css.hollowButton + " " + css.small,
-                        onclick: attrs.action
-                    }, attrs.text);
-                });
-            }
             var subTitleElement;
             var subTitle = vnode.attrs.subTitle;
             var beingEdited = vnode.attrs.editButtonShowing;
-            if (!beingEdited && subTitle) {
+            if (subTitle) {
                 if (subTitle.url) {
                     subTitleElement = m('a', {
                         href: subTitle.url,
@@ -7580,9 +7498,6 @@ var TopBarComponent = function (vnode) {
                     "class": utils_1["default"].c(css.alignment, css.topBar)
                 }, [
                     subTitleElement ? m('div', { "class": css.topBarSubTitle }, subTitleElement) : null,
-                    bottomButtons && beingEdited
-                        ? m('div', { "class": css.bottomButtons }, bottomButtons)
-                        : null,
                     m('div', {
                         "class": css.topBarHeadingContainer
                     }, [
@@ -7754,7 +7669,7 @@ function immediate(task) {
   }
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
 /* 20 */
@@ -8384,7 +8299,7 @@ var PouchPromise = typeof Promise === 'function' ? Promise : __WEBPACK_IMPORTED_
 
 exports.__esModule = true;
 var m = __webpack_require__(0);
-var heading_1 = __webpack_require__(45);
+var heading_1 = __webpack_require__(26);
 var EditableHeading = function (vnode) {
     var css = vnode.attrs.css;
     return {
@@ -8431,122 +8346,22 @@ exports["default"] = default_1;
 
 exports.__esModule = true;
 var m = __webpack_require__(0);
-var mobx_1 = __webpack_require__(7);
-var db_1 = __webpack_require__(1);
-var dropdown_1 = __webpack_require__(134);
-var ExerciseOverlay = function (vnode) {
-    var css = vnode.attrs.css;
-    var matchingExercises = [];
-    var prescription = mobx_1.toJS(vnode.attrs.prescription);
-    var exercise = prescription.exercise;
-    var resultsShowing = false;
+var utils_1 = __webpack_require__(5);
+var H1 = function (vnode) {
     return {
         view: function (vnode) {
-            var setResultsShowing = function (show) { resultsShowing = show; };
-            return [
-                m('div', [
-                    m('div', { "class": css.labelOnTopGroup }, [
-                        m('label', { "class": css.label }, 'Title'),
-                        m('input[type=text]', {
-                            value: exercise.name,
-                            placeholder: 'Unnamed Exercise',
-                            oninput: m.withAttr('value', function (value) {
-                                exercise.name = value;
-                                if (exercise.name.length == 0) {
-                                    matchingExercises = [];
-                                }
-                                else {
-                                    db_1["default"].findExercisesByName(exercise.name).then(function (results) {
-                                        matchingExercises = results;
-                                        m.redraw();
-                                    });
-                                }
-                            }),
-                            "class": css.textInput
-                        }),
-                        exercise.name.length > 0 && matchingExercises.length > 0 ?
-                            dropdown_1["default"]({
-                                css: css,
-                                updateExercise: function (newExercise) {
-                                    exercise = newExercise;
-                                    matchingExercises = [];
-                                },
-                                matchingExercises: matchingExercises,
-                                resultsShowing: resultsShowing,
-                                setResultsShowing: setResultsShowing
-                            })
-                            : null,
-                    ]),
-                    m('div', { "class": css.labelOnTopGroup }, [
-                        m('label', { "class": css.label }, 'Sets & Reps'),
-                        m('div', [
-                            m('input[type=number]', {
-                                "class": css.textInput,
-                                value: prescription.sets,
-                                onchange: m.withAttr('value', function (value) {
-                                    prescription.sets = parseInt(value);
-                                })
-                            }),
-                            m('label', { "class": css.label }, 'sets'),
-                        ]),
-                        m('div', [
-                            m('input[type=number]', {
-                                "class": css.textInput,
-                                value: prescription.amount,
-                                onchange: m.withAttr('value', function (value) {
-                                    prescription.amount = parseInt(value);
-                                })
-                            }),
-                            m('label', { "class": css.label }, exercise.setUnits),
-                        ]),
-                    ]),
-                    m('div', { "class": css.labelOnLeftGroup }, [
-                        m('label', { "class": css.label }, 'Measured in'),
-                        m('select', {
-                            "class": css.selectInput,
-                            onchange: m.withAttr('value', function (value) {
-                                exercise.setUnits = value;
-                            })
-                        }, [
-                            m('option', {
-                                value: 'reps',
-                                selected: exercise.setUnits == 'reps'
-                            }, 'Reps'),
-                            m('option', {
-                                value: 'seconds',
-                                selected: exercise.setUnits == 'seconds'
-                            }, 'Seconds'),
-                        ]),
-                    ]),
-                ]),
-                m('div', { "class": css.bottomButtons }, [
-                    m('button', {
-                        "class": css.hollowButton,
-                        onclick: function () {
-                            if (vnode.attrs.deleteOnCancel) {
-                                vnode.attrs.deleteOnCancel();
-                            }
-                            vnode.attrs.hideOverlay();
-                        }
-                    }, 'Cancel'),
-                    m('button', {
-                        "class": css.button,
-                        onclick: function () {
-                            var newPrescription = Object.assign(prescription, {
-                                exercise: exercise
-                            });
-                            vnode.attrs.updatePrescription(newPrescription);
-                            vnode.attrs.hideOverlay();
-                        }
-                    }, 'Save'),
-                ]),
-            ];
+            var allClasses = vnode.attrs.classes || [];
+            //allClasses.push(vnode.attrs.css.h1)
+            var headingLevel = 'h' + vnode.attrs.level;
+            return m(headingLevel, {
+                "class": utils_1["default"].c.apply(utils_1["default"], allClasses.concat([vnode.attrs.css[headingLevel]]))
+            }, vnode.attrs.text);
         }
     };
 };
-exports["default"] = {
-    component: ExerciseOverlay
-};
+exports["default"] = (function (attrs) {
+    return m(H1, attrs);
+});
 
 
 /***/ }),
@@ -9213,7 +9028,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.create = exports.createGenerateClassName = exports.sheets = exports.RuleList = exports.SheetsManager = exports.SheetsRegistry = exports.toCssValue = exports.getDynamicStyles = undefined;
 
-var _getDynamicStyles = __webpack_require__(84);
+var _getDynamicStyles = __webpack_require__(86);
 
 Object.defineProperty(exports, 'getDynamicStyles', {
   enumerable: true,
@@ -9240,7 +9055,7 @@ Object.defineProperty(exports, 'SheetsRegistry', {
   }
 });
 
-var _SheetsManager = __webpack_require__(71);
+var _SheetsManager = __webpack_require__(73);
 
 Object.defineProperty(exports, 'SheetsManager', {
   enumerable: true,
@@ -9276,7 +9091,7 @@ Object.defineProperty(exports, 'createGenerateClassName', {
   }
 });
 
-var _Jss = __webpack_require__(69);
+var _Jss = __webpack_require__(71);
 
 var _Jss2 = _interopRequireDefault(_Jss);
 
@@ -9305,7 +9120,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _warning = __webpack_require__(3);
+var _warning = __webpack_require__(2);
 
 var _warning2 = _interopRequireDefault(_warning);
 
@@ -9313,7 +9128,7 @@ var _StyleSheet = __webpack_require__(29);
 
 var _StyleSheet2 = _interopRequireDefault(_StyleSheet);
 
-var _moduleId = __webpack_require__(85);
+var _moduleId = __webpack_require__(87);
 
 var _moduleId2 = _interopRequireDefault(_moduleId);
 
@@ -9356,7 +9171,7 @@ exports['default'] = function () {
     return prefix + rule.key + '-' + _moduleId2['default'] + (jssId && '-' + jssId) + '-' + ruleCounter;
   };
 };
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
 
 /***/ }),
 /* 32 */
@@ -9369,7 +9184,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _symbolObservable = __webpack_require__(96);
+var _symbolObservable = __webpack_require__(98);
 
 var _symbolObservable2 = _interopRequireDefault(_symbolObservable);
 
@@ -9887,7 +9702,7 @@ function stringMd5(string) {
 
 
 
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(4)))
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(3)))
 
 /***/ }),
 /* 37 */
@@ -10650,8 +10465,8 @@ function stringMd5(string) {
 /* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var v1 = __webpack_require__(99);
-var v4 = __webpack_require__(100);
+var v1 = __webpack_require__(101);
+var v4 = __webpack_require__(102);
 
 var uuid = v4;
 uuid.v1 = v1;
@@ -10727,7 +10542,7 @@ if (!rng) {
 
 module.exports = rng;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
 /* 41 */
@@ -10736,8 +10551,8 @@ module.exports = rng;
 "use strict";
 
 exports.__esModule = true;
-var colors_1 = __webpack_require__(2);
-var shared_1 = __webpack_require__(112);
+var colors_1 = __webpack_require__(4);
+var shared_1 = __webpack_require__(114);
 exports["default"] = {
     label: {
         margin: '.25rem',
@@ -10754,6 +10569,9 @@ exports["default"] = {
     },
     selectInput: {
         extend: 'textInput'
+    },
+    checkbox: {
+        margin: '.25rem .5rem'
     },
     button: Object.assign({
         backgroundColor: colors_1["default"].edit,
@@ -10798,6 +10616,12 @@ exports["default"] = {
         backgroundColor: 'white',
         color: colors_1["default"].danger,
         borderColor: colors_1["default"].danger
+    },
+    hollowEditButton: {
+        extend: 'button',
+        backgroundColor: 'white',
+        color: colors_1["default"].edit,
+        borderColor: colors_1["default"].edit
     },
     small: {
         padding: '.25rem .5rem',
@@ -10880,23 +10704,126 @@ exports["default"] = (function (attrs) {
 "use strict";
 
 exports.__esModule = true;
-;
-;
-;
-;
-var createSetLogViewModelsFromPrescriptions = function (prescriptions) {
-    var setLogVms = [];
-    prescriptions.forEach(function (prescription) {
-        for (var i = 0; i < prescription.sets; i++) {
-            setLogVms.push({
-                exercise: prescription.exercise,
-                prescribedReps: prescription.amount
-            });
-        }
-    });
-    return setLogVms;
+var m = __webpack_require__(0);
+var mobx_1 = __webpack_require__(8);
+var set_1 = __webpack_require__(47);
+var enterSet_1 = __webpack_require__(124);
+var utils_1 = __webpack_require__(5);
+exports["default"] = {
+    view: function (vnode) {
+        var _a = vnode.attrs, setOverlay = _a.setOverlay, setGroup = _a.setGroup, css = _a.css, showEditButtons = _a.showEditButtons, showLogButton = _a.showLogButton;
+        return m('ul', { "class": css.setUl }, setGroup.sets.map(function (set, index) {
+            var setIsDone = (set.reps && set.reps.entered !== false) || (set.weight && set.weight.entered !== false) || (set.time && set.time.entered !== false);
+            var unitParts = [];
+            if (set.reps && !setIsDone) {
+                if (set.reps.prescribed) {
+                    unitParts.push(m('span', { "class": css.repPill }, set.reps.prescribed + " reps"));
+                }
+                else {
+                    unitParts.push(m('span', { "class": css.repBlank }, '____ reps'));
+                }
+            }
+            else if (set.reps && set.reps.entered) {
+                unitParts.push(m('span', { "class": css.repDone }, set.reps.entered + " reps"));
+            }
+            if (set.weight && !setIsDone) {
+                if (set.weight.prescribed) {
+                    unitParts.push(m('span', { "class": css.weightPill }, set.weight.prescribed + " pounds"));
+                }
+                else {
+                    unitParts.push(m('span', { "class": css.weightBlank }, '____ pounds'));
+                }
+            }
+            else if (set.weight && set.weight.entered) {
+                unitParts.push(m('span', { "class": css.weightDone }, set.weight.entered + " pounds"));
+            }
+            if (set.time && !setIsDone) {
+                if (set.time.prescribed) {
+                    unitParts.push(m('span', { "class": css.timePill }, set.time.prescribed + " seconds"));
+                }
+                else {
+                    unitParts.push(m('span', { "class": css.timeBlank }, '____ seconds'));
+                }
+            }
+            else if (set.time && set.time.entered) {
+                unitParts.push(m('span', { "class": css.timeDone }, set.time.entered + " seconds"));
+            }
+            return m('li', { "class": css.setLi }, [
+                showEditButtons
+                    ? m('div', { "class": css.upDownBtnGroup }, [
+                        (index > 0)
+                            ? m('button', {
+                                "class": css.upBtnSmall,
+                                onclick: function () {
+                                    setGroup.sets.splice(index, 1);
+                                    setGroup.sets.splice(index - 1, 0, set);
+                                }
+                            })
+                            : null,
+                        (index < setGroup.sets.length - 1)
+                            ? m('button', {
+                                "class": css.downBtnSmall,
+                                onclick: function () {
+                                    setGroup.sets.splice(index, 1);
+                                    setGroup.sets.splice(index + 1, 0, set);
+                                }
+                            })
+                            : null,
+                    ]) : null,
+                (showLogButton && !showEditButtons)
+                    ? m('button', {
+                        "class": utils_1["default"].c(css.enterLogButton),
+                        onclick: function () {
+                            setOverlay(enterSet_1["default"], {
+                                title: setGroup.exerciseName,
+                                closeOverlay: function () {
+                                    setOverlay({ component: null }, {});
+                                },
+                                css: css,
+                                updateSet: function (newSet) {
+                                    mobx_1.set(set, newSet);
+                                },
+                                set: set
+                            });
+                        }
+                    })
+                    : null,
+                (setIsDone)
+                    ? m('span', { "class": css.setDone })
+                    : m('span', { "class": css.setNumber }, index + 1),
+                (unitParts.length > 0)
+                    ? unitParts
+                    : m('span', 'No goals or units given for this set.'),
+                showEditButtons
+                    ? [
+                        m('button', {
+                            "class": css.hollowEditButton + " " + css.small,
+                            onclick: function () {
+                                setOverlay(set_1["default"], {
+                                    title: setGroup.exerciseName,
+                                    index: index,
+                                    set: set,
+                                    addSet: function (changedSet) {
+                                        setGroup.sets.splice(index, 1, changedSet);
+                                    },
+                                    hideOverlay: function () {
+                                        setOverlay({ component: null, title: '' }, {});
+                                    },
+                                    css: css
+                                });
+                            }
+                        }, 'Edit'),
+                        m('button', {
+                            "class": css.hollowDangerButton + " " + css.small,
+                            onclick: function () {
+                                setGroup.sets.splice(index, 1);
+                            }
+                        }, 'X'),
+                    ] : null,
+            ]);
+        }));
+    }
 };
-exports.createSetLogViewModelsFromPrescriptions = createSetLogViewModelsFromPrescriptions;
 
 
 /***/ }),
@@ -10907,22 +10834,89 @@ exports.createSetLogViewModelsFromPrescriptions = createSetLogViewModelsFromPres
 
 exports.__esModule = true;
 var m = __webpack_require__(0);
-var utils_1 = __webpack_require__(8);
-var H1 = function (vnode) {
+var db_1 = __webpack_require__(1);
+var mobx_1 = __webpack_require__(8);
+var title = 'Edit Workout Name';
+var EditTitleComponent = function (vnode) {
+    var matchingWorkouts = [];
+    var workout = mobx_1.toJS(vnode.attrs.workout);
+    var css = vnode.attrs.css;
     return {
         view: function (vnode) {
-            var allClasses = vnode.attrs.classes || [];
-            //allClasses.push(vnode.attrs.css.h1)
-            var headingLevel = 'h' + vnode.attrs.level;
-            return m(headingLevel, {
-                "class": utils_1["default"].c.apply(utils_1["default"], allClasses.concat([vnode.attrs.css[headingLevel]]))
-            }, vnode.attrs.text);
+            return m('div', [
+                m('div', { "class": css.labelOnTopGroup }, [
+                    m('label', { "class": css.label }, 'Title'),
+                    m('div', { "class": css.formRow }, [
+                        m('input[type=text]', {
+                            value: workout.name,
+                            placeholder: 'Untitled Workout',
+                            oninput: m.withAttr('value', function (value) {
+                                workout.name = value;
+                                if (value.length == 0) {
+                                    matchingWorkouts = [];
+                                }
+                                else {
+                                    db_1["default"].findWorkoutsByName(value, workout).then(function (results) {
+                                        matchingWorkouts = results;
+                                        m.redraw();
+                                    });
+                                }
+                            }),
+                            "class": css.textInput
+                        }),
+                        m('div', [
+                            m('button', {
+                                onclick: function () {
+                                    vnode.attrs.updateWorkout(workout);
+                                    vnode.attrs.hideOverlay();
+                                },
+                                "class": css.button
+                            }, 'Save'),
+                            m('button', {
+                                onclick: function () { vnode.attrs.hideOverlay(); },
+                                "class": css.hollowButton
+                            }, 'Cancel'),
+                        ]),
+                    ]),
+                ]),
+                matchingWorkouts.length > 1 ?
+                    m('div', { "class": css.resultDescription }, m('p', 'copy an existing workout:'))
+                    : null,
+                m('div', matchingWorkouts.map(function (result) {
+                    return m('div', {
+                        "class": css.workoutResult,
+                        onclick: function () {
+                            vnode.attrs.updateWorkout(result.workout);
+                            vnode.attrs.hideOverlay();
+                        }
+                    }, [
+                        m('a', {
+                            "class": css.a,
+                            onclick: function (event) {
+                                event.preventDefault();
+                                vnode.attrs.updateWorkout(result.workout);
+                                vnode.attrs.hideOverlay();
+                            },
+                            href: '#'
+                        }, result.workout.name),
+                        m('span', { "class": css.subTitle }, result.programs.map(function (program) {
+                            return program.name;
+                        }).join(', ')),
+                        m('p', {
+                            "class": css.workoutResultSubtitle
+                        }, result.workout.prescriptions.map(function (prescription) {
+                            return prescription.exercise.name;
+                        }).join(', '))
+                    ]);
+                })),
+            ]);
         }
     };
 };
-exports["default"] = (function (attrs) {
-    return m(H1, attrs);
-});
+exports["default"] = {
+    component: EditTitleComponent,
+    title: title
+};
 
 
 /***/ }),
@@ -10933,7 +10927,258 @@ exports["default"] = (function (attrs) {
 
 exports.__esModule = true;
 var m = __webpack_require__(0);
-var programList_1 = __webpack_require__(127);
+var mobx_1 = __webpack_require__(8);
+var db_1 = __webpack_require__(1);
+var dropdown_1 = __webpack_require__(135);
+var ExerciseOverlay = function (vnode) {
+    var css = vnode.attrs.css;
+    var matchingExercises = [];
+    var setGroup = mobx_1.toJS(vnode.attrs.setGroup);
+    var resultsShowing = false;
+    var toggleUnits = function (unitObject) {
+        if (unitObject) {
+            return false;
+        }
+        else {
+            var obj = {
+                prescribed: false,
+                entered: false
+            };
+            return obj;
+        }
+    };
+    var setAssignedValue = function (unitObject, value) {
+        return Object.assign({}, {
+            prescribed: value,
+            entered: unitObject.entered || false
+        });
+    };
+    var getValue = function (unitObject) {
+        return (unitObject && unitObject.prescribed)
+            ? unitObject.prescribed
+            : '';
+    };
+    return {
+        view: function (vnode) {
+            var setResultsShowing = function (show) { resultsShowing = show; };
+            return [
+                m('div', [
+                    m('div', { "class": css.labelOnTopGroup }, [
+                        m('label', { "class": css.label }, 'Exercise name'),
+                        m('input[type=text]', {
+                            value: setGroup.exerciseName,
+                            placeholder: 'Unnamed Exercise',
+                            oninput: m.withAttr('value', function (value) {
+                                setGroup.exerciseName = value;
+                                if (setGroup.exerciseName.length == 0) {
+                                    matchingExercises = [];
+                                }
+                                else {
+                                    db_1["default"].findExercisesByName(setGroup.exerciseName).then(function (results) {
+                                        matchingExercises = results;
+                                        m.redraw();
+                                    });
+                                }
+                            }),
+                            "class": css.textInput
+                        }),
+                        setGroup.exerciseName.length > 0 && matchingExercises.length > 0 ?
+                            dropdown_1["default"]({
+                                css: css,
+                                updateExercise: function (newName) {
+                                    setGroup.exerciseName = newName;
+                                    matchingExercises = [];
+                                },
+                                matchingExercises: matchingExercises,
+                                resultsShowing: resultsShowing,
+                                setResultsShowing: setResultsShowing
+                            })
+                            : null,
+                    ]),
+                    m('div', { "class": css.bottomButtons }, [
+                        m('button', {
+                            "class": css.hollowButton,
+                            onclick: function () {
+                                if (vnode.attrs.deleteOnCancel) {
+                                    vnode.attrs.deleteOnCancel();
+                                }
+                                vnode.attrs.hideOverlay();
+                            }
+                        }, 'Cancel'),
+                        m('button', {
+                            "class": css.button,
+                            onclick: function () {
+                                vnode.attrs.updateSetGroup(setGroup);
+                                vnode.attrs.hideOverlay();
+                            }
+                        }, 'Save'),
+                    ]),
+                ])
+            ];
+        }
+    };
+};
+exports["default"] = {
+    component: ExerciseOverlay
+};
+
+
+/***/ }),
+/* 47 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+exports.__esModule = true;
+var m = __webpack_require__(0);
+var utils_1 = __webpack_require__(5);
+var AddSetOverlay = function (vnode) {
+    var set = JSON.parse(JSON.stringify(vnode.attrs.set));
+    var css = vnode.attrs.css;
+    return {
+        view: function (vnode) {
+            return [
+                m('div', { "class": css.labelOnTopGroup }, [
+                    m('div', { "class": css.setOverlayHeading }, [
+                        'Set ',
+                        m('span', {
+                            "class": utils_1["default"].c(css.setNumber, css.setOverlayHeadingNumber)
+                        }, vnode.attrs.index + 1),
+                    ]),
+                    m('label', { "class": css.label }, 'Set is measured in: (check all that apply)'),
+                    m('div', [
+                        m('div', { "class": css.formRow }, [
+                            m('input[type=checkbox]', {
+                                "class": css.checkbox,
+                                onclick: function () {
+                                    if (set.reps) {
+                                        set.reps = false;
+                                    }
+                                    else {
+                                        set.reps = {
+                                            prescribed: false,
+                                            entered: false
+                                        };
+                                    }
+                                },
+                                checked: !!set.reps
+                            }),
+                            m('label', 'reps'),
+                        ]),
+                        m('div', { "class": css.formRow }, [
+                            m('input[type=checkbox]', {
+                                "class": css.checkbox,
+                                onclick: function () {
+                                    if (set.weight) {
+                                        set.weight = false;
+                                    }
+                                    else {
+                                        set.weight = {
+                                            prescribed: false,
+                                            entered: false
+                                        };
+                                    }
+                                },
+                                checked: !!set.weight
+                            }),
+                            m('label', 'pounds'),
+                        ]),
+                        m('div', [
+                            m('input[type=checkbox]', {
+                                "class": css.checkbox,
+                                onclick: function () {
+                                    if (set.time) {
+                                        set.time = false;
+                                    }
+                                    else {
+                                        set.time = {
+                                            prescribed: false,
+                                            entered: false
+                                        };
+                                    }
+                                },
+                                checked: !!set.time
+                            }),
+                            m('label', 'seconds'),
+                        ]),
+                    ]),
+                ]),
+                m('div', { "class": css.labelOnTopGroup }, [
+                    m('label', { "class": css.label }, 'Goal values (leave blank to fill in values at the gym)'),
+                    (set.reps
+                        ? m('div', { "class": css.formRow }, [
+                            m('input[type=text]', {
+                                "class": css.textInput,
+                                onchange: m.withAttr('value', function (value) {
+                                    if (set.reps) {
+                                        set.reps.prescribed = parseInt(value);
+                                    }
+                                }),
+                                value: set.reps.prescribed ? set.reps.prescribed : ''
+                            }),
+                            m('label', 'reps'),
+                        ])
+                        : null),
+                    (set.weight
+                        ? m('div', { "class": css.formRow }, [
+                            m('input[type=text]', {
+                                "class": css.textInput,
+                                onchange: m.withAttr('value', function (value) {
+                                    if (set.weight) {
+                                        set.weight.prescribed = parseInt(value);
+                                    }
+                                }),
+                                value: set.weight.prescribed ? set.weight.prescribed : ''
+                            }),
+                            m('label', 'pounds'),
+                        ])
+                        : null),
+                    (set.time
+                        ? m('div', { "class": css.formRow }, [
+                            m('input[type=text]', {
+                                "class": css.textInput,
+                                onchange: m.withAttr('value', function (value) {
+                                    if (set.time) {
+                                        set.time.prescribed = parseInt(value);
+                                    }
+                                }),
+                                value: set.time.prescribed ? set.time.prescribed : ''
+                            }),
+                            m('label', 'seconds'),
+                        ])
+                        : null),
+                ]),
+                m('div', [
+                    m('button', {
+                        "class": css.hollowDangerButton,
+                        onclick: function () { vnode.attrs.hideOverlay(); }
+                    }, 'Cancel'),
+                    m('button', {
+                        "class": css.button,
+                        onclick: function () {
+                            vnode.attrs.addSet(set);
+                            vnode.attrs.hideOverlay();
+                        }
+                    }, 'Save'),
+                ])
+            ];
+        }
+    };
+};
+exports["default"] = {
+    component: AddSetOverlay
+};
+
+
+/***/ }),
+/* 48 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+exports.__esModule = true;
+var m = __webpack_require__(0);
+var programList_1 = __webpack_require__(130);
 var topBar_1 = __webpack_require__(16);
 var db_1 = __webpack_require__(1);
 var component = function (vnode) {
@@ -10966,7 +11211,7 @@ exports.component = component;
 
 
 /***/ }),
-/* 47 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10975,7 +11220,7 @@ exports.__esModule = true;
 var m = __webpack_require__(0);
 var db_1 = __webpack_require__(1);
 var page_1 = __webpack_require__(10);
-var LogContent = __webpack_require__(120);
+var LogContent = __webpack_require__(123);
 exports["default"] = (function (vnode) {
     var log = {
         workout: {
@@ -11018,10 +11263,7 @@ exports["default"] = (function (vnode) {
                         component: LogContent.component,
                         attrs: {
                             log: log,
-                            programUrl: programUrl,
-                            updateLog: function (viewModels) {
-                                log.sets = viewModels;
-                            }
+                            programUrl: programUrl
                         }
                     }
                 })
@@ -11032,7 +11274,7 @@ exports["default"] = (function (vnode) {
 
 
 /***/ }),
-/* 48 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11049,7 +11291,7 @@ exports.__esModule = true;
 var m = __webpack_require__(0);
 var db_1 = __webpack_require__(1);
 var page_1 = __webpack_require__(10);
-var ProgramContents = __webpack_require__(126);
+var ProgramContents = __webpack_require__(129);
 exports["default"] = (function (vnode) {
     var pageEditable = false;
     var program = {
@@ -11093,6 +11335,12 @@ exports["default"] = (function (vnode) {
     };
     var addRestDay = function () {
         program.schedule.push({ tag: 'rest' });
+    };
+    var updateWorkout = function (workout, index) {
+        var selectedWorkout = program.schedule[index];
+        if (selectedWorkout.tag == 'workout') {
+            program.schedule[index] = workout;
+        }
     };
     var getWorkoutsWithLogs = function (program) {
         var workouts = program.schedule;
@@ -11145,6 +11393,7 @@ exports["default"] = (function (vnode) {
                             moveUp: moveUp,
                             moveDown: moveDown,
                             remove: remove,
+                            updateWorkout: updateWorkout,
                             addWorkout: addWorkout,
                             addRestDay: addRestDay
                         }
@@ -11157,7 +11406,7 @@ exports["default"] = (function (vnode) {
 
 
 /***/ }),
-/* 49 */
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11165,8 +11414,8 @@ exports["default"] = (function (vnode) {
 exports.__esModule = true;
 var m = __webpack_require__(0);
 var db_1 = __webpack_require__(1);
-var WorkoutContent = __webpack_require__(135);
-var mobx_1 = __webpack_require__(7);
+var WorkoutContent = __webpack_require__(136);
+var mobx_1 = __webpack_require__(8);
 var page_1 = __webpack_require__(10);
 ;
 ;
@@ -11215,7 +11464,7 @@ exports["default"] = (function (vnode) {
 
 
 /***/ }),
-/* 50 */
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11242,7 +11491,7 @@ function toUpper(match, c) {
 }
 
 /***/ }),
-/* 51 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11257,11 +11506,11 @@ var _prefix = __webpack_require__(18);
 
 var _prefix2 = _interopRequireDefault(_prefix);
 
-var _supportedProperty = __webpack_require__(52);
+var _supportedProperty = __webpack_require__(54);
 
 var _supportedProperty2 = _interopRequireDefault(_supportedProperty);
 
-var _supportedValue = __webpack_require__(53);
+var _supportedValue = __webpack_require__(55);
 
 var _supportedValue2 = _interopRequireDefault(_supportedValue);
 
@@ -11284,7 +11533,7 @@ exports.supportedProperty = _supportedProperty2['default'];
 exports.supportedValue = _supportedValue2['default'];
 
 /***/ }),
-/* 52 */
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11303,7 +11552,7 @@ var _prefix = __webpack_require__(18);
 
 var _prefix2 = _interopRequireDefault(_prefix);
 
-var _camelize = __webpack_require__(50);
+var _camelize = __webpack_require__(52);
 
 var _camelize2 = _interopRequireDefault(_camelize);
 
@@ -11362,7 +11611,7 @@ function supportedProperty(prop) {
 }
 
 /***/ }),
-/* 53 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11442,7 +11691,7 @@ function supportedValue(property, value) {
 }
 
 /***/ }),
-/* 54 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11465,7 +11714,7 @@ module.exports = hyphenateStyleName;
 
 
 /***/ }),
-/* 55 */
+/* 57 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11476,7 +11725,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports['default'] = camelCase;
 
-var _hyphenateStyleName = __webpack_require__(54);
+var _hyphenateStyleName = __webpack_require__(56);
 
 var _hyphenateStyleName2 = _interopRequireDefault(_hyphenateStyleName);
 
@@ -11536,7 +11785,7 @@ function camelCase() {
 }
 
 /***/ }),
-/* 56 */
+/* 58 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11547,7 +11796,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = jssCompose;
 
-var _warning = __webpack_require__(3);
+var _warning = __webpack_require__(2);
 
 var _warning2 = _interopRequireDefault(_warning);
 
@@ -11624,7 +11873,7 @@ function jssCompose() {
 }
 
 /***/ }),
-/* 57 */
+/* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11747,7 +11996,7 @@ exports['default'] = {
 };
 
 /***/ }),
-/* 58 */
+/* 60 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11761,7 +12010,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 exports['default'] = defaultUnit;
 
-var _defaultUnits = __webpack_require__(57);
+var _defaultUnits = __webpack_require__(59);
 
 var _defaultUnits2 = _interopRequireDefault(_defaultUnits);
 
@@ -11856,7 +12105,7 @@ function defaultUnit() {
 }
 
 /***/ }),
-/* 59 */
+/* 61 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11870,7 +12119,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 exports.default = jssExpand;
 
-var _props = __webpack_require__(60);
+var _props = __webpack_require__(62);
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
@@ -12042,7 +12291,7 @@ function jssExpand() {
 }
 
 /***/ }),
-/* 60 */
+/* 62 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12216,7 +12465,7 @@ var propArray = exports.propArray = {
 };
 
 /***/ }),
-/* 61 */
+/* 63 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12230,7 +12479,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 exports['default'] = jssExtend;
 
-var _warning = __webpack_require__(3);
+var _warning = __webpack_require__(2);
 
 var _warning2 = _interopRequireDefault(_warning);
 
@@ -12350,7 +12599,7 @@ function jssExtend() {
 }
 
 /***/ }),
-/* 62 */
+/* 64 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12547,7 +12796,7 @@ function jssGlobal() {
 }
 
 /***/ }),
-/* 63 */
+/* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12561,7 +12810,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 exports.default = jssNested;
 
-var _warning = __webpack_require__(3);
+var _warning = __webpack_require__(2);
 
 var _warning2 = _interopRequireDefault(_warning);
 
@@ -12664,7 +12913,7 @@ function jssNested() {
 }
 
 /***/ }),
-/* 64 */
+/* 66 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12674,43 +12923,43 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _jssTemplate = __webpack_require__(66);
+var _jssTemplate = __webpack_require__(68);
 
 var _jssTemplate2 = _interopRequireDefault(_jssTemplate);
 
-var _jssGlobal = __webpack_require__(62);
+var _jssGlobal = __webpack_require__(64);
 
 var _jssGlobal2 = _interopRequireDefault(_jssGlobal);
 
-var _jssExtend = __webpack_require__(61);
+var _jssExtend = __webpack_require__(63);
 
 var _jssExtend2 = _interopRequireDefault(_jssExtend);
 
-var _jssNested = __webpack_require__(63);
+var _jssNested = __webpack_require__(65);
 
 var _jssNested2 = _interopRequireDefault(_jssNested);
 
-var _jssCompose = __webpack_require__(56);
+var _jssCompose = __webpack_require__(58);
 
 var _jssCompose2 = _interopRequireDefault(_jssCompose);
 
-var _jssCamelCase = __webpack_require__(55);
+var _jssCamelCase = __webpack_require__(57);
 
 var _jssCamelCase2 = _interopRequireDefault(_jssCamelCase);
 
-var _jssDefaultUnit = __webpack_require__(58);
+var _jssDefaultUnit = __webpack_require__(60);
 
 var _jssDefaultUnit2 = _interopRequireDefault(_jssDefaultUnit);
 
-var _jssExpand = __webpack_require__(59);
+var _jssExpand = __webpack_require__(61);
 
 var _jssExpand2 = _interopRequireDefault(_jssExpand);
 
-var _jssVendorPrefixer = __webpack_require__(68);
+var _jssVendorPrefixer = __webpack_require__(70);
 
 var _jssVendorPrefixer2 = _interopRequireDefault(_jssVendorPrefixer);
 
-var _jssPropsSort = __webpack_require__(65);
+var _jssPropsSort = __webpack_require__(67);
 
 var _jssPropsSort2 = _interopRequireDefault(_jssPropsSort);
 
@@ -12724,7 +12973,7 @@ exports.default = function () {
 };
 
 /***/ }),
-/* 65 */
+/* 67 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12757,7 +13006,7 @@ function jssPropsSort() {
 }
 
 /***/ }),
-/* 66 */
+/* 68 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12767,7 +13016,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _parse = __webpack_require__(67);
+var _parse = __webpack_require__(69);
 
 var _parse2 = _interopRequireDefault(_parse);
 
@@ -12784,7 +13033,7 @@ exports['default'] = function () {
 };
 
 /***/ }),
-/* 67 */
+/* 69 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12794,7 +13043,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _warning = __webpack_require__(3);
+var _warning = __webpack_require__(2);
 
 var _warning2 = _interopRequireDefault(_warning);
 
@@ -12829,7 +13078,7 @@ exports['default'] = function (cssText) {
 };
 
 /***/ }),
-/* 68 */
+/* 70 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12840,7 +13089,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports['default'] = jssVendorPrefixer;
 
-var _cssVendor = __webpack_require__(51);
+var _cssVendor = __webpack_require__(53);
 
 var vendor = _interopRequireWildcard(_cssVendor);
 
@@ -12890,7 +13139,7 @@ function jssVendorPrefixer() {
 }
 
 /***/ }),
-/* 69 */
+/* 71 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12914,19 +13163,19 @@ var _StyleSheet = __webpack_require__(29);
 
 var _StyleSheet2 = _interopRequireDefault(_StyleSheet);
 
-var _PluginsRegistry = __webpack_require__(70);
+var _PluginsRegistry = __webpack_require__(72);
 
 var _PluginsRegistry2 = _interopRequireDefault(_PluginsRegistry);
 
-var _rules = __webpack_require__(74);
+var _rules = __webpack_require__(76);
 
 var _rules2 = _interopRequireDefault(_rules);
 
-var _observables = __webpack_require__(73);
+var _observables = __webpack_require__(75);
 
 var _observables2 = _interopRequireDefault(_observables);
 
-var _functions = __webpack_require__(72);
+var _functions = __webpack_require__(74);
 
 var _functions2 = _interopRequireDefault(_functions);
 
@@ -12934,7 +13183,7 @@ var _sheets = __webpack_require__(20);
 
 var _sheets2 = _interopRequireDefault(_sheets);
 
-var _StyleRule = __webpack_require__(6);
+var _StyleRule = __webpack_require__(7);
 
 var _StyleRule2 = _interopRequireDefault(_StyleRule);
 
@@ -12946,11 +13195,11 @@ var _createRule2 = __webpack_require__(13);
 
 var _createRule3 = _interopRequireDefault(_createRule2);
 
-var _DomRenderer = __webpack_require__(75);
+var _DomRenderer = __webpack_require__(77);
 
 var _DomRenderer2 = _interopRequireDefault(_DomRenderer);
 
-var _VirtualRenderer = __webpack_require__(76);
+var _VirtualRenderer = __webpack_require__(78);
 
 var _VirtualRenderer2 = _interopRequireDefault(_VirtualRenderer);
 
@@ -13107,7 +13356,7 @@ var Jss = function () {
 exports['default'] = Jss;
 
 /***/ }),
-/* 70 */
+/* 72 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13119,7 +13368,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _warning = __webpack_require__(3);
+var _warning = __webpack_require__(2);
 
 var _warning2 = _interopRequireDefault(_warning);
 
@@ -13249,7 +13498,7 @@ var PluginsRegistry = function () {
 exports['default'] = PluginsRegistry;
 
 /***/ }),
-/* 71 */
+/* 73 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13261,7 +13510,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _warning = __webpack_require__(3);
+var _warning = __webpack_require__(2);
 
 var _warning2 = _interopRequireDefault(_warning);
 
@@ -13342,7 +13591,7 @@ var SheetsManager = function () {
 exports['default'] = SheetsManager;
 
 /***/ }),
-/* 72 */
+/* 74 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13356,7 +13605,7 @@ var _RuleList = __webpack_require__(9);
 
 var _RuleList2 = _interopRequireDefault(_RuleList);
 
-var _StyleRule = __webpack_require__(6);
+var _StyleRule = __webpack_require__(7);
 
 var _StyleRule2 = _interopRequireDefault(_StyleRule);
 
@@ -13424,7 +13673,7 @@ exports['default'] = {
 };
 
 /***/ }),
-/* 73 */
+/* 75 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13434,7 +13683,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _StyleRule = __webpack_require__(6);
+var _StyleRule = __webpack_require__(7);
 
 var _StyleRule2 = _interopRequireDefault(_StyleRule);
 
@@ -13493,7 +13742,7 @@ exports['default'] = {
 };
 
 /***/ }),
-/* 74 */
+/* 76 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13503,23 +13752,23 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _SimpleRule = __webpack_require__(80);
+var _SimpleRule = __webpack_require__(82);
 
 var _SimpleRule2 = _interopRequireDefault(_SimpleRule);
 
-var _KeyframesRule = __webpack_require__(79);
+var _KeyframesRule = __webpack_require__(81);
 
 var _KeyframesRule2 = _interopRequireDefault(_KeyframesRule);
 
-var _ConditionalRule = __webpack_require__(77);
+var _ConditionalRule = __webpack_require__(79);
 
 var _ConditionalRule2 = _interopRequireDefault(_ConditionalRule);
 
-var _FontFaceRule = __webpack_require__(78);
+var _FontFaceRule = __webpack_require__(80);
 
 var _FontFaceRule2 = _interopRequireDefault(_FontFaceRule);
 
-var _ViewportRule = __webpack_require__(81);
+var _ViewportRule = __webpack_require__(83);
 
 var _ViewportRule2 = _interopRequireDefault(_ViewportRule);
 
@@ -13550,7 +13799,7 @@ exports['default'] = Object.keys(classes).map(function (key) {
 });
 
 /***/ }),
-/* 75 */
+/* 77 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13562,7 +13811,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _warning = __webpack_require__(3);
+var _warning = __webpack_require__(2);
 
 var _warning2 = _interopRequireDefault(_warning);
 
@@ -13570,7 +13819,7 @@ var _sheets = __webpack_require__(20);
 
 var _sheets2 = _interopRequireDefault(_sheets);
 
-var _StyleRule = __webpack_require__(6);
+var _StyleRule = __webpack_require__(7);
 
 var _StyleRule2 = _interopRequireDefault(_StyleRule);
 
@@ -14013,7 +14262,7 @@ var DomRenderer = function () {
 exports['default'] = DomRenderer;
 
 /***/ }),
-/* 76 */
+/* 78 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14100,7 +14349,7 @@ var VirtualRenderer = function () {
 exports['default'] = VirtualRenderer;
 
 /***/ }),
-/* 77 */
+/* 79 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14196,7 +14445,7 @@ var ConditionalRule = function () {
 exports['default'] = ConditionalRule;
 
 /***/ }),
-/* 78 */
+/* 80 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14255,7 +14504,7 @@ var FontFaceRule = function () {
 exports['default'] = FontFaceRule;
 
 /***/ }),
-/* 79 */
+/* 81 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14323,7 +14572,7 @@ var KeyframesRule = function () {
 exports['default'] = KeyframesRule;
 
 /***/ }),
-/* 80 */
+/* 82 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14377,7 +14626,7 @@ var SimpleRule = function () {
 exports['default'] = SimpleRule;
 
 /***/ }),
-/* 81 */
+/* 83 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14427,7 +14676,7 @@ var ViewportRule = function () {
 exports['default'] = ViewportRule;
 
 /***/ }),
-/* 82 */
+/* 84 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14480,7 +14729,7 @@ function cloneStyle(style) {
 }
 
 /***/ }),
-/* 83 */
+/* 85 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14506,10 +14755,10 @@ exports['default'] = function (str) {
 
   return CSS.escape(str);
 };
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4), __webpack_require__(5)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3), __webpack_require__(6)))
 
 /***/ }),
-/* 84 */
+/* 86 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14552,7 +14801,7 @@ exports['default'] = function (styles) {
 };
 
 /***/ }),
-/* 85 */
+/* 87 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14569,10 +14818,10 @@ if (global[ns] == null) global[ns] = 0;
 // we use a counter. Also it is more accurate, because user can manually reevaluate
 // the module.
 exports['default'] = global[ns]++;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
-/* 86 */
+/* 88 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -14582,7 +14831,7 @@ exports['default'] = global[ns]++;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_pouchdb_binary_utils__ = __webpack_require__(35);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_pouchdb_collate__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_pouchdb_md5__ = __webpack_require__(36);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_pouchdb_mapreduce_utils__ = __webpack_require__(89);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_pouchdb_mapreduce_utils__ = __webpack_require__(91);
 
 
 
@@ -15613,7 +15862,7 @@ function createAbstractMapReduce(localDocName, mapper, reducer, ddocValidator) {
 
 
 /***/ }),
-/* 87 */
+/* 89 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -15742,15 +15991,15 @@ function generateErrorFromResponse(err) {
 
 
 /***/ }),
-/* 88 */
+/* 90 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* WEBPACK VAR INJECTION */(function(process) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_pouchdb_utils__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_pouchdb_promise__ = __webpack_require__(24);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_pouchdb_selector_core__ = __webpack_require__(90);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_pouchdb_abstract_mapreduce__ = __webpack_require__(86);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_pouchdb_selector_core__ = __webpack_require__(92);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_pouchdb_abstract_mapreduce__ = __webpack_require__(88);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_pouchdb_collate__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_pouchdb_md5__ = __webpack_require__(36);
 
@@ -17155,10 +17404,10 @@ plugin.deleteIndex = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_pouchdb_u
 
 /* harmony default export */ __webpack_exports__["default"] = (plugin);
 
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(5)))
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(6)))
 
 /***/ }),
-/* 89 */
+/* 91 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -17292,7 +17541,7 @@ function mapToKeysArray(map) {
 
 
 /***/ }),
-/* 90 */
+/* 92 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -17869,7 +18118,7 @@ function matchesSelector(doc, selector) {
 
 
 /***/ }),
-/* 91 */
+/* 93 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -17886,11 +18135,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_inherits___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_inherits__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_immediate__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_immediate___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_immediate__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_debug__ = __webpack_require__(92);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_debug__ = __webpack_require__(94);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_debug___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_debug__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_spark_md5__ = __webpack_require__(37);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_spark_md5___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_spark_md5__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_vuvuzela__ = __webpack_require__(101);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_vuvuzela__ = __webpack_require__(103);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_vuvuzela___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_vuvuzela__);
 
 
@@ -30076,10 +30325,10 @@ PouchDB$5.plugin(IDBPouch)
 
 /* harmony default export */ __webpack_exports__["default"] = (PouchDB$5);
 
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(4)))
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(3)))
 
 /***/ }),
-/* 92 */
+/* 94 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process) {/**
@@ -30088,7 +30337,7 @@ PouchDB$5.plugin(IDBPouch)
  * Expose `debug()` as the module.
  */
 
-exports = module.exports = __webpack_require__(93);
+exports = module.exports = __webpack_require__(95);
 exports.log = log;
 exports.formatArgs = formatArgs;
 exports.save = save;
@@ -30268,10 +30517,10 @@ function localstorage() {
   } catch (e) {}
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
 
 /***/ }),
-/* 93 */
+/* 95 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -30287,7 +30536,7 @@ exports.coerce = coerce;
 exports.disable = disable;
 exports.enable = enable;
 exports.enabled = enabled;
-exports.humanize = __webpack_require__(94);
+exports.humanize = __webpack_require__(96);
 
 /**
  * The currently active debug mode names, and names to skip.
@@ -30479,7 +30728,7 @@ function coerce(val) {
 
 
 /***/ }),
-/* 94 */
+/* 96 */
 /***/ (function(module, exports) {
 
 /**
@@ -30634,7 +30883,7 @@ function plural(ms, n, name) {
 
 
 /***/ }),
-/* 95 */
+/* 97 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, process) {(function (global, undefined) {
@@ -30824,15 +31073,15 @@ function plural(ms, n, name) {
     attachTo.clearImmediate = clearImmediate;
 }(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4), __webpack_require__(5)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3), __webpack_require__(6)))
 
 /***/ }),
-/* 96 */
+/* 98 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* WEBPACK VAR INJECTION */(function(global, module) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ponyfill_js__ = __webpack_require__(97);
+/* WEBPACK VAR INJECTION */(function(global, module) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ponyfill_js__ = __webpack_require__(99);
 /* global window */
 
 
@@ -30853,10 +31102,10 @@ if (typeof self !== 'undefined') {
 var result = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__ponyfill_js__["a" /* default */])(root);
 /* harmony default export */ __webpack_exports__["default"] = (result);
 
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(4), __webpack_require__(102)(module)))
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(3), __webpack_require__(104)(module)))
 
 /***/ }),
-/* 97 */
+/* 99 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -30881,7 +31130,7 @@ function symbolObservablePonyfill(root) {
 
 
 /***/ }),
-/* 98 */
+/* 100 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var apply = Function.prototype.apply;
@@ -30934,13 +31183,13 @@ exports._unrefActive = exports.active = function(item) {
 };
 
 // setimmediate attaches itself to the global object
-__webpack_require__(95);
+__webpack_require__(97);
 exports.setImmediate = setImmediate;
 exports.clearImmediate = clearImmediate;
 
 
 /***/ }),
-/* 99 */
+/* 101 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var rng = __webpack_require__(40);
@@ -31046,7 +31295,7 @@ module.exports = v1;
 
 
 /***/ }),
-/* 100 */
+/* 102 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var rng = __webpack_require__(40);
@@ -31081,7 +31330,7 @@ module.exports = v4;
 
 
 /***/ }),
-/* 101 */
+/* 103 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31261,7 +31510,7 @@ exports.parse = function (str) {
 
 
 /***/ }),
-/* 102 */
+/* 104 */
 /***/ (function(module, exports) {
 
 module.exports = function(originalModule) {
@@ -31291,13 +31540,13 @@ module.exports = function(originalModule) {
 
 
 /***/ }),
-/* 103 */
+/* 105 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 exports.__esModule = true;
-var colors_1 = __webpack_require__(2);
+var colors_1 = __webpack_require__(4);
 exports["default"] = {
     calendar: {
         display: 'flex',
@@ -31353,13 +31602,13 @@ exports["default"] = {
 
 
 /***/ }),
-/* 104 */
+/* 106 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 exports.__esModule = true;
-var colors_1 = __webpack_require__(2);
+var colors_1 = __webpack_require__(4);
 exports["default"] = {
     infoBox: {
         padding: '2rem 1rem',
@@ -31380,7 +31629,7 @@ exports["default"] = {
 
 
 /***/ }),
-/* 105 */
+/* 107 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31396,13 +31645,13 @@ exports["default"] = {
 
 
 /***/ }),
-/* 106 */
+/* 108 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 exports.__esModule = true;
-var colors_1 = __webpack_require__(2);
+var colors_1 = __webpack_require__(4);
 exports["default"] = {
     historyContainer: {
         display: 'flex',
@@ -31447,20 +31696,17 @@ exports["default"] = {
 
 
 /***/ }),
-/* 107 */
+/* 109 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 exports.__esModule = true;
-var colors_1 = __webpack_require__(2);
 exports["default"] = {
     exerciseLogContainer: {
-        borderLeft: ".25rem solid " + colors_1["default"].secondary,
-        paddingLeft: '1rem',
         marginBottom: '1rem',
         '& li:not(:last-of-type)': {
-            marginBottom: '.5rem'
+            marginBottom: '.75rem'
         }
     },
     goalList: {
@@ -31475,13 +31721,13 @@ exports["default"] = {
 
 
 /***/ }),
-/* 108 */
+/* 110 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 exports.__esModule = true;
-var colors_1 = __webpack_require__(2);
+var colors_1 = __webpack_require__(4);
 var measurements_1 = __webpack_require__(42);
 exports["default"] = {
     constraint: {
@@ -31580,7 +31826,7 @@ exports["default"] = {
 
 
 /***/ }),
-/* 109 */
+/* 111 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31618,13 +31864,13 @@ exports["default"] = {
 
 
 /***/ }),
-/* 110 */
+/* 112 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 exports.__esModule = true;
-var colors_1 = __webpack_require__(2);
+var colors_1 = __webpack_require__(4);
 exports["default"] = {
     searchResults: {
         display: 'flex',
@@ -31675,118 +31921,33 @@ exports["default"] = {
 
 
 /***/ }),
-/* 111 */
+/* 113 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 exports.__esModule = true;
-var colors_1 = __webpack_require__(2);
-var roundButton = {
-    padding: 0,
-    boxSizing: 'border-box',
-    borderRadius: '50%',
-    borderStyle: 'solid',
-    borderWidth: '1px'
-};
 exports["default"] = {
-    setListContainer: {
+    setOverlayHeading: {
         display: 'flex',
-        flexDirection: 'column'
+        alignItems: 'center',
+        fontSize: '1.2rem',
+        marginBottom: '1rem'
     },
-    setWrapper: {
-        '&:not(:last-of-type)': {
-            marginBottom: '1rem'
-        }
-    },
-    setBox: {
-        display: 'flex',
-        flexDirection: 'row'
-    },
-    setCircleColumn: {
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'flex-start',
-        justifyContent: 'space-between',
-        marginRight: '1rem'
-    },
-    setInfoColumn: {
-        display: 'flex',
-        flexDirection: 'column'
-    },
-    insertButtonRow: {
-        marginTop: '1rem'
-    },
-    deleteButtonColumn: {
-        display: 'flex',
-        flex: '1',
-        alignItems: 'flex-start',
-        justifyContent: 'flex-end'
-    },
-    infoRow: {
-        display: 'flex',
-        flexDirection: 'column',
-        '&:not(:last-of-type)': {
-            marginBottom: '.75rem'
-        }
-    },
-    infoRowTitle: {
-        fontSize: '.9rem',
-        fontStyle: 'italic',
-        marginBottom: '.25rem'
-    },
-    infoRowInfo: {
+    setOverlayHeadingNumber: {
         marginLeft: '.5rem'
-    },
-    setsAndReps: {
-        display: 'flex',
-        flexWrap: 'wrap'
-    },
-    setsAndRepsGrouper: {
-        display: 'flex',
-        alignItems: 'center'
-    },
-    setsAndRepsItem: {
-        marginRight: '.5rem',
-        '& input[type=text]': {
-            minWidth: '3rem',
-            width: '3rem',
-            textAlign: 'center'
-        }
-    },
-    insertNew: {
-        display: 'flex',
-        alignItems: 'center'
-    },
-    insertButton: Object.assign({
-        borderColor: colors_1["default"].secondary,
-        width: '2.2rem',
-        height: '2.2rem'
-    }, roundButton),
-    setButton: Object.assign({
-        backgroundColor: 'white',
-        borderColor: colors_1["default"].primary,
-        color: colors_1["default"].primary,
-        fontSize: '1.5rem',
-        width: '3rem',
-        height: '3rem'
-    }, roundButton),
-    activeSetButton: {
-        extend: 'setButton',
-        backgroundColor: colors_1["default"].primary,
-        color: 'white'
     }
 };
 
 
 /***/ }),
-/* 112 */
+/* 114 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 exports.__esModule = true;
-var colors_1 = __webpack_require__(2);
+var colors_1 = __webpack_require__(4);
 exports["default"] = {
     clickable: {
         border: "1px solid " + colors_1["default"].edit
@@ -31795,7 +31956,7 @@ exports["default"] = {
 
 
 /***/ }),
-/* 113 */
+/* 115 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31864,13 +32025,13 @@ exports["default"] = {
 
 
 /***/ }),
-/* 114 */
+/* 116 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 exports.__esModule = true;
-var colors_1 = __webpack_require__(2);
+var colors_1 = __webpack_require__(4);
 exports["default"] = {
     a: {
         color: colors_1["default"].primary
@@ -31917,13 +32078,13 @@ exports["default"] = {
 
 
 /***/ }),
-/* 115 */
+/* 117 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 exports.__esModule = true;
-var colors_1 = __webpack_require__(2);
+var colors_1 = __webpack_require__(4);
 exports["default"] = {
     insertExerciseButtonContainer: {
         display: 'inline-flex',
@@ -31952,7 +32113,184 @@ exports["default"] = {
 
 
 /***/ }),
-/* 116 */
+/* 118 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+exports.__esModule = true;
+var colors_1 = __webpack_require__(4);
+exports["default"] = {
+    exerciseGroup: {
+        marginBottom: '1.5rem'
+    },
+    exerciseHeadingRow: {
+        display: 'flex',
+        alignItems: 'center',
+        marginBottom: '1rem'
+    },
+    exerciseName: {
+        fontSize: '1.5rem',
+        fontFamily: 'Fira Sans Light',
+        marginRight: '.5rem'
+    },
+    arrowBtn: {
+        boxSizing: 'border-box',
+        width: '1rem',
+        height: '1rem',
+        display: 'inline-block',
+        backgroundPosition: 'center',
+        backgroundSize: 'cover',
+        backgroundColor: 'transparent',
+        border: 'none'
+    },
+    upDownBtnGroup: {
+        width: '3rem',
+        marginRight: '1rem'
+    },
+    upBtn: {
+        extend: 'arrowBtn',
+        backgroundImage: 'url("./chevron-up-solid.svg")'
+    },
+    downBtn: {
+        extend: 'arrowBtn',
+        backgroundImage: 'url("./chevron-down-solid.svg")'
+    },
+    upBtnLarge: {
+        extend: 'upBtn',
+        marginRight: '1rem'
+    },
+    downBtnLarge: {
+        extend: 'downBtn',
+        marginRight: '1rem'
+    },
+    upBtnSmall: {
+        extend: 'upBtn',
+        float: 'left',
+        width: '1rem',
+        height: '1rem'
+    },
+    downBtnSmall: {
+        extend: 'downBtn',
+        float: 'right',
+        width: '1rem',
+        height: '1rem'
+    },
+    exerciseSets: {
+        marginLeft: '1.5rem'
+    },
+    enterLogButton: {
+        backgroundColor: 'transparent',
+        border: 'none',
+        backgroundImage: "url('./pencil-alt-solid.svg')",
+        backgroundPosition: 'center center',
+        backgroundSize: 'contain',
+        width: '1.5rem',
+        height: '1.5rem',
+        marginRight: '.5rem'
+    },
+    setUl: {
+        marginBottom: '1rem'
+    },
+    setLi: {
+        display: 'flex',
+        alignItems: 'center',
+        marginBottom: '1rem'
+    },
+    setCircle: {
+        boxSizing: 'border-box',
+        width: '1.5rem',
+        height: '1.5rem',
+        fontSize: '.8rem',
+        display: 'inline-flex',
+        borderRadius: '.75rem',
+        borderWidth: '2px',
+        borderStyle: 'solid',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginRight: '1rem'
+    },
+    setNumber: {
+        extend: 'setCircle',
+        color: colors_1["default"].primary,
+        borderColor: colors_1["default"].primary
+    },
+    setDone: {
+        extend: 'setCircle',
+        color: 'white',
+        backgroundImage: "url('./check-solid.svg')",
+        backgroundPosition: 'center center',
+        backgroundSize: 'contain',
+        background: colors_1["default"].secondary,
+        borderColor: colors_1["default"].secondary
+    },
+    pill: {
+        display: 'inline-flex',
+        alignItems: 'center',
+        boxSizing: 'border-box',
+        height: '1.5rem',
+        borderWidth: '1px',
+        borderStyle: 'solid',
+        borderRadius: '.75rem',
+        fontSize: '.9rem',
+        paddingLeft: '.5rem',
+        paddingRight: '.5rem',
+        marginRight: '1rem'
+    },
+    repPill: {
+        extend: 'pill',
+        color: colors_1["default"].primary,
+        borderColor: colors_1["default"].primary
+    },
+    weightPill: {
+        extend: 'pill',
+        color: colors_1["default"].secondary,
+        borderColor: colors_1["default"].secondary
+    },
+    timePill: {
+        extend: 'pill',
+        color: colors_1["default"].danger,
+        borderColor: colors_1["default"].danger
+    },
+    repDone: {
+        extend: 'pill',
+        borderWidth: '0',
+        backgroundColor: colors_1["default"].primary,
+        color: 'white'
+    },
+    weightDone: {
+        extend: 'pill',
+        borderWidth: '0',
+        backgroundColor: colors_1["default"].secondary,
+        color: 'white'
+    },
+    timeDone: {
+        extend: 'pill',
+        borderWidth: '0',
+        backgroundColor: colors_1["default"].danger,
+        color: 'white'
+    },
+    blank: {
+        fontSize: '.9rem',
+        marginRight: '1rem'
+    },
+    repBlank: {
+        extend: 'blank',
+        color: colors_1["default"].primary
+    },
+    weightBlank: {
+        extend: 'blank',
+        color: colors_1["default"].secondary
+    },
+    timeBlank: {
+        extend: 'blank',
+        color: colors_1["default"].danger
+    }
+};
+
+
+/***/ }),
+/* 119 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31966,24 +32304,25 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
     return t;
 };
 exports.__esModule = true;
-var topBar_1 = __webpack_require__(113);
-var main_1 = __webpack_require__(108);
-var typography_1 = __webpack_require__(114);
-var editTitle_1 = __webpack_require__(109);
-var exercise_1 = __webpack_require__(110);
-var log_1 = __webpack_require__(111);
+var topBar_1 = __webpack_require__(115);
+var main_1 = __webpack_require__(110);
+var typography_1 = __webpack_require__(116);
+var editTitle_1 = __webpack_require__(111);
+var exercise_1 = __webpack_require__(112);
 var forms_1 = __webpack_require__(41);
-var infoBox_1 = __webpack_require__(104);
-var workoutLogs_1 = __webpack_require__(105);
-var calendar_1 = __webpack_require__(103);
-var exerciseHistory_1 = __webpack_require__(106);
-var logContents_1 = __webpack_require__(107);
-var insertExerciseButton_1 = __webpack_require__(115);
-exports["default"] = __assign({}, main_1["default"], topBar_1["default"], infoBox_1["default"], workoutLogs_1["default"], typography_1["default"], editTitle_1["default"], forms_1["default"], exercise_1["default"], log_1["default"], calendar_1["default"], exerciseHistory_1["default"], logContents_1["default"], insertExerciseButton_1["default"]);
+var infoBox_1 = __webpack_require__(106);
+var workoutLogs_1 = __webpack_require__(107);
+var calendar_1 = __webpack_require__(105);
+var exerciseHistory_1 = __webpack_require__(108);
+var logContents_1 = __webpack_require__(109);
+var insertExerciseButton_1 = __webpack_require__(117);
+var view_1 = __webpack_require__(118);
+var set_1 = __webpack_require__(113);
+exports["default"] = __assign({}, main_1["default"], topBar_1["default"], infoBox_1["default"], workoutLogs_1["default"], typography_1["default"], editTitle_1["default"], forms_1["default"], exercise_1["default"], calendar_1["default"], exerciseHistory_1["default"], logContents_1["default"], insertExerciseButton_1["default"], view_1["default"], set_1["default"]);
 
 
 /***/ }),
-/* 117 */
+/* 120 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -32000,7 +32339,7 @@ exports["default"] = preventDefaultFunction;
 
 
 /***/ }),
-/* 118 */
+/* 121 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -32008,11 +32347,11 @@ exports["default"] = preventDefaultFunction;
 exports.__esModule = true;
 var m = __webpack_require__(0);
 var db_1 = __webpack_require__(1);
-var viewWorkout_1 = __webpack_require__(49);
-var viewLog_1 = __webpack_require__(47);
-var viewProgram_1 = __webpack_require__(48);
+var viewWorkout_1 = __webpack_require__(51);
+var viewLog_1 = __webpack_require__(49);
+var viewProgram_1 = __webpack_require__(50);
 var page_1 = __webpack_require__(10);
-var IndexContents = __webpack_require__(46);
+var IndexContents = __webpack_require__(48);
 db_1["default"].init();
 var App = {
     view: function () {
@@ -32051,7 +32390,7 @@ if (element != null) {
 
 
 /***/ }),
-/* 119 */
+/* 122 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -32059,8 +32398,8 @@ if (element != null) {
 exports.__esModule = true;
 var m = __webpack_require__(0);
 var db_1 = __webpack_require__(1);
-var utils_1 = __webpack_require__(8);
-var heading_1 = __webpack_require__(45);
+var utils_1 = __webpack_require__(5);
+var heading_1 = __webpack_require__(26);
 var HistoryComponent = function (vnode) {
     var priorTo = vnode.attrs.priorTo;
     var exerciseName = vnode.attrs.exerciseName;
@@ -32118,10 +32457,7 @@ var HistoryComponent = function (vnode) {
                                 m('th', 'reps'),
                                 m('th', 'amount'),
                             ])].concat(log.sets.map(function (set) {
-                            return m('tr', { "class": css.historyTableRow }, [
-                                m('td', { "class": css.historyTableCell }, set.log.reps),
-                                m('td', { "class": css.historyTableCell }, set.log.amount)
-                            ]);
+                            return m('tr', { "class": css.historyTableRow }, 'TODO: UI for showing log w/ different unit types');
                         }))))
                     ]);
                 }))
@@ -32133,7 +32469,7 @@ exports["default"] = HistoryComponent;
 
 
 /***/ }),
-/* 120 */
+/* 123 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -32141,50 +32477,21 @@ exports["default"] = HistoryComponent;
 exports.__esModule = true;
 var m = __webpack_require__(0);
 var editableHeading_1 = __webpack_require__(25);
+var heading_1 = __webpack_require__(26);
 var topBar_1 = __webpack_require__(16);
-var exercise_1 = __webpack_require__(44);
-var utils_1 = __webpack_require__(8);
-var log_1 = __webpack_require__(121);
-var exercise_2 = __webpack_require__(26);
-var exerciseHistory_1 = __webpack_require__(119);
-var insertExerciseButton_1 = __webpack_require__(129);
+var utils_1 = __webpack_require__(5);
+var exercise_1 = __webpack_require__(46);
+var exerciseHistory_1 = __webpack_require__(122);
+var insertExerciseButton_1 = __webpack_require__(132);
+var setWithUnits_1 = __webpack_require__(44);
 var component = function (vnode) {
     var log = vnode.attrs.log;
-    var createGroupedViewModelsFromSetLogs = function (log) {
-        // this should produce an array, with each
-        // item in the array representing one exercise
-        var groupedLogViewModels = [];
-        log.sets.forEach(function (setLog) {
-            var lastIndex = groupedLogViewModels.length - 1;
-            var last = groupedLogViewModels[lastIndex];
-            if (last && (JSON.stringify(setLog.exercise) == JSON.stringify(last.exercise))) {
-                groupedLogViewModels[lastIndex].sets.push(setLog);
-            }
-            else {
-                groupedLogViewModels.push({
-                    exercise: setLog.exercise,
-                    sets: [setLog]
-                });
-            }
-        });
-        return groupedLogViewModels;
-    };
-    var flattenViewModelsIntoWorkoutLog = function (viewModels) {
-        var flattenedViewModels = [];
-        viewModels.forEach(function (groupedVm) {
-            groupedVm.sets.forEach(function (set) {
-                flattenedViewModels = flattenedViewModels.concat(set);
-            });
-        });
-        return flattenedViewModels;
-    };
     var pageEditable = false;
     return {
         view: function (vnode) {
             var css = vnode.attrs.css;
             var setOverlay = vnode.attrs.setOverlay;
             var log = vnode.attrs.log;
-            var logViewModels = createGroupedViewModelsFromSetLogs(log);
             return [
                 topBar_1.TopBar({
                     buttons: [{
@@ -32204,59 +32511,36 @@ var component = function (vnode) {
                 }),
                 m('div', { "class": css.content }, [
                     editableHeading_1["default"]({
-                        level: 1,
+                        level: 2,
                         name: utils_1["default"].formatDate(log.date),
                         placeholder: '',
                         showEditButton: false,
                         css: css
                     }),
-                    logViewModels.map(function (logViewModel, index) {
+                    log.sets.map(function (setGroup, index) {
                         return m('div', [
                             m('div', { "class": css.exerciseLogContainer }, [
-                                editableHeading_1["default"]({
-                                    level: 2,
-                                    name: logViewModel.exercise.name,
-                                    placeholder: 'Untitled Exercise',
-                                    editButtonText: 'Enter sets',
-                                    showEditButton: pageEditable,
-                                    setOverlay: function () {
-                                        var logVmString = JSON.stringify(logViewModel);
-                                        var logVmClone = JSON.parse(logVmString);
-                                        var hideOverlay = function () {
-                                            setOverlay({
-                                                component: null,
-                                                title: ''
-                                            }, {});
-                                        };
-                                        setOverlay(log_1["default"], {
-                                            title: logViewModel.exercise.name,
-                                            logViewModel: logVmClone,
-                                            hideOverlay: hideOverlay,
-                                            updateSetLogs: function (viewModel) {
-                                                logViewModels[index] = viewModel;
-                                                log.sets = flattenViewModelsIntoWorkoutLog(logViewModels);
-                                            },
-                                            css: css
-                                        });
-                                    },
+                                heading_1["default"]({
+                                    level: 1,
+                                    text: setGroup.exerciseName ? setGroup.exerciseName : 'Untitled Exercise',
                                     css: css
                                 }),
-                                m('div', [
-                                    m('ul', { "class": css.goalList }, logViewModel.sets.map(function (set) {
-                                        var setString = "Todo: " + set.prescribedReps + " reps";
-                                        var setClass = css.goalItem;
-                                        if (set.log) {
-                                            setString = set.log.reps + ' at ' + set.log.amount;
-                                            setClass = '';
-                                        }
-                                        return m('li', { "class": setClass }, setString);
-                                    })),
-                                    m(exerciseHistory_1["default"], {
-                                        exerciseName: logViewModel.exercise.name,
-                                        priorTo: log._id,
-                                        css: css
-                                    }),
-                                ]),
+                                setGroup.sets.length == 0
+                                    ? m('p', 'No sets added for this exercise.')
+                                    : m('div', [
+                                        m(setWithUnits_1["default"], {
+                                            setGroup: setGroup,
+                                            showLogButton: true,
+                                            showEditButtons: pageEditable,
+                                            setOverlay: setOverlay,
+                                            css: css
+                                        }),
+                                        m(exerciseHistory_1["default"], {
+                                            exerciseName: setGroup.exerciseName,
+                                            priorTo: log._id,
+                                            css: css
+                                        }),
+                                    ]),
                             ]),
                             pageEditable
                                 ? insertExerciseButton_1["default"]({
@@ -32271,17 +32555,11 @@ var component = function (vnode) {
                                             sets: 0,
                                             amount: 0
                                         };
-                                        vnode.attrs.setOverlay(exercise_2["default"], {
+                                        vnode.attrs.setOverlay(exercise_1["default"], {
                                             title: 'Insert new exercise',
                                             prescription: prescription,
-                                            updatePrescription: function (newPrescription) {
-                                                var vms = exercise_1.createSetLogViewModelsFromPrescriptions([newPrescription]);
-                                                var groupedVm = {
-                                                    exercise: newPrescription.exercise,
-                                                    sets: vms
-                                                };
-                                                logViewModels.splice(index + 1, 0, groupedVm);
-                                                vnode.attrs.updateLog(flattenViewModelsIntoWorkoutLog(logViewModels));
+                                            updateWorkoutLog: function (newSetGroup) {
+                                                log.sets.splice(index + 1, 0, newSetGroup);
                                             },
                                             css: css,
                                             hideOverlay: function () {
@@ -32303,133 +32581,120 @@ exports.component = component;
 
 
 /***/ }),
-/* 121 */
+/* 124 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 exports.__esModule = true;
 var m = __webpack_require__(0);
-var LogOverlay = function (vnode) {
-    var css = vnode.attrs.css;
-    var logViewModel = vnode.attrs.logViewModel;
-    var exercise = logViewModel.exercise;
-    var sets = logViewModel.sets;
-    var currentSet = 0;
+var EnterSetComponent = function (vnode) {
+    var _a = vnode.attrs, css = _a.css, closeOverlay = _a.closeOverlay;
+    var set = JSON.parse(JSON.stringify(vnode.attrs.set));
     return {
         view: function (vnode) {
             return m('div', [
-                m('div', { "class": css.setListContainer }, [
-                    sets.map(function (set, index) {
-                        return m('div', { "class": css.setWrapper }, [
-                            m('div', { "class": css.setBox }, [
-                                m('div', { "class": css.setCircleColumn }, [
-                                    m('button', {
-                                        onclick: function () {
-                                            currentSet = index;
-                                        },
-                                        "class": (currentSet == index) ?
-                                            css.activeSetButton : css.setButton
-                                    }, index + 1),
-                                ]),
-                                m('div', { "class": css.setInfoColumn }, [
-                                    m('div', { "class": css.infoRow }, (set.log && currentSet != index)
-                                        ? [
-                                            m('label', { "class": css.infoRowTitle }, 'This workout:'),
-                                            m('span', { "class": css.infoRowInfo }, set.log.reps + " at " + set.log.amount),
-                                        ]
-                                        : (set.prescribedReps
-                                            ? [
-                                                m('label', { "class": css.infoRowTitle }, 'Goal:'),
-                                                m('span', { "class": css.infoRowInfo }, set.prescribedReps + " reps"),
-                                            ]
-                                            : null)),
-                                    (index == currentSet)
-                                        ? [
-                                            m('div', { "class": css.infoRow }, [
-                                                m('label', { "class": css.infoRowTitle }, 'This Workout:'),
-                                                m('div', { "class": css.infoRowInfo }, [
-                                                    m('div', { "class": css.setsAndReps }, [
-                                                        m('div', { "class": css.setsAndRepsGrouper }, [
-                                                            m('div', { "class": css.setsAndRepsItem }, m('input[type=text]', {
-                                                                "class": css.textInput,
-                                                                value: set.log ? set.log.reps : '',
-                                                                onchange: m.withAttr('value', function (value) {
-                                                                    if (!set.log) {
-                                                                        set.log = { reps: 0, amount: 0 };
-                                                                    }
-                                                                    set.log.reps = parseInt(value);
-                                                                    vnode.attrs.updateSetLogs(logViewModel);
-                                                                })
-                                                            })),
-                                                            m('div', { "class": css.setsAndRepsItem }, m('span', 'reps at')),
-                                                        ]),
-                                                        m('div', { "class": css.setsAndRepsGrouper }, [
-                                                            m('div', { "class": css.setsAndRepsItem }, m('input[type=text]', {
-                                                                "class": css.textInput,
-                                                                value: set.log ? set.log.amount : '',
-                                                                onchange: m.withAttr('value', function (value) {
-                                                                    if (!set.log) {
-                                                                        set.log = { reps: 0, amount: 0 };
-                                                                    }
-                                                                    set.log.amount = parseInt(value);
-                                                                    vnode.attrs.updateSetLogs(logViewModel);
-                                                                })
-                                                            })),
-                                                            m('div', { "class": css.setsAndRepsItem }, m('span', exercise.setUnits == 'reps' ? 'pounds' : 'seconds')),
-                                                        ]),
-                                                    ])
-                                                ])
-                                            ]),
-                                        ]
-                                        : null,
-                                ]),
-                                currentSet == index
-                                    ? m('div', { "class": css.deleteButtonColumn }, m('button', {
-                                        onclick: function () {
-                                            sets.splice(index, 1);
-                                            vnode.attrs.updateSetLogs(logViewModel);
-                                        },
-                                        "class": css.hollowDangerButton + " " + css.small
-                                    }, 'Delete set'))
-                                    : null,
-                            ]),
-                            currentSet == index
-                                ? m('div', { "class": css.insertButtonRow }, m('button', {
-                                    onclick: function () {
-                                        sets.splice(index + 1, 0, { exercise: set.exercise });
-                                        vnode.attrs.updateSetLogs(logViewModel);
-                                    },
-                                    "class": css.button + " " + css.small
-                                }, 'Insert set'))
-                                : null,
-                        ]);
-                    }),
+                m('div', [
+                    set.reps && set.reps.prescribed
+                        ? m('span', { "class": css.repPill }, set.reps.prescribed + " reps")
+                        : null,
+                    set.weight && set.weight.prescribed
+                        ? m('span', { "class": css.weightPill }, set.weight.prescribed + " pounds")
+                        : null,
+                    set.time && set.time.prescribed
+                        ? m('span', { "class": css.timePill }, set.time.prescribed + " seconds")
+                        : null,
                 ]),
-            ]);
-        }
-    };
-};
-var Bottom = function (vnode) {
-    return {
-        view: function (vnode) {
-            return m('div', [
+                m('div', [
+                    set.reps
+                        ? m('div', [
+                            m('input[type=number]', {
+                                value: set.reps.entered,
+                                onchange: m.withAttr('value', function (value) {
+                                    if (!set.reps) {
+                                        set.reps = {
+                                            prescribed: false,
+                                            entered: 0
+                                        };
+                                    }
+                                    if (value === '') {
+                                        set.reps.entered = false;
+                                    }
+                                    else {
+                                        set.reps.entered = parseInt(value);
+                                    }
+                                })
+                            }),
+                            m('label', 'reps')
+                        ])
+                        : null,
+                    set.weight
+                        ? m('div', [
+                            m('input[type=number]', {
+                                value: set.weight.entered,
+                                onchange: m.withAttr('value', function (value) {
+                                    if (!set.weight) {
+                                        set.weight = {
+                                            prescribed: false,
+                                            entered: 0
+                                        };
+                                    }
+                                    if (value === '') {
+                                        set.weight.entered = false;
+                                    }
+                                    else {
+                                        set.weight.entered = parseInt(value);
+                                    }
+                                })
+                            }),
+                            m('label', 'pounds')
+                        ])
+                        : null,
+                    set.time
+                        ? m('div', [
+                            m('input[type=number]', {
+                                value: set.time.entered,
+                                onchange: m.withAttr('value', function (value) {
+                                    if (!set.time) {
+                                        set.time = {
+                                            prescribed: false,
+                                            entered: 0
+                                        };
+                                    }
+                                    if (value === '') {
+                                        set.time.entered = false;
+                                    }
+                                    else {
+                                        set.time.entered = parseInt(value);
+                                    }
+                                })
+                            }),
+                            m('label', 'seconds')
+                        ])
+                        : null,
+                ]),
                 m('button', {
-                    onclick: vnode.attrs.hideOverlay,
-                    "class": vnode.attrs.css.hollowButton
+                    "class": css.hollowDangerButton,
+                    onclick: closeOverlay
                 }, 'Close'),
+                m('button', {
+                    "class": css.button,
+                    onclick: function () {
+                        vnode.attrs.updateSet(set);
+                        closeOverlay();
+                    }
+                }, 'Save')
             ]);
         }
     };
 };
 exports["default"] = {
-    component: LogOverlay,
-    bottom: Bottom
+    component: EnterSetComponent
 };
 
 
 /***/ }),
-/* 122 */
+/* 125 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -32437,8 +32702,9 @@ exports["default"] = {
 var _this = this;
 exports.__esModule = true;
 var m = __webpack_require__(0);
-var workoutDay_1 = __webpack_require__(124);
-var restDay_1 = __webpack_require__(123);
+var workoutDay_1 = __webpack_require__(127);
+var restDay_1 = __webpack_require__(126);
+var editTitle_1 = __webpack_require__(45);
 var CalendarComponent = function (vnode) {
     var css = vnode.attrs.css;
     return {
@@ -32455,6 +32721,18 @@ var CalendarComponent = function (vnode) {
                             ? workoutDay_1["default"]({
                                 workout: workout,
                                 beingEdited: vnode.attrs.beingEdited,
+                                editTitleOverlay: function () {
+                                    vnode.attrs.setOverlay(editTitle_1["default"], {
+                                        workout: workout,
+                                        css: css,
+                                        hideOverlay: function () {
+                                            vnode.attrs.setOverlay({ component: null, title: '' }, {});
+                                        },
+                                        updateWorkout: function (newWorkout) {
+                                            vnode.attrs.updateWorkout(newWorkout, index);
+                                        }
+                                    });
+                                },
                                 workoutUrl: vnode.attrs.programUrl + "/workouts/" + index,
                                 moveUp: (index > 0) ? moveUp : null,
                                 moveDown: (index < workouts.length - 1) ? moveDown : null,
@@ -32469,7 +32747,19 @@ var CalendarComponent = function (vnode) {
                                 css: css
                             }))
                     ]);
-                })
+                }),
+                (vnode.attrs.beingEdited)
+                    ? [
+                        m('button', {
+                            "class": css.hollowButton,
+                            onclick: vnode.attrs.addWorkout
+                        }, 'Add Workout'),
+                        m('button', {
+                            "class": css.hollowButton,
+                            onclick: vnode.attrs.addRestDay
+                        }, 'Add Rest Day')
+                    ]
+                    : null,
             ]);
         }
     };
@@ -32480,7 +32770,7 @@ exports["default"] = (function (attrs) {
 
 
 /***/ }),
-/* 123 */
+/* 126 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -32513,14 +32803,14 @@ exports["default"] = (function (attrs) {
 
 
 /***/ }),
-/* 124 */
+/* 127 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 exports.__esModule = true;
 var m = __webpack_require__(0);
-var utils_1 = __webpack_require__(8);
+var utils_1 = __webpack_require__(5);
 var editButtons_1 = __webpack_require__(43);
 var CalendarItem = function (vnode) {
     var css = vnode.attrs.css;
@@ -32536,11 +32826,17 @@ var CalendarItem = function (vnode) {
                     oncreate: m.route.link,
                     "class": utils_1["default"].c(css.workoutTitle, workoutInfo.classes)
                 }, workoutInfo.name), vnode.attrs.beingEdited
-                    ? m('a', {
-                        "class": utils_1["default"].c(css.button, css.small),
-                        oncreate: m.route.link,
-                        href: href
-                    }, 'Edit')
+                    ? [
+                        m('a', {
+                            "class": utils_1["default"].c(css.button, css.small),
+                            onclick: vnode.attrs.editTitleOverlay
+                        }, 'Rename'),
+                        m('a', {
+                            "class": utils_1["default"].c(css.button, css.small),
+                            oncreate: m.route.link,
+                            href: href
+                        }, 'Edit')
+                    ]
                     : null),
                 m('div', { "class": css.workoutDescription }, m('div', [
                     m('p', workout.tag == 'workout' ? utils_1["default"].getWorkoutExercisesElement(workout, css) : ''),
@@ -32570,7 +32866,7 @@ exports["default"] = (function (attrs) {
 
 
 /***/ }),
-/* 125 */
+/* 128 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -32634,7 +32930,7 @@ exports["default"] = {
 
 
 /***/ }),
-/* 126 */
+/* 129 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -32642,9 +32938,9 @@ exports["default"] = {
 exports.__esModule = true;
 var m = __webpack_require__(0);
 var editableHeading_1 = __webpack_require__(25);
-var editTitle_1 = __webpack_require__(125);
+var editTitle_1 = __webpack_require__(128);
 var topBar_1 = __webpack_require__(16);
-var calendar_1 = __webpack_require__(122);
+var calendar_1 = __webpack_require__(125);
 var component = function (vnode) {
     var selectedIndex = 0;
     var css = vnode.attrs.css;
@@ -32657,6 +32953,7 @@ var component = function (vnode) {
             var remove = vnode.attrs.remove;
             var addWorkout = vnode.attrs.addWorkout;
             var addRestDay = vnode.attrs.addRestDay;
+            var updateWorkout = vnode.attrs.updateWorkout;
             return [
                 topBar_1.TopBar({
                     buttons: [{
@@ -32671,16 +32968,6 @@ var component = function (vnode) {
                         text: '< All Programs',
                         url: '#!/'
                     },
-                    bottomButtons: [
-                        {
-                            text: '+ Add Workout',
-                            action: addWorkout
-                        },
-                        {
-                            text: '+ Add Rest Day',
-                            action: addRestDay
-                        },
-                    ],
                     editButtonShowing: pageEditable,
                     css: css
                 }),
@@ -32708,9 +32995,11 @@ var component = function (vnode) {
                         workouts: vnode.attrs.workoutsWithLogs,
                         programUrl: "/programs/" + program._id,
                         beingEdited: pageEditable,
+                        setOverlay: vnode.attrs.setOverlay,
                         moveUp: moveUp,
                         moveDown: moveDown,
                         remove: remove,
+                        updateWorkout: updateWorkout,
                         addWorkout: addWorkout,
                         addRestDay: addRestDay,
                         css: css
@@ -32724,7 +33013,7 @@ exports.component = component;
 
 
 /***/ }),
-/* 127 */
+/* 130 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -32749,7 +33038,7 @@ exports["default"] = (function (attrs) {
 
 
 /***/ }),
-/* 128 */
+/* 131 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -32782,7 +33071,7 @@ exports.TopBarButton = TopBarButton;
 
 
 /***/ }),
-/* 129 */
+/* 132 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -32812,7 +33101,7 @@ exports["default"] = (function (attrs) {
 
 
 /***/ }),
-/* 130 */
+/* 133 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -32851,110 +33140,132 @@ exports["default"] = (function (attrs) {
 
 
 /***/ }),
-/* 131 */
+/* 134 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 exports.__esModule = true;
 var m = __webpack_require__(0);
-var exercise_1 = __webpack_require__(26);
-var mobx_1 = __webpack_require__(7);
-exports["default"] = (function (vnode) {
-    var css = vnode.attrs.css;
-    var searchResults = ['one', 'two', 'three'];
-    return {
-        view: function (vnode) {
-            var prescription = vnode.attrs.prescription;
-            return m('tr', {
-                "class": css.tr
-            }, [
-                vnode.attrs.showEditButtons
-                    ? m('td', { "class": css.td + " " + css.workoutRowActions }, [
-                        vnode.attrs.moveUp
-                            ? m('button', {
-                                onclick: vnode.attrs.moveUp,
-                                "class": css.button + " " + css.small
-                            }, 'Up')
-                            : null,
-                        vnode.attrs.moveDown
-                            ? m('button', {
-                                onclick: vnode.attrs.moveDown,
-                                "class": css.button + " " + css.small
-                            }, 'Down')
-                            : null,
-                        m('button', {
-                            "class": css.hollowSecondaryButton + " " + css.small,
-                            onclick: function () {
-                                vnode.attrs.setOverlay(exercise_1["default"], {
-                                    prescription: prescription,
-                                    updatePrescription: function (newPrescription) {
-                                        mobx_1.set(prescription, newPrescription);
-                                    },
-                                    hideOverlay: function () {
-                                        vnode.attrs.setOverlay({ component: null, title: '' }, {});
-                                    },
-                                    css: css
-                                });
-                            }
-                        }, 'Edit'),
-                    ])
-                    : null,
-                m('td', { "class": css.td }, prescription.exercise.name ?
-                    prescription.exercise.name
-                    : m('span', { "class": css.empty }, 'Unnamed Exercise')),
-                m('td', {
-                    "class": css.td
-                }, prescription.sets + 'x' + prescription.amount + ' ' + prescription.exercise.setUnits),
-                vnode.attrs.showEditButtons
-                    ? m('td', m('button', {
-                        "class": css.small + " " + css.hollowDangerButton,
-                        onclick: vnode.attrs.deleteFunction
-                    }, 'X'))
-                    : null,
-            ]);
-        }
-    };
-});
-
-
-/***/ }),
-/* 132 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-exports.__esModule = true;
-var m = __webpack_require__(0);
-var mobx_1 = __webpack_require__(7);
-var viewWorkoutRow_1 = __webpack_require__(131);
-var exercise_1 = __webpack_require__(26);
+var mobx_1 = __webpack_require__(8);
+var exercise_1 = __webpack_require__(46);
+var set_1 = __webpack_require__(47);
+var setWithUnits_1 = __webpack_require__(44);
 var TableComponent = function (vnode) {
     var css = vnode.attrs.css;
     return {
         view: function (vnode) {
+            var showEditButtons = vnode.attrs.showEditButtons;
             var deleteFunction = function (index) {
                 vnode.attrs.prescriptions.splice(index, 1);
             };
             return m('div', { "class": css.workoutTable }, [
+                vnode.attrs.prescriptions.length > 0 ?
+                    m('div', [
+                        vnode.attrs.prescriptions.map(function (setGroup, index) {
+                            return m('div', { "class": css.exerciseGroup }, [
+                                m('div', { "class": css.exerciseHeadingRow }, [
+                                    showEditButtons
+                                        ? [
+                                            (index > 0)
+                                                ? m('button', {
+                                                    "class": css.upBtnLarge,
+                                                    onclick: function () {
+                                                        vnode.attrs.prescriptions.splice(index, 1);
+                                                        vnode.attrs.prescriptions.splice(index - 1, 0, setGroup);
+                                                    }
+                                                })
+                                                : null,
+                                            (index < vnode.attrs.prescriptions.length - 1)
+                                                ? m('button', {
+                                                    "class": css.downBtnLarge,
+                                                    onclick: function () {
+                                                        vnode.attrs.prescriptions.splice(index, 1);
+                                                        vnode.attrs.prescriptions.splice(index + 1, 0, setGroup);
+                                                    }
+                                                })
+                                                : null,
+                                        ] : null,
+                                    m('span', { "class": css.exerciseName }, setGroup.exerciseName || 'Unnamed Exercise'),
+                                    showEditButtons
+                                        ? [
+                                            m('button', {
+                                                "class": css.hollowEditButton + " " + css.small,
+                                                onclick: function () {
+                                                    vnode.attrs.setOverlay(exercise_1["default"], {
+                                                        setGroup: setGroup,
+                                                        updateSetGroup: function (newSetGroup) {
+                                                            vnode.attrs.prescriptions.splice(index, 1, newSetGroup);
+                                                        },
+                                                        hideOverlay: function () {
+                                                            vnode.attrs.setOverlay({ component: null, title: '' }, {});
+                                                        },
+                                                        css: css
+                                                    });
+                                                }
+                                            }, 'Edit'),
+                                            m('button', {
+                                                "class": css.hollowDangerButton + " " + css.small,
+                                                onclick: function () {
+                                                    vnode.attrs.prescriptions.splice(index, 1);
+                                                }
+                                            }, 'Delete'),
+                                        ] : null,
+                                ]),
+                                m('div', { "class": css.exerciseSets }, [
+                                    m('div', [
+                                        (setGroup.sets.length == 0)
+                                            ? m('p', 'No sets specified.')
+                                            : m(setWithUnits_1["default"], {
+                                                setGroup: setGroup,
+                                                showLogButton: false,
+                                                showEditButtons: showEditButtons,
+                                                setOverlay: vnode.attrs.setOverlay,
+                                                css: css
+                                            }),
+                                        (vnode.attrs.showEditButtons)
+                                            ? m('button', {
+                                                "class": css.hollowButton,
+                                                onclick: function () {
+                                                    var previousSet = setGroup.sets[setGroup.sets.length - 1] || {
+                                                        reps: false,
+                                                        weight: false,
+                                                        time: false
+                                                    };
+                                                    vnode.attrs.setOverlay(set_1["default"], {
+                                                        title: setGroup.exerciseName,
+                                                        index: setGroup.sets.length,
+                                                        set: previousSet,
+                                                        addSet: function (set) {
+                                                            setGroup.sets.push(set);
+                                                        },
+                                                        hideOverlay: function () {
+                                                            vnode.attrs.setOverlay({ component: null, title: '' }, {});
+                                                        },
+                                                        css: css
+                                                    });
+                                                }
+                                            }, 'Add set')
+                                            : null,
+                                    ])
+                                ])
+                            ]);
+                        })
+                    ])
+                    : m('p', 'This workout has no exercises added to it.'),
                 vnode.attrs.showEditButtons ?
                     m('button', {
                         "class": css.hollowButton,
                         onclick: function () {
                             var newLength = vnode.attrs.prescriptions.push({
-                                exercise: {
-                                    name: '',
-                                    setUnits: 'reps',
-                                    tag: 'exercise'
-                                },
-                                sets: 0,
-                                amount: 0
+                                exerciseName: '',
+                                sets: []
                             });
                             var index = newLength - 1;
                             var prescription = vnode.attrs.prescriptions[index];
                             vnode.attrs.setOverlay(exercise_1["default"], {
-                                prescription: prescription,
-                                updatePrescription: function (newPrescription) {
+                                setGroup: prescription,
+                                updateSetGroup: function (newPrescription) {
                                     mobx_1.set(prescription, newPrescription);
                                 },
                                 hideOverlay: function () {
@@ -32966,50 +33277,6 @@ var TableComponent = function (vnode) {
                         }
                     }, 'Add Exercise')
                     : null,
-                vnode.attrs.prescriptions.length > 0 ?
-                    m('table', {
-                        "class": css.table
-                    }, [
-                        m('tr', {
-                            "class": css.tr
-                        }, [
-                            vnode.attrs.showEditButtons
-                                ? m('th', '')
-                                : null,
-                            m('th', 'Exercise'),
-                            m('th', 'Amount'),
-                            vnode.attrs.showEditButtons
-                                ? m('th', '')
-                                : null,
-                        ]),
-                        vnode.attrs.prescriptions.map(function (prescription, index) {
-                            var attributes = {
-                                prescription: prescription,
-                                showEditButtons: vnode.attrs.showEditButtons,
-                                deleteFunction: function () { deleteFunction(index); },
-                                css: css,
-                                setOverlay: vnode.attrs.setOverlay
-                            };
-                            if (index > 0) {
-                                attributes.moveUp = function () {
-                                    var p = vnode.attrs.prescriptions;
-                                    var newArray = p.slice(0, index).concat(p.slice(index + 1, p.length));
-                                    newArray.splice(index - 1, 0, prescription);
-                                    vnode.attrs.updatePrescriptions(newArray);
-                                };
-                            }
-                            if (index < vnode.attrs.prescriptions.length - 1) {
-                                attributes.moveDown = function () {
-                                    var p = vnode.attrs.prescriptions;
-                                    var newArray = p.slice(0, index).concat(p.slice(index + 1, p.length));
-                                    newArray.splice(index + 1, 0, prescription);
-                                    vnode.attrs.updatePrescriptions(newArray);
-                                };
-                            }
-                            return m(viewWorkoutRow_1["default"], attributes);
-                        })
-                    ])
-                    : m('p', 'This workout has no exercises added to it.'),
             ]);
         }
     };
@@ -33020,100 +33287,7 @@ exports["default"] = (function (attrs) {
 
 
 /***/ }),
-/* 133 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-exports.__esModule = true;
-var m = __webpack_require__(0);
-var db_1 = __webpack_require__(1);
-var mobx_1 = __webpack_require__(7);
-var title = 'Edit Workout Name';
-var EditTitleComponent = function (vnode) {
-    var matchingWorkouts = [];
-    var workout = mobx_1.toJS(vnode.attrs.workout);
-    var css = vnode.attrs.css;
-    return {
-        view: function (vnode) {
-            return m('div', [
-                m('div', { "class": css.labelOnTopGroup }, [
-                    m('label', { "class": css.label }, 'Title'),
-                    m('div', { "class": css.formRow }, [
-                        m('input[type=text]', {
-                            value: workout.name,
-                            placeholder: 'Untitled Workout',
-                            oninput: m.withAttr('value', function (value) {
-                                workout.name = value;
-                                if (value.length == 0) {
-                                    matchingWorkouts = [];
-                                }
-                                else {
-                                    db_1["default"].findWorkoutsByName(value, workout).then(function (results) {
-                                        matchingWorkouts = results;
-                                        m.redraw();
-                                    });
-                                }
-                            }),
-                            "class": css.textInput
-                        }),
-                        m('div', [
-                            m('button', {
-                                onclick: function () {
-                                    vnode.attrs.updateWorkout(workout);
-                                    vnode.attrs.hideOverlay();
-                                },
-                                "class": css.button
-                            }, 'Save'),
-                            m('button', {
-                                onclick: function () { vnode.attrs.hideOverlay(); },
-                                "class": css.hollowButton
-                            }, 'Cancel'),
-                        ]),
-                    ]),
-                ]),
-                matchingWorkouts.length > 1 ?
-                    m('div', { "class": css.resultDescription }, m('p', 'copy an existing workout:'))
-                    : null,
-                m('div', matchingWorkouts.map(function (result) {
-                    return m('div', {
-                        "class": css.workoutResult,
-                        onclick: function () {
-                            vnode.attrs.updateWorkout(result.workout);
-                            vnode.attrs.hideOverlay();
-                        }
-                    }, [
-                        m('a', {
-                            "class": css.a,
-                            onclick: function (event) {
-                                event.preventDefault();
-                                vnode.attrs.updateWorkout(result.workout);
-                                vnode.attrs.hideOverlay();
-                            },
-                            href: '#'
-                        }, result.workout.name),
-                        m('span', { "class": css.subTitle }, result.programs.map(function (program) {
-                            return program.name;
-                        }).join(', ')),
-                        m('p', {
-                            "class": css.workoutResultSubtitle
-                        }, result.workout.prescriptions.map(function (prescription) {
-                            return prescription.exercise.name;
-                        }).join(', '))
-                    ]);
-                })),
-            ]);
-        }
-    };
-};
-exports["default"] = {
-    component: EditTitleComponent,
-    title: title
-};
-
-
-/***/ }),
-/* 134 */
+/* 135 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -33155,8 +33329,7 @@ var DropDownComponent = function (vnode) {
                                     onclick: function () {
                                         vnode.attrs.updateExercise(matchingExercise);
                                     }
-                                }, matchingExercise.name),
-                                m('span', { "class": css.unitTag + " " + css[matchingExercise.setUnits] }, matchingExercise.setUnits),
+                                }, matchingExercise),
                             ]);
                         })
                         : m('div', { "class": css.result }, [
@@ -33165,8 +33338,7 @@ var DropDownComponent = function (vnode) {
                                 onclick: function () {
                                     vnode.attrs.updateExercise(matchingExercises[0]);
                                 }
-                            }, matchingExercises[0].name),
-                            m('span', { "class": css.unitTag + " " + css[matchingExercises[0].setUnits] }, matchingExercises[0].setUnits),
+                            }, matchingExercises[0]),
                         ]))
                 ]),
             ];
@@ -33179,7 +33351,7 @@ exports["default"] = (function (attrs) {
 
 
 /***/ }),
-/* 135 */
+/* 136 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -33187,12 +33359,11 @@ exports["default"] = (function (attrs) {
 exports.__esModule = true;
 var m = __webpack_require__(0);
 var editableHeading_1 = __webpack_require__(25);
-var workoutTable_1 = __webpack_require__(132);
-var workoutLogs_1 = __webpack_require__(136);
-var exercise_1 = __webpack_require__(44);
-var editTitle_1 = __webpack_require__(133);
+var workoutTable_1 = __webpack_require__(134);
+var workoutLogs_1 = __webpack_require__(137);
+var editTitle_1 = __webpack_require__(45);
 var topBar_1 = __webpack_require__(16);
-var preventDefaultFunction_1 = __webpack_require__(117);
+var preventDefaultFunction_1 = __webpack_require__(120);
 var db_1 = __webpack_require__(1);
 var component = function (vnode) {
     var pageEditable = vnode.attrs.editButtonShowing;
@@ -33250,7 +33421,8 @@ var component = function (vnode) {
                                 onclick: preventDefaultFunction_1["default"](function () {
                                     var workoutLog = db_1["default"].promiseSaveableRecord({
                                         workout: vnode.attrs.workout,
-                                        sets: exercise_1.createSetLogViewModelsFromPrescriptions(vnode.attrs.workout.prescriptions),
+                                        // TODO: test that sets is being created as expected
+                                        sets: vnode.attrs.workout.prescriptions,
                                         date: Date.now(),
                                         comments: '',
                                         tag: 'workoutlog'
@@ -33289,7 +33461,7 @@ exports.component = component;
 
 
 /***/ }),
-/* 136 */
+/* 137 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -33297,7 +33469,7 @@ exports.component = component;
 exports.__esModule = true;
 var m = __webpack_require__(0);
 var db_1 = __webpack_require__(1);
-var utils_1 = __webpack_require__(8);
+var utils_1 = __webpack_require__(5);
 var logs = [];
 var WorkoutLogComponent = function (vnode) {
     var css = vnode.attrs.css;
