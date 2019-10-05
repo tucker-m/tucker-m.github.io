@@ -6160,7 +6160,7 @@ var _createRule = __webpack_require__(13);
 
 var _createRule2 = _interopRequireDefault(_createRule);
 
-var _linkRule = __webpack_require__(33);
+var _linkRule = __webpack_require__(34);
 
 var _linkRule2 = _interopRequireDefault(_linkRule);
 
@@ -6403,7 +6403,7 @@ exports['default'] = RuleList;
 exports.__esModule = true;
 var m = __webpack_require__(0);
 var overlay_1 = __webpack_require__(133);
-var jss_1 = __webpack_require__(30);
+var jss_1 = __webpack_require__(31);
 var jss_preset_default_1 = __webpack_require__(66);
 var styles_1 = __webpack_require__(119);
 var PageComponent = function (vnode) {
@@ -6627,13 +6627,13 @@ function toCssValue(value) {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return toPromise; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return upsert; });
 /* unused harmony export uuid */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_uuid__ = __webpack_require__(38);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_uuid__ = __webpack_require__(39);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_uuid___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_uuid__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_pouchdb_promise__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_argsarray__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_argsarray___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_argsarray__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_pouchdb_collections__ = __webpack_require__(23);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_events__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_events__ = __webpack_require__(28);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_events___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_events__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_inherits__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_inherits___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_inherits__);
@@ -7682,7 +7682,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _SheetsRegistry = __webpack_require__(28);
+var _SheetsRegistry = __webpack_require__(29);
 
 var _SheetsRegistry2 = _interopRequireDefault(_SheetsRegistry);
 
@@ -8281,7 +8281,7 @@ var ExportedMap;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lie__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lie__ = __webpack_require__(35);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lie___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_lie__);
 
 
@@ -8366,6 +8366,153 @@ exports["default"] = (function (attrs) {
 
 /***/ }),
 /* 27 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+exports.__esModule = true;
+var m = __webpack_require__(0);
+var utils_1 = __webpack_require__(5);
+var AddSetOverlay = function (vnode) {
+    var set = JSON.parse(JSON.stringify(vnode.attrs.set));
+    var css = vnode.attrs.css;
+    return {
+        view: function (vnode) {
+            return [
+                m('div', { "class": css.labelOnTopGroup }, [
+                    m('div', { "class": css.setOverlayHeading }, [
+                        'Set ',
+                        m('span', {
+                            "class": utils_1["default"].c(css.setNumber, css.setOverlayHeadingNumber)
+                        }, vnode.attrs.index + 1),
+                    ]),
+                    m('label', { "class": css.label }, 'Set is measured in: (check all that apply)'),
+                    m('div', [
+                        m('div', { "class": css.formRow }, [
+                            m('input[type=checkbox]', {
+                                "class": css.checkbox,
+                                onclick: function () {
+                                    if (set.reps) {
+                                        set.reps = false;
+                                    }
+                                    else {
+                                        set.reps = {
+                                            prescribed: false,
+                                            entered: false
+                                        };
+                                    }
+                                },
+                                checked: !!set.reps
+                            }),
+                            m('label', 'reps'),
+                        ]),
+                        m('div', { "class": css.formRow }, [
+                            m('input[type=checkbox]', {
+                                "class": css.checkbox,
+                                onclick: function () {
+                                    if (set.weight) {
+                                        set.weight = false;
+                                    }
+                                    else {
+                                        set.weight = {
+                                            prescribed: false,
+                                            entered: false
+                                        };
+                                    }
+                                },
+                                checked: !!set.weight
+                            }),
+                            m('label', 'pounds'),
+                        ]),
+                        m('div', [
+                            m('input[type=checkbox]', {
+                                "class": css.checkbox,
+                                onclick: function () {
+                                    if (set.time) {
+                                        set.time = false;
+                                    }
+                                    else {
+                                        set.time = {
+                                            prescribed: false,
+                                            entered: false
+                                        };
+                                    }
+                                },
+                                checked: !!set.time
+                            }),
+                            m('label', 'seconds'),
+                        ]),
+                    ]),
+                ]),
+                m('div', { "class": css.labelOnTopGroup }, [
+                    m('label', { "class": css.label }, 'Goal values (leave blank to fill in values at the gym)'),
+                    (set.reps
+                        ? m('div', { "class": css.formRow }, [
+                            m('input[type=text]', {
+                                "class": css.textInput,
+                                onchange: m.withAttr('value', function (value) {
+                                    if (set.reps) {
+                                        set.reps.prescribed = parseInt(value);
+                                    }
+                                }),
+                                value: set.reps.prescribed ? set.reps.prescribed : ''
+                            }),
+                            m('label', 'reps'),
+                        ])
+                        : null),
+                    (set.weight
+                        ? m('div', { "class": css.formRow }, [
+                            m('input[type=text]', {
+                                "class": css.textInput,
+                                onchange: m.withAttr('value', function (value) {
+                                    if (set.weight) {
+                                        set.weight.prescribed = parseInt(value);
+                                    }
+                                }),
+                                value: set.weight.prescribed ? set.weight.prescribed : ''
+                            }),
+                            m('label', 'pounds'),
+                        ])
+                        : null),
+                    (set.time
+                        ? m('div', { "class": css.formRow }, [
+                            m('input[type=text]', {
+                                "class": css.textInput,
+                                onchange: m.withAttr('value', function (value) {
+                                    if (set.time) {
+                                        set.time.prescribed = parseInt(value);
+                                    }
+                                }),
+                                value: set.time.prescribed ? set.time.prescribed : ''
+                            }),
+                            m('label', 'seconds'),
+                        ])
+                        : null),
+                ]),
+                m('div', [
+                    m('button', {
+                        "class": css.hollowDangerButton,
+                        onclick: function () { vnode.attrs.hideOverlay(); }
+                    }, 'Cancel'),
+                    m('button', {
+                        "class": css.button,
+                        onclick: function () {
+                            vnode.attrs.addSet(set);
+                            vnode.attrs.hideOverlay();
+                        }
+                    }, 'Save'),
+                ])
+            ];
+        }
+    };
+};
+exports["default"] = {
+    component: AddSetOverlay
+};
+
+
+/***/ }),
+/* 28 */
 /***/ (function(module, exports) {
 
 // Copyright Joyent, Inc. and other Node contributors.
@@ -8673,7 +8820,7 @@ function isUndefined(arg) {
 
 
 /***/ }),
-/* 28 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8777,7 +8924,7 @@ var SheetsRegistry = function () {
 exports['default'] = SheetsRegistry;
 
 /***/ }),
-/* 29 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8791,7 +8938,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _linkRule = __webpack_require__(33);
+var _linkRule = __webpack_require__(34);
 
 var _linkRule2 = _interopRequireDefault(_linkRule);
 
@@ -9017,7 +9164,7 @@ var StyleSheet = function () {
 exports['default'] = StyleSheet;
 
 /***/ }),
-/* 30 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9046,7 +9193,7 @@ Object.defineProperty(exports, 'toCssValue', {
   }
 });
 
-var _SheetsRegistry = __webpack_require__(28);
+var _SheetsRegistry = __webpack_require__(29);
 
 Object.defineProperty(exports, 'SheetsRegistry', {
   enumerable: true,
@@ -9082,7 +9229,7 @@ Object.defineProperty(exports, 'sheets', {
   }
 });
 
-var _createGenerateClassName = __webpack_require__(31);
+var _createGenerateClassName = __webpack_require__(32);
 
 Object.defineProperty(exports, 'createGenerateClassName', {
   enumerable: true,
@@ -9110,7 +9257,7 @@ var create = exports.create = function create(options) {
 exports['default'] = create();
 
 /***/ }),
-/* 31 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9124,7 +9271,7 @@ var _warning = __webpack_require__(2);
 
 var _warning2 = _interopRequireDefault(_warning);
 
-var _StyleSheet = __webpack_require__(29);
+var _StyleSheet = __webpack_require__(30);
 
 var _StyleSheet2 = _interopRequireDefault(_StyleSheet);
 
@@ -9174,7 +9321,7 @@ exports['default'] = function () {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
 
 /***/ }),
-/* 32 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9195,7 +9342,7 @@ exports['default'] = function (value) {
 };
 
 /***/ }),
-/* 33 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9214,7 +9361,7 @@ function linkRule(rule, cssRule) {
 }
 
 /***/ }),
-/* 34 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9474,7 +9621,7 @@ function race(iterable) {
 
 
 /***/ }),
-/* 35 */
+/* 36 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9616,14 +9763,14 @@ function typedBuffer() {
 
 
 /***/ }),
-/* 36 */
+/* 37 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(global) {/* unused harmony export binaryMd5 */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return stringMd5; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_pouchdb_binary_utils__ = __webpack_require__(35);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_spark_md5__ = __webpack_require__(37);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_pouchdb_binary_utils__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_spark_md5__ = __webpack_require__(38);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_spark_md5___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_spark_md5__);
 
 
@@ -9705,7 +9852,7 @@ function stringMd5(string) {
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(3)))
 
 /***/ }),
-/* 37 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 (function (factory) {
@@ -10462,7 +10609,7 @@ function stringMd5(string) {
 
 
 /***/ }),
-/* 38 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var v1 = __webpack_require__(101);
@@ -10476,7 +10623,7 @@ module.exports = uuid;
 
 
 /***/ }),
-/* 39 */
+/* 40 */
 /***/ (function(module, exports) {
 
 /**
@@ -10505,7 +10652,7 @@ module.exports = bytesToUuid;
 
 
 /***/ }),
-/* 40 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {// Unique ID creation requires a high quality random # generator.  In the
@@ -10545,7 +10692,7 @@ module.exports = rng;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
-/* 41 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10648,7 +10795,7 @@ exports["default"] = {
 
 
 /***/ }),
-/* 42 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10660,7 +10807,7 @@ exports["default"] = {
 
 
 /***/ }),
-/* 43 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10698,7 +10845,7 @@ exports["default"] = (function (attrs) {
 
 
 /***/ }),
-/* 44 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10706,7 +10853,7 @@ exports["default"] = (function (attrs) {
 exports.__esModule = true;
 var m = __webpack_require__(0);
 var mobx_1 = __webpack_require__(8);
-var set_1 = __webpack_require__(47);
+var set_1 = __webpack_require__(27);
 var enterSet_1 = __webpack_require__(124);
 var utils_1 = __webpack_require__(5);
 exports["default"] = {
@@ -10827,7 +10974,7 @@ exports["default"] = {
 
 
 /***/ }),
-/* 45 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10920,7 +11067,7 @@ exports["default"] = {
 
 
 /***/ }),
-/* 46 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11020,153 +11167,6 @@ var ExerciseOverlay = function (vnode) {
 };
 exports["default"] = {
     component: ExerciseOverlay
-};
-
-
-/***/ }),
-/* 47 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-exports.__esModule = true;
-var m = __webpack_require__(0);
-var utils_1 = __webpack_require__(5);
-var AddSetOverlay = function (vnode) {
-    var set = JSON.parse(JSON.stringify(vnode.attrs.set));
-    var css = vnode.attrs.css;
-    return {
-        view: function (vnode) {
-            return [
-                m('div', { "class": css.labelOnTopGroup }, [
-                    m('div', { "class": css.setOverlayHeading }, [
-                        'Set ',
-                        m('span', {
-                            "class": utils_1["default"].c(css.setNumber, css.setOverlayHeadingNumber)
-                        }, vnode.attrs.index + 1),
-                    ]),
-                    m('label', { "class": css.label }, 'Set is measured in: (check all that apply)'),
-                    m('div', [
-                        m('div', { "class": css.formRow }, [
-                            m('input[type=checkbox]', {
-                                "class": css.checkbox,
-                                onclick: function () {
-                                    if (set.reps) {
-                                        set.reps = false;
-                                    }
-                                    else {
-                                        set.reps = {
-                                            prescribed: false,
-                                            entered: false
-                                        };
-                                    }
-                                },
-                                checked: !!set.reps
-                            }),
-                            m('label', 'reps'),
-                        ]),
-                        m('div', { "class": css.formRow }, [
-                            m('input[type=checkbox]', {
-                                "class": css.checkbox,
-                                onclick: function () {
-                                    if (set.weight) {
-                                        set.weight = false;
-                                    }
-                                    else {
-                                        set.weight = {
-                                            prescribed: false,
-                                            entered: false
-                                        };
-                                    }
-                                },
-                                checked: !!set.weight
-                            }),
-                            m('label', 'pounds'),
-                        ]),
-                        m('div', [
-                            m('input[type=checkbox]', {
-                                "class": css.checkbox,
-                                onclick: function () {
-                                    if (set.time) {
-                                        set.time = false;
-                                    }
-                                    else {
-                                        set.time = {
-                                            prescribed: false,
-                                            entered: false
-                                        };
-                                    }
-                                },
-                                checked: !!set.time
-                            }),
-                            m('label', 'seconds'),
-                        ]),
-                    ]),
-                ]),
-                m('div', { "class": css.labelOnTopGroup }, [
-                    m('label', { "class": css.label }, 'Goal values (leave blank to fill in values at the gym)'),
-                    (set.reps
-                        ? m('div', { "class": css.formRow }, [
-                            m('input[type=text]', {
-                                "class": css.textInput,
-                                onchange: m.withAttr('value', function (value) {
-                                    if (set.reps) {
-                                        set.reps.prescribed = parseInt(value);
-                                    }
-                                }),
-                                value: set.reps.prescribed ? set.reps.prescribed : ''
-                            }),
-                            m('label', 'reps'),
-                        ])
-                        : null),
-                    (set.weight
-                        ? m('div', { "class": css.formRow }, [
-                            m('input[type=text]', {
-                                "class": css.textInput,
-                                onchange: m.withAttr('value', function (value) {
-                                    if (set.weight) {
-                                        set.weight.prescribed = parseInt(value);
-                                    }
-                                }),
-                                value: set.weight.prescribed ? set.weight.prescribed : ''
-                            }),
-                            m('label', 'pounds'),
-                        ])
-                        : null),
-                    (set.time
-                        ? m('div', { "class": css.formRow }, [
-                            m('input[type=text]', {
-                                "class": css.textInput,
-                                onchange: m.withAttr('value', function (value) {
-                                    if (set.time) {
-                                        set.time.prescribed = parseInt(value);
-                                    }
-                                }),
-                                value: set.time.prescribed ? set.time.prescribed : ''
-                            }),
-                            m('label', 'seconds'),
-                        ])
-                        : null),
-                ]),
-                m('div', [
-                    m('button', {
-                        "class": css.hollowDangerButton,
-                        onclick: function () { vnode.attrs.hideOverlay(); }
-                    }, 'Cancel'),
-                    m('button', {
-                        "class": css.button,
-                        onclick: function () {
-                            vnode.attrs.addSet(set);
-                            vnode.attrs.hideOverlay();
-                        }
-                    }, 'Save'),
-                ])
-            ];
-        }
-    };
-};
-exports["default"] = {
-    component: AddSetOverlay
 };
 
 
@@ -12615,7 +12615,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 exports['default'] = jssGlobal;
 
-var _jss = __webpack_require__(30);
+var _jss = __webpack_require__(31);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -13159,7 +13159,7 @@ var _isInBrowser = __webpack_require__(12);
 
 var _isInBrowser2 = _interopRequireDefault(_isInBrowser);
 
-var _StyleSheet = __webpack_require__(29);
+var _StyleSheet = __webpack_require__(30);
 
 var _StyleSheet2 = _interopRequireDefault(_StyleSheet);
 
@@ -13187,7 +13187,7 @@ var _StyleRule = __webpack_require__(7);
 
 var _StyleRule2 = _interopRequireDefault(_StyleRule);
 
-var _createGenerateClassName = __webpack_require__(31);
+var _createGenerateClassName = __webpack_require__(32);
 
 var _createGenerateClassName2 = _interopRequireDefault(_createGenerateClassName);
 
@@ -13691,7 +13691,7 @@ var _createRule = __webpack_require__(13);
 
 var _createRule2 = _interopRequireDefault(_createRule);
 
-var _isObservable = __webpack_require__(32);
+var _isObservable = __webpack_require__(33);
 
 var _isObservable2 = _interopRequireDefault(_isObservable);
 
@@ -14690,7 +14690,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 exports['default'] = cloneStyle;
 
-var _isObservable = __webpack_require__(32);
+var _isObservable = __webpack_require__(33);
 
 var _isObservable2 = _interopRequireDefault(_isObservable);
 
@@ -14828,9 +14828,9 @@ exports['default'] = global[ns]++;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_pouchdb_promise__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_pouchdb_collections__ = __webpack_require__(23);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_pouchdb_utils__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_pouchdb_binary_utils__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_pouchdb_binary_utils__ = __webpack_require__(36);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_pouchdb_collate__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_pouchdb_md5__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_pouchdb_md5__ = __webpack_require__(37);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_pouchdb_mapreduce_utils__ = __webpack_require__(91);
 
 
@@ -16001,7 +16001,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_pouchdb_selector_core__ = __webpack_require__(92);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_pouchdb_abstract_mapreduce__ = __webpack_require__(88);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_pouchdb_collate__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_pouchdb_md5__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_pouchdb_md5__ = __webpack_require__(37);
 
 
 
@@ -18123,13 +18123,13 @@ function matchesSelector(doc, selector) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* WEBPACK VAR INJECTION */(function(global) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_uuid__ = __webpack_require__(38);
+/* WEBPACK VAR INJECTION */(function(global) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_uuid__ = __webpack_require__(39);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_uuid___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_uuid__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_lie__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_lie__ = __webpack_require__(35);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_lie___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_lie__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_argsarray__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_argsarray___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_argsarray__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_events__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_events__ = __webpack_require__(28);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_events___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_events__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_inherits__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_inherits___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_inherits__);
@@ -18137,7 +18137,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_immediate___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_immediate__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_debug__ = __webpack_require__(94);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_debug___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_debug__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_spark_md5__ = __webpack_require__(37);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_spark_md5__ = __webpack_require__(38);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_spark_md5___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_spark_md5__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_vuvuzela__ = __webpack_require__(103);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_vuvuzela___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_vuvuzela__);
@@ -31192,8 +31192,8 @@ exports.clearImmediate = clearImmediate;
 /* 101 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var rng = __webpack_require__(40);
-var bytesToUuid = __webpack_require__(39);
+var rng = __webpack_require__(41);
+var bytesToUuid = __webpack_require__(40);
 
 // **`v1()` - Generate time-based UUID**
 //
@@ -31298,8 +31298,8 @@ module.exports = v1;
 /* 102 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var rng = __webpack_require__(40);
-var bytesToUuid = __webpack_require__(39);
+var rng = __webpack_require__(41);
+var bytesToUuid = __webpack_require__(40);
 
 function v4(options, buf, offset) {
   var i = buf && offset || 0;
@@ -31728,7 +31728,7 @@ exports["default"] = {
 
 exports.__esModule = true;
 var colors_1 = __webpack_require__(4);
-var measurements_1 = __webpack_require__(42);
+var measurements_1 = __webpack_require__(43);
 exports["default"] = {
     constraint: {
         maxWidth: '1000px',
@@ -31962,8 +31962,8 @@ exports["default"] = {
 "use strict";
 
 exports.__esModule = true;
-var measurements_1 = __webpack_require__(42);
-var forms_1 = __webpack_require__(41);
+var measurements_1 = __webpack_require__(43);
+var forms_1 = __webpack_require__(42);
 exports["default"] = {
     topBar: {
         position: 'fixed',
@@ -32309,7 +32309,7 @@ var main_1 = __webpack_require__(110);
 var typography_1 = __webpack_require__(116);
 var editTitle_1 = __webpack_require__(111);
 var exercise_1 = __webpack_require__(112);
-var forms_1 = __webpack_require__(41);
+var forms_1 = __webpack_require__(42);
 var infoBox_1 = __webpack_require__(106);
 var workoutLogs_1 = __webpack_require__(107);
 var calendar_1 = __webpack_require__(105);
@@ -32480,10 +32480,11 @@ var editableHeading_1 = __webpack_require__(25);
 var heading_1 = __webpack_require__(26);
 var topBar_1 = __webpack_require__(16);
 var utils_1 = __webpack_require__(5);
-var exercise_1 = __webpack_require__(46);
+var exercise_1 = __webpack_require__(47);
 var exerciseHistory_1 = __webpack_require__(122);
 var insertExerciseButton_1 = __webpack_require__(132);
-var setWithUnits_1 = __webpack_require__(44);
+var setWithUnits_1 = __webpack_require__(45);
+var set_1 = __webpack_require__(27);
 var component = function (vnode) {
     var log = vnode.attrs.log;
     var pageEditable = false;
@@ -32541,6 +32542,30 @@ var component = function (vnode) {
                                             css: css
                                         }),
                                     ]),
+                                pageEditable
+                                    ? m('button', {
+                                        "class": css.button,
+                                        onclick: function () {
+                                            var previousSet = setGroup.sets[setGroup.sets.length - 1] || {
+                                                reps: false,
+                                                weight: false,
+                                                time: false
+                                            };
+                                            vnode.attrs.setOverlay(set_1["default"], {
+                                                title: setGroup.exerciseName,
+                                                index: setGroup.sets.length,
+                                                set: previousSet,
+                                                addSet: function (set) {
+                                                    setGroup.sets.push(set);
+                                                },
+                                                hideOverlay: function () {
+                                                    vnode.attrs.setOverlay({ component: null, title: '' }, {});
+                                                },
+                                                css: css
+                                            });
+                                        }
+                                    }, 'Add a set')
+                                    : null,
                             ]),
                             pageEditable
                                 ? insertExerciseButton_1["default"]({
@@ -32604,6 +32629,54 @@ var EnterSetComponent = function (vnode) {
                     set.time && set.time.prescribed
                         ? m('span', { "class": css.timePill }, set.time.prescribed + " seconds")
                         : null,
+                ]),
+                m('div', [
+                    m('span', 'Measured in'),
+                    m('input[type=checkbox]', {
+                        checked: !!set.reps,
+                        onclick: function () {
+                            if (set.reps) {
+                                set.reps = false;
+                            }
+                            else {
+                                set.reps = {
+                                    entered: false,
+                                    prescribed: false
+                                };
+                            }
+                        }
+                    }),
+                    m('label', 'reps'),
+                    m('input[type=checkbox]', {
+                        checked: !!set.weight,
+                        onclick: function () {
+                            if (set.weight) {
+                                set.weight = false;
+                            }
+                            else {
+                                set.weight = {
+                                    entered: false,
+                                    prescribed: false
+                                };
+                            }
+                        }
+                    }),
+                    m('label', 'weight'),
+                    m('input[type=checkbox]', {
+                        checked: !!set.time,
+                        onclick: function () {
+                            if (set.time) {
+                                set.time = false;
+                            }
+                            else {
+                                set.time = {
+                                    entered: false,
+                                    prescribed: false
+                                };
+                            }
+                        }
+                    }),
+                    m('label', 'time'),
                 ]),
                 m('div', [
                     set.reps
@@ -32704,7 +32777,7 @@ exports.__esModule = true;
 var m = __webpack_require__(0);
 var workoutDay_1 = __webpack_require__(127);
 var restDay_1 = __webpack_require__(126);
-var editTitle_1 = __webpack_require__(45);
+var editTitle_1 = __webpack_require__(46);
 var CalendarComponent = function (vnode) {
     var css = vnode.attrs.css;
     return {
@@ -32777,7 +32850,7 @@ exports["default"] = (function (attrs) {
 
 exports.__esModule = true;
 var m = __webpack_require__(0);
-var editButtons_1 = __webpack_require__(43);
+var editButtons_1 = __webpack_require__(44);
 var RestDayComponent = function (vnode) {
     return {
         view: function (vnode) {
@@ -32811,7 +32884,7 @@ exports["default"] = (function (attrs) {
 exports.__esModule = true;
 var m = __webpack_require__(0);
 var utils_1 = __webpack_require__(5);
-var editButtons_1 = __webpack_require__(43);
+var editButtons_1 = __webpack_require__(44);
 var CalendarItem = function (vnode) {
     var css = vnode.attrs.css;
     return {
@@ -33148,9 +33221,9 @@ exports["default"] = (function (attrs) {
 exports.__esModule = true;
 var m = __webpack_require__(0);
 var mobx_1 = __webpack_require__(8);
-var exercise_1 = __webpack_require__(46);
-var set_1 = __webpack_require__(47);
-var setWithUnits_1 = __webpack_require__(44);
+var exercise_1 = __webpack_require__(47);
+var set_1 = __webpack_require__(27);
+var setWithUnits_1 = __webpack_require__(45);
 var TableComponent = function (vnode) {
     var css = vnode.attrs.css;
     return {
@@ -33361,7 +33434,7 @@ var m = __webpack_require__(0);
 var editableHeading_1 = __webpack_require__(25);
 var workoutTable_1 = __webpack_require__(134);
 var workoutLogs_1 = __webpack_require__(137);
-var editTitle_1 = __webpack_require__(45);
+var editTitle_1 = __webpack_require__(46);
 var topBar_1 = __webpack_require__(16);
 var preventDefaultFunction_1 = __webpack_require__(120);
 var db_1 = __webpack_require__(1);
