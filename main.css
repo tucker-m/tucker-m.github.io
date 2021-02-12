@@ -1,0 +1,99 @@
+@import url('http://fonts.cdnfonts.com/css/tex-gyre-schola');
+@import url('http://fonts.cdnfonts.com/css/share-techmono-2');
+body {
+    background: #fdf6e3;
+    font-family: 'TexGyreSchola', serif;
+}
+article {
+    margin: 2rem 0;
+}
+a {
+    color: #268bd2;
+    text-decoration: none;
+    border-bottom: 1px solid #268bd2;
+}
+a:hover {
+    color: #cb4b16;
+    border-bottom-color: #cb4b16;
+}
+/* a:hover { */
+/*     background-color: #268bd2; */
+/*     text-decoration: none; */
+/*     color: #fdf6e3; */
+/* } */
+.content {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+h1 {
+    margin: 0;
+    padding: 0.2rem;
+    font-size: 1.8rem;
+    font-weight: normal;
+    font-family: 'Share-TechMono', monospaced;
+    color: #2aa198;
+}
+p {
+    color: #657b83;
+    font-size: 1.2rem;
+}
+.width-constraint {
+    padding: 0 2rem;
+    flex-direction: column;
+    flex-basis: 45rem;
+}
+.header {
+    font-family: 'Share-TechMono', monospaced;
+    border-bottom: 1px solid #6c71c4;
+    display: flex;
+    align-items: center;
+    padding: 2rem 0 1rem;
+    flex-wrap: wrap;
+    color: #6c71c4;
+}
+.header > * {
+    margin-bottom: 1rem;
+}
+.header span {
+    padding-right: 3rem;
+    flex-grow: 1;
+}
+.header ul {
+    padding: 0;
+    margin-top: 0;
+    list-style-type: none;
+}
+.header ul li {
+    float: left;
+    margin-right: 1.5rem;
+}
+.header ul li a {
+    border-bottom: none;
+}
+.heading-box {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+.date {
+    margin: 0;
+    padding: 0.2rem;
+    font-family: 'Share-TechMono', monospaced;
+    color: #6c71c4;
+    font-size: 0.8rem;
+}
+.intro {
+    font-size: 2rem;
+    color: #d33682;
+}
+.post-content > p:first-of-type:first-letter {
+    color: #fdf6e3;
+    background-color: #2aa198;
+    padding: .3rem;
+    margin-right: .2rem;
+    float: left;
+    font-family: 'Share-TechMono', monospaced;
+    font-size: 3rem;
+    box-shadow: -.4rem .4rem 0 #6c71c4;
+}
