@@ -37,6 +37,7 @@ h1 {
 p {
     color: #657b83;
     font-size: 1.2rem;
+    line-height: 1.75rem;
 }
 .width-constraint {
     padding: 0 2rem;
@@ -81,7 +82,7 @@ p {
     padding: 0.2rem;
     font-family: 'Share-TechMono', monospaced;
     color: #6c71c4;
-    font-size: 0.8rem;
+    font-size: 1rem;
 }
 .intro {
     font-size: 2rem;
