@@ -9,6 +9,7 @@ article {
 	margin: 32px 0;
 }
 a {
+    color: #6c71c4;
     text-decoration: none;
     border-bottom: 1px solid #268bd2;
 }
@@ -16,11 +17,9 @@ a:hover {
     color: #cb4b16;
     border-bottom-color: #cb4b16;
 }
-/* a:hover { */
-/*     background-color: #268bd2; */
-/*     text-decoration: none; */
-/*     color: #fdf6e3; */
-/* } */
+a:visited {
+    color: #b58900;
+}
 .content {
     display: flex;
     flex-direction: row;
@@ -95,6 +94,12 @@ p {
 }
 .header ul li a {
     border-bottom: none;
+}
+.header a:visited {
+  color: inherit;
+}
+.header a:hover {
+  color: #b58900;
 }
 .heading-box {
     display: flex;
