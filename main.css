@@ -45,7 +45,7 @@ h1, .post-title {
 	color: #268bd2;
 	font-size: 1rem;
 }
-.all-posts h1, .all-posts h2, .all-posts span {
+.post-list h1, .post-list h2, .post-list span {
   padding-left: 0;
   padding-right: 0;
 }
