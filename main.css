@@ -31,7 +31,7 @@ h1, .post-title {
     padding: 0.2rem;
     font-size: 1.8rem;
     font-weight: normal;
-    font-family: monospace;
+    font-family: Consolas, Menlo, Ubuntu Mono, Liberation Mono, monospace;
     color: #2aa198;
 }
 .post-title a {
@@ -62,7 +62,7 @@ p {
     flex-basis: 45rem;
 }
 .header {
-    font-family: monospace;
+    font-family: Consolas, Menlo, Ubuntu Mono, Liberation Mono, monospace;
     font-size: 1rem;
     border-bottom: 1px solid #6c71c4;
     display: flex;
@@ -100,7 +100,7 @@ p {
 .date {
     margin: 0;
     padding: 0.2rem;
-    font-family: monospace;
+    font-family: Consolas, Menlo, Ubuntu Mono, Liberation Mono, monospace;
     color: #6c71c4;
     font-size: 1rem;
 }
@@ -114,7 +114,7 @@ p {
     padding: .3rem;
     margin-right: .2rem;
     float: left;
-    font-family: monospace;
+    font-family: Consolas, Menlo, Ubuntu Mono, Liberation Mono, monospace;
     font-size: 3rem;
     box-shadow: -.4rem .4rem 0 #6c71c4;
 }
