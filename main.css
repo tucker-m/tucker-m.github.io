@@ -103,7 +103,7 @@ p {
     border-bottom: none;
 }
 .header a:visited {
-  color: inherit;
+  color: #268bd2;
 }
 .header a:hover {
   color: #cb4b16;
