@@ -37,6 +37,9 @@ h1, .post-title {
 	border-bottom: none;
 	color: inherit;
 }
+.post-title a:visited {
+  color: #b58900;
+}
 .post-intro {
 	margin: 0;
 }
@@ -99,7 +102,7 @@ p {
   color: inherit;
 }
 .header a:hover {
-  color: #b58900;
+  color: #cb4b16;
 }
 .heading-box {
     display: flex;
