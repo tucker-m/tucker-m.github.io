@@ -9,7 +9,7 @@ article {
 	margin: 32px 0;
 }
 a {
-    color: #6c71c4;
+    color: #268bd2;
     text-decoration: none;
     border-bottom: 1px solid #268bd2;
 }
@@ -47,7 +47,7 @@ h1, .post-title {
 	margin: 0;
 }
 .all-posts {
-	color: #268bd2;
+	color: #6c71c4;
 	font-size: 1rem;
 }
 .post-list h1, .post-list h2, .post-list span {
@@ -99,6 +99,7 @@ p {
     margin-right: 1.5rem;
 }
 .header ul li a {
+   color: #268bd2;
     border-bottom: none;
 }
 .header a:visited {
