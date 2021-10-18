@@ -27,17 +27,28 @@
   <a class='main-link' href="/">Tucker McKnight's Blog</a>
   <ul>
     <li><a href="/">Home</a></li>
+	<li id="theme-switch">Dark mode</li>
   </ul>
 </div>
 
 			  <div class='post-list'>
 			  <h1 class='all-posts'>All Posts</h1><div class='all-posts-post'>
-      <h2 class='post-title'><a href="/README/">Readme</a></h2>
-      <p class='post-intro'><span class='date'>January 19, 2021</span>This is a test.</p><div class='all-posts-post'>
       <h2 class='post-title'><a href="/posts/blah/">Blah</a></h2>
       <p class='post-intro'><span class='date'>January 19, 2021</span>Another post is here.</p></div>
 			  </div>
 		  </div>
 	  </div>
   </body>
+  	<script type="text/javascript">
+		const link = document.getElementById("theme-switch");
+		link.addEventListener("click", (event) => {
+			if (document.body.classList.toggle("dark")) {
+				link.innerText = "Light mode";
+			}
+			else {
+				link.innerText = "Dark mode";
+			}
+		})
+	</script>
+
 </html>

@@ -26,6 +26,7 @@
   <a class='main-link' href="/">Tucker McKnight's Blog</a>
   <ul>
     <li><a href="/">Home</a></li>
+	<li id="theme-switch">Dark mode</li>
   </ul>
 </div>
 
@@ -49,4 +50,16 @@ sThis is the content for the post. This is the content for the post. This is the
       </div>
     </div>
   </body>
+  	<script type="text/javascript">
+		const link = document.getElementById("theme-switch");
+		link.addEventListener("click", (event) => {
+			if (document.body.classList.toggle("dark")) {
+				link.innerText = "Light mode";
+			}
+			else {
+				link.innerText = "Dark mode";
+			}
+		})
+	</script>
+
 </html>
