@@ -2,7 +2,7 @@ body {
     background: #fdf6e3;
     font-family: serif;
 }
-body.dark {
+.dark body {
 	background: #002b36;
 }
 article {
@@ -78,7 +78,7 @@ p {
 }
 .header {
     font-family: Consolas, Menlo, Ubuntu Mono, Liberation Mono, monospace;
-    font-size: 1rem;
+    font-size: 1.2rem;
     border-bottom: 1px solid #6c71c4;
     display: flex;
     align-items: center;
@@ -103,7 +103,7 @@ p {
     align-items: center;
     flex-wrap: wrap;
 }
-.header ul li {
+.header ul li:not(:last-of-type) {
     float: left;
     margin-right: 1.5rem;
 }
