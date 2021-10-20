@@ -43,13 +43,15 @@
 </div>
 
 			  <div class='post-list'>
-			  <h1 class='all-posts'>All Posts</h1></div>
+			  <h1 class='all-posts'>All Posts</h1><div class='all-posts-post'>
+      <h2 class='post-title'><a href="/posts/test/">Test Post</a></h2>
+      <p class='post-intro'><span class='date'>October 17, 2021</span>Lorem ipsum dolor sit amet</p></div>
 			  </div>
 		  </div>
 	  </div>
   </body>
   	<script type="text/javascript">
-    const setMode = (text) => {
+    const setTheme = (text) => {
       localStorage.setItem("theme", text);
       themeText.innerText = text;
 
