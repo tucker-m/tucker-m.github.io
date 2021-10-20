@@ -72,19 +72,25 @@ p {
 	color: #839496;
 }
 .width-constraint {
-    padding: 0 2rem;
+    padding: 0 1rem;
     flex-direction: column;
     flex-basis: 45rem;
 }
 .header {
     font-family: Consolas, Menlo, Ubuntu Mono, Liberation Mono, monospace;
-    font-size: 1.2rem;
+    font-size: 1rem;
     border-bottom: 1px solid #6c71c4;
     display: flex;
-    align-items: center;
-    padding: 2rem 0 1rem;
+    flex-direction: column;
+    padding: min(2rem, calc(2rem + (100vw - 800px))) 0 1rem;
     flex-wrap: wrap;
     color: #6c71c4;
+}
+.header-row {
+  display: flex;
+}
+.theme-switch-container {
+  justify-content: flex-end;
 }
 .header > * {
     margin-bottom: 1rem;

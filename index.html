@@ -31,29 +31,49 @@
 	  <div class='content'>
 		  <div class='width-constraint'>
 			  <div class='header'>
-  <a class='main-link' href="/">Tucker McKnight's Blog</a>
-  <ul>
-    <li><a href="/">Home</a></li>
-	<li id="theme-switch">Light/dark mode</li>
-  </ul>
+  <div class="header-row theme-switch-container">
+	  <div id="theme-switch">Mode: <span id="theme-mode"></span></div>
+  </div>
+  <div class="header-row">
+    <a class='main-link' href="/">Tucker McKnight's Blog</a>
+    <ul>
+      <li><a href="/">Home</a></li>
+    </ul>
+  </div>
 </div>
 
 			  <div class='post-list'>
-			  <h1 class='all-posts'>All Posts</h1><div class='all-posts-post'>
-      <h2 class='post-title'><a href="/posts/blah/">Blah</a></h2>
-      <p class='post-intro'><span class='date'>January 19, 2021</span>Another post is here.</p></div>
+			  <h1 class='all-posts'>All Posts</h1></div>
 			  </div>
 		  </div>
 	  </div>
   </body>
   	<script type="text/javascript">
+    const setMode = (text) => {
+      localStorage.setItem("theme", text);
+      themeText.innerText = text;
+
+    }
+    const modes = {
+      "light": () => {},
+      "dark": () => {},
+      "os": () => {},
+    }
 		const link = document.getElementById("theme-switch");
+    const htmlElement = document.getElementsByTagName("html")[0];
+    const themeText = document.getElementById("theme-mode");
+    let initialThemeText = "light";
+    if (htmlElement.classList.contains("dark")) {
+      initialThemeText = "dark";
+    }
+    themeText.innerText = initialThemeText;
+
 		link.addEventListener("click", (event) => {
-			if (document.getElementsByTagName("html")[0].classList.toggle("dark")) {
-				localStorage.setItem("theme", "dark");
+			if (htmlElement.classList.toggle("dark")) {
+        setTheme("dark");
 			}
 			else {
-				localStorage.setItem("theme", "light");
+        setTheme("light");
 			}
 		})
 	</script>
