@@ -38,7 +38,7 @@
         }
       },
     }
-    let currentTheme = localStorage.getItem("theme");
+    let currentTheme = localStorage.getItem("theme") || "os";
     setClassForMode[currentTheme]();
 	</script>
 
