@@ -9,7 +9,7 @@ article {
     margin: 2rem 0;
 }
 .post-list {
-	margin: 32px 0;
+	margin: 2rem 0;
 }
 a {
     color: #268bd2;
@@ -29,8 +29,7 @@ a:visited {
     justify-content: center;
 }
 h1, .post-title {
-    margin: 0;
-    padding: 0.2rem;
+    margin: 0 0 0.5rem;
     font-size: 1.8rem;
     font-weight: normal;
     font-family: Consolas, Menlo, Ubuntu Mono, Liberation Mono, monospace;
@@ -50,7 +49,7 @@ h1, .post-title {
 	margin: 0;
 }
 .all-posts {
-	color: #6c71c4;
+	color: #d33682;
 	font-size: 1rem;
 }
 .post-list h1, .post-list h2, .post-list span {
@@ -58,7 +57,8 @@ h1, .post-title {
   padding-right: 0;
 }
 .all-posts-post {
-	margin-top: 2rem;
+	margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 .all-posts-post .date {
 	margin-right: 1rem;
@@ -88,22 +88,26 @@ p {
 }
 .header-row {
   display: flex;
+  flex-wrap: wrap;
 }
 .theme-switch-container {
   justify-content: flex-end;
 }
-.header > * {
-    margin-bottom: 1rem;
-}
 .header .main-link {
     padding-right: 3rem;
     flex-grow: 1;
-    color: inherit;
+    color: #6c71c4;
     border-bottom: none;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+.header .main-link:visited {
+  color: #6c71c4;
 }
 .header ul {
     padding: 0;
     margin-top: 0;
+    margin-bottom: 0;
     list-style-type: none;
     display: flex;
     align-items: center;
@@ -112,6 +116,10 @@ p {
 .header ul li:not(:last-of-type) {
     float: left;
     margin-right: 1.5rem;
+}
+.header ul li {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 .header ul li a {
    color: #268bd2;
@@ -122,6 +130,7 @@ p {
 	border: 1px solid #d33682;
 	padding: 0.3rem;
 	color: #d33682;
+  margin-bottom: 0.25rem;
 }
 #theme-switch:hover {
 	background: #002b36;
@@ -142,7 +151,6 @@ p {
 }
 body .date {
     margin: 0;
-    padding: 0.2rem;
     font-family: Consolas, Menlo, Ubuntu Mono, Liberation Mono, monospace;
     color: #6c71c4;
     font-size: 1rem;

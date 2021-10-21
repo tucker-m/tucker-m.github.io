@@ -21,10 +21,26 @@
   </head>
 
   	<script type="text/javascript">
-		let theme = localStorage.getItem("theme");
-		if (theme === "dark") {
-			document.getElementsByTagName("html")[0].classList.add("dark");
-		}
+		const htmlElement = document.getElementsByTagName("html")[0];
+    
+    const setClassForMode = {
+      "light": () => {
+        htmlElement.classList.remove("dark")
+      },
+      "dark": () => {
+        htmlElement.classList.add("dark")
+      },
+      "os": () => {
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          htmlElement.classList.add("dark")
+        }
+        else {
+          htmlElement.classList.remove("dark");
+        }
+      },
+    }
+    let currentTheme = localStorage.getItem("theme");
+    setClassForMode[currentTheme]();
 	</script>
 
   <body>
@@ -32,7 +48,7 @@
 		  <div class='width-constraint'>
 			  <div class='header'>
   <div class="header-row theme-switch-container">
-	  <div id="theme-switch">Mode: <span id="theme-mode"></span></div>
+	  <div id="theme-switch">&#x1F308 mode: <span id="theme-mode"></span></div>
   </div>
   <div class="header-row">
     <a class='main-link' href="/">Tucker McKnight's Blog</a>
@@ -51,32 +67,27 @@
 	  </div>
   </body>
   	<script type="text/javascript">
+    const modes = Object.keys(setClassForMode)
+
+		const link = document.getElementById("theme-switch");
+    const themeText = document.getElementById("theme-mode");
+
     const setTheme = (text) => {
       localStorage.setItem("theme", text);
-      themeText.innerText = text;
+      if (text === "os") {
+        themeText.innerText = "match OS"
+      }
+      else {
+        themeText.innerText = text;
+      }
+    }
 
-    }
-    const modes = {
-      "light": () => {},
-      "dark": () => {},
-      "os": () => {},
-    }
-		const link = document.getElementById("theme-switch");
-    const htmlElement = document.getElementsByTagName("html")[0];
-    const themeText = document.getElementById("theme-mode");
-    let initialThemeText = "light";
-    if (htmlElement.classList.contains("dark")) {
-      initialThemeText = "dark";
-    }
-    themeText.innerText = initialThemeText;
+    setTheme(currentTheme)
 
-		link.addEventListener("click", (event) => {
-			if (htmlElement.classList.toggle("dark")) {
-        setTheme("dark");
-			}
-			else {
-        setTheme("light");
-			}
+    link.addEventListener("click", (event) => {
+      currentTheme = modes[(modes.indexOf(currentTheme) + 1) % modes.length]
+      setTheme(currentTheme)
+      setClassForMode[currentTheme]()
 		})
 	</script>
 
