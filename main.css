@@ -22,6 +22,7 @@ a:hover {
 }
 a:visited {
     color: #b58900;
+    border-bottom-color: #b58900;
 }
 .content {
     display: flex;
@@ -45,8 +46,12 @@ h1, .post-title {
 .post-title a:hover {
   color: #cb4b16;
 }
-.post-intro {
-	margin: 0;
+.post-intro p {
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+.read-more a {
+  font-style: italic;
 }
 .all-posts {
 	color: #d33682;
@@ -57,11 +62,13 @@ h1, .post-title {
   padding-right: 0;
 }
 .all-posts-post {
-	margin-top: 1rem;
-  margin-bottom: 1rem;
+  padding-top: 1rem;
+  padding-bottom: 1.5rem;
 }
 .all-posts-post .date {
+  display: block;
 	margin-right: 1rem;
+  margin-bottom: 1.5rem;
 }
 p {
     color: #657b83;
@@ -156,7 +163,8 @@ body .date {
     font-size: 1rem;
 }
 body .intro {
-    font-size: 2em;
+    font-size: 2rem;
+    line-height: 2.25rem;
     color: #d33682;
 }
 .post-content > p:first-of-type:first-letter {
