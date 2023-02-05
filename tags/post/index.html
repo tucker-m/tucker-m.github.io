@@ -1,6 +1,6 @@
 <!doctype html>
 <html>
-      <head>
+    <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/main.css" />
 <!-- Matomo -->
@@ -20,7 +20,7 @@
 <!-- End Matomo Code -->
   </head>
 
-    	<script type="text/javascript">
+  	<script type="text/javascript">
 		const htmlElement = document.getElementsByTagName("html")[0];
     
     const setClassForMode = {
@@ -43,7 +43,7 @@
     setClassForMode[currentTheme]();
 	</script>
 
-    <body>
+  <body>
     <div class='content'>
       <div class='width-constraint'>
 	    <div class='header'>
@@ -67,18 +67,24 @@
   </div>
 </div>
 
-        <article>
-          <div class='heading-box'>
-            <h1>Test Post</h1>
-            <p class='date'>October 17, 2021</p>
-            <span class='tags'><a href="/tags/software">#software</a><a href="/tags/otherr">#otherr</a><a href="/tags/tags">#tags</a><a href="/tags/here">#here</a><a href="/tags/tooAsWell">#tooAsWell</a></span>
-          </div>
-          <p class='intro'>Lorem ipsum dolor sit amet</p>
-          <div class='post-content'>
-            <p>This is a test.</p>
+        <div class="post-list">
+          <h1 class="all-posts">Posts tagged with “post”</h1>
+          
+          
+          <div class='all-posts-post'>
+  <h2 class='post-title'><a href="/posts/test/">Test Post</a></h2>
+  <div class='post-metadata'>
+    <span class='date'>October 17, 2021</span>
+    <span class='tags'><a href="/tags/software">#software</a><a href="/tags/otherr">#otherr</a><a href="/tags/tags">#tags</a><a href="/tags/here">#here</a><a href="/tags/tooAsWell">#tooAsWell</a></span>
+  </div>
+  <div class='post-intro'>
+  <p>Lorem ipsum dolor sit amet</p><p>This is a test.</p>
+  </div>
+  <span class='read-more'><a href="/posts/test/">Read more...</a></span>
+</div>
 
-          </div>
-        </article>
+          
+        </div>
       </div>
     </div>
   </body>

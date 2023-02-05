@@ -66,9 +66,7 @@ h1, .post-title {
   padding-bottom: 1.5rem;
 }
 .all-posts-post .date {
-  display: block;
 	margin-right: 1rem;
-  margin-bottom: 1.5rem;
 }
 p {
     color: #657b83;
@@ -95,42 +93,58 @@ p {
 }
 .header-row {
   display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   flex-wrap: wrap;
 }
-.theme-switch-container {
+.header-row-logos-socials {
+  padding-top: 0.5rem;
+}
+.header-row-logos-socials img {
+  width: 1.2rem;
+}
+.header-row-logos-socials a {
+  border-bottom: none;
+}
+.header-row-top-navigation {
+  display: flex;
+  flex: 1 1 200px;
   justify-content: flex-end;
 }
+.navigation {
+  display: flex;
+}
+.theme-switch-container {
+  font-size: 0.8rem;
+  align-self: end;
+}
 .header .main-link {
-    padding-right: 3rem;
-    flex-grow: 1;
-    color: #6c71c4;
-    border-bottom: none;
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
+  display: block;
+  color: #6c71c4;
+  border-bottom: none;
+  margin-right: 1.5rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 .header .main-link:visited {
   color: #6c71c4;
 }
 .header ul {
     padding: 0;
-    margin-top: 0;
-    margin-bottom: 0;
+    margin-top: 0.5rem;
+    margin-bottom: -0.5rem;
     list-style-type: none;
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-}
-.header ul li:not(:last-of-type) {
-    float: left;
-    margin-right: 1.5rem;
 }
 .header ul li {
-  margin-top: 0.5rem;
+  float: left;
   margin-bottom: 0.5rem;
+}
+.header ul li:not(:last-of-type) {
+  margin-right: 1rem;
 }
 .header ul li a {
    color: #268bd2;
-    border-bottom: none;
+   border-bottom: none;
 }
 #theme-switch {
 	cursor: default;
@@ -156,12 +170,31 @@ p {
     flex-direction: column;
     align-items: start;
 }
-body .date {
+.heading-box .date {
+  margin-bottom: 0.5rem;
+}
+.post-metadata {
+  margin-bottom: 1.5rem;
+}
+.date {
     margin: 0;
     font-family: Consolas, Menlo, Ubuntu Mono, Liberation Mono, monospace;
     color: #6c71c4;
     font-size: 1rem;
 }
+.tags a:visited {
+  color: #b58900;
+  border-bottom-color: #b58900;
+}
+.tags a {
+  font-size: 0.8rem;
+	color: #d33682;
+	border-bottom-color: #d33682;
+  font-family: Consolas, Menlo, Ubuntu Mono, Liberation Mono, monospace;
+  margin-bottom: 0.5rem;
+  margin-right: 0.5rem;
+}
+
 body .intro {
     font-size: 2rem;
     line-height: 2.25rem;
