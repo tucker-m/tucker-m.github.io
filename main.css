@@ -184,12 +184,11 @@ p {
 }
 .tags a:visited {
   color: #b58900;
-  border-bottom-color: #b58900;
 }
 .tags a {
   font-size: 0.8rem;
 	color: #d33682;
-	border-bottom-color: #d33682;
+	border-bottom: none;
   font-family: Consolas, Menlo, Ubuntu Mono, Liberation Mono, monospace;
   margin-bottom: 0.5rem;
   margin-right: 0.5rem;
@@ -210,3 +209,41 @@ body .intro {
     font-size: 3rem;
     box-shadow: -.4rem .4rem 0 #6c71c4;
 }
+.all-tags-table {
+  color: #657b83;
+  font-size: 1.2rem;
+  margin-top: 2rem;
+}
+.all-tags-table thead td {
+  color: #2aa198;
+}
+.all-tags-table td {
+  padding-bottom: 0.5rem;
+  padding-right: 1rem;
+}
+.all-tags-table a {
+  border-bottom: none;
+}
+.tag-text-container {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+.tag-text-container > * {
+  margin: 0;
+}
+.tag-text-container a {
+  margin-left: 1rem;
+  border-bottom: none;
+  display: flex;
+}
+.rss-icon {
+  margin-right: 0.25rem;
+  width: 1rem;
+}
+.rss-text {
+  color: #657b83;
+  font-family: Consolas, Menlo, Ubuntu Mono, Liberation Mono, monospace;
+  font-size: 0.8rem;
+}
+
