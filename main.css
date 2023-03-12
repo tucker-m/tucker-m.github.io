@@ -56,7 +56,7 @@ h1, .post-title {
   line-height: 1.5rem;
 }
 .read-more a {
-  font-size: 0.9rem;
+  font-size: 1.0rem;
   font-style: italic;
 }
 .rss-icon {
@@ -190,7 +190,7 @@ p {
   margin-bottom: 1.0rem;
 }
 .date {
-    margin: 0 0 0.25rem;
+    margin: 0 0 0.5rem;
     font-family: Consolas, Menlo, Ubuntu Mono, Liberation Mono, monospace;
     color: #6c71c4;
     font-size: 1rem;
