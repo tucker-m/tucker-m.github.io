@@ -9,7 +9,7 @@ article {
     margin: 2rem 0;
 }
 .post-list {
-	margin: 32px 0;
+	margin: 2rem 0;
 }
 a {
     color: #268bd2;
@@ -22,19 +22,22 @@ a:hover {
 }
 a:visited {
     color: #b58900;
+    border-bottom-color: #b58900;
 }
 .content {
     display: flex;
     flex-direction: row;
     justify-content: center;
 }
+.post-list .post-title {
+    font-size: 1.5rem;
+}
 h1, .post-title {
-    margin: 0;
-    padding: 0.2rem;
+    margin: 0 0 0.5rem;
     font-size: 1.8rem;
     font-weight: normal;
     font-family: Consolas, Menlo, Ubuntu Mono, Liberation Mono, monospace;
-    color: #2aa198;
+    color: #d33682;
 }
 .post-title a {
 	border-bottom: none;
@@ -46,19 +49,34 @@ h1, .post-title {
 .post-title a:hover {
   color: #cb4b16;
 }
-.post-intro {
-	margin: 0;
+.post-intro p {
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+  line-height: 1.5rem;
+}
+.read-more a {
+  font-size: 0.9rem;
+  font-style: italic;
+}
+.rss-icon {
+	height: 1rem;
+}
+.all-posts a {
+	border-bottom: none;
 }
 .all-posts {
 	color: #6c71c4;
 	font-size: 1rem;
+	margin-right: 1rem;
 }
 .post-list h1, .post-list h2, .post-list span {
   padding-left: 0;
   padding-right: 0;
 }
 .all-posts-post {
-	margin-top: 2rem;
+  padding-top: 1rem;
+  padding-bottom: 1.5rem;
 }
 .all-posts-post .date {
 	margin-right: 1rem;
@@ -72,50 +90,81 @@ p {
 	color: #839496;
 }
 .width-constraint {
-    padding: 0 2rem;
+    padding: 0 1rem;
     flex-direction: column;
     flex-basis: 45rem;
 }
 .header {
     font-family: Consolas, Menlo, Ubuntu Mono, Liberation Mono, monospace;
-    font-size: 1.2rem;
+    font-size: 1rem;
     border-bottom: 1px solid #6c71c4;
     display: flex;
-    align-items: center;
-    padding: 2rem 0 1rem;
+    flex-direction: column;
+    padding: min(2rem, calc(2rem + (100vw - 800px))) 0 1rem;
     flex-wrap: wrap;
     color: #6c71c4;
 }
-.header > * {
-    margin-bottom: 1rem;
+.header-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.header-row-logos-socials {
+  padding-top: 0.5rem;
+}
+.header-row-logos-socials img {
+  width: 1.2rem;
+}
+.header-row-logos-socials a {
+  border-bottom: none;
+}
+.header-row-top-navigation {
+  display: flex;
+  flex: 1 1 200px;
+  justify-content: flex-end;
+}
+.navigation {
+  display: flex;
+}
+.theme-switch-container {
+  font-size: 0.8rem;
+  align-self: end;
 }
 .header .main-link {
-    padding-right: 3rem;
-    flex-grow: 1;
-    color: inherit;
-    border-bottom: none;
+  display: block;
+  color: #6c71c4;
+  border-bottom: none;
+  margin-right: 1.5rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+.header .main-link:visited {
+  color: #6c71c4;
 }
 .header ul {
     padding: 0;
-    margin-top: 0;
+    margin-top: 0.5rem;
+    margin-bottom: -0.5rem;
     list-style-type: none;
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
+}
+.header ul li {
+  float: left;
+  margin-bottom: 0.5rem;
 }
 .header ul li:not(:last-of-type) {
-    float: left;
-    margin-right: 1.5rem;
+  margin-right: 1rem;
 }
 .header ul li a {
    color: #268bd2;
-    border-bottom: none;
+   border-bottom: none;
 }
 #theme-switch {
 	cursor: default;
 	border: 1px solid #d33682;
 	padding: 0.3rem;
 	color: #d33682;
+  margin-bottom: 0.25rem;
 }
 #theme-switch:hover {
 	background: #002b36;
@@ -134,16 +183,38 @@ p {
     flex-direction: column;
     align-items: start;
 }
-body .date {
-    margin: 0;
-    padding: 0.2rem;
+.heading-box .date {
+  margin-bottom: 0.5rem;
+}
+.post-metadata {
+  margin-bottom: 1.0rem;
+}
+.date {
+    margin: 0 0 0.25rem;
     font-family: Consolas, Menlo, Ubuntu Mono, Liberation Mono, monospace;
     color: #6c71c4;
     font-size: 1rem;
+    display: block;
 }
+.tags {
+    display: block;
+}
+.tags a:visited {
+  color: #b58900;
+}
+.tags a {
+  font-size: 0.8rem;
+  color: #268bd2;
+  border-bottom: none;
+  font-family: Consolas, Menlo, Ubuntu Mono, Liberation Mono, monospace;
+  margin-bottom: 0.5rem;
+  margin-right: 0.5rem;
+}
+
 body .intro {
     font-size: 2em;
-    color: #d33682;
+    line-height: 2.25rem;
+    color: #2aa198;
 }
 .post-content > p:first-of-type:first-letter {
     color: #fdf6e3;
@@ -155,3 +226,42 @@ body .intro {
     font-size: 3rem;
     box-shadow: -.4rem .4rem 0 #6c71c4;
 }
+.all-tags-table {
+  color: #657b83;
+  font-size: 1.2rem;
+  margin-top: 2rem;
+}
+.all-tags-table thead td {
+  color: #2aa198;
+}
+.all-tags-table td {
+  padding-bottom: 0.5rem;
+  padding-right: 1rem;
+}
+.all-tags-table a {
+  border-bottom: none;
+}
+.tag-text-container {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+.tag-text-container > * {
+  margin: 0;
+}
+.tag-text-container a {
+  margin-left: 1rem;
+  border-bottom: none;
+  display: flex;
+}
+.rss-icon {
+  margin-right: 0.25rem;
+  width: 1rem;
+}
+.rss-text {
+  color: #657b83;
+  font-family: Consolas, Menlo, Ubuntu Mono, Liberation Mono, monospace;
+  font-size: 0.8rem;
+}
+

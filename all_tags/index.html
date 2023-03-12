@@ -1,6 +1,6 @@
 <!doctype html>
 <html>
-      <head>
+  <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/main.css" />
 <!-- Matomo -->
@@ -20,7 +20,7 @@
 <!-- End Matomo Code -->
   </head>
 
-    	<script type="text/javascript">
+  	<script type="text/javascript">
 		const htmlElement = document.getElementsByTagName("html")[0];
     
     const setClassForMode = {
@@ -43,10 +43,10 @@
     setClassForMode[currentTheme]();
 	</script>
 
-    <body>
-    <div class='content'>
-      <div class='width-constraint'>
-	    <div class='header'>
+  <body>
+	  <div class='content'>
+		  <div class='width-constraint'>
+			  <div class='header'>
   <div class="header-row theme-switch-container">
 	  <div id="theme-switch">&#x1F308 mode: <span id="theme-mode"></span></div>
   </div>
@@ -68,24 +68,36 @@
   </div>
 </div>
 
-        <article>
-          <div class='heading-box'>
-            <h1>Blah</h1>
-            <p class='date'>January 19, 2021</p>
-            <span class='tags'></span>
-          </div>
-          <p class='intro'>Another post is here.</p>
-          <div class='post-content'>
-            <p>This is the content for the post. This is the content for the post.
-hThis is the content for the post. This is the content for the post.
-iThis is the content for the post. This is the content for the post.
-sThis is the content for the post. This is the content for the post.
-This is the content for the post. This is the content for the post.
-iThis is the content for the post. This is the content for the post.
-sThis is the content for the post. This is the content for the post. This is the content for the post. This is the content for the post. the content for the post. This is the content for the post.</p>
-
-          </div>
-        </article>
+        <table class='all-tags-table'>
+          <thead>
+            <tr>
+              <td>Tag</td>
+              <td>No. posts</td>
+              <td>RSS link</td>
+            </tr>
+          </thead>
+          <tbody>
+            
+            <tr>
+              <td><a href="/tags/software">software</a></td>
+              <td>2</td>
+              <td><a href="/tags/software/feed.xml"><img src="/rss-icon.png" class="rss-icon" /></a></td>
+            </tr>
+            
+            <tr>
+              <td><a href="/tags/tooAsWell">tooAsWell</a></td>
+              <td>1</td>
+              <td><a href="/tags/tooAsWell/feed.xml"><img src="/rss-icon.png" class="rss-icon" /></a></td>
+            </tr>
+            
+            <tr>
+              <td><a href="/tags/third">third</a></td>
+              <td>1</td>
+              <td><a href="/tags/third/feed.xml"><img src="/rss-icon.png" class="rss-icon" /></a></td>
+            </tr>
+            
+          </tbody>
+        </table>
       </div>
     </div>
   </body>
