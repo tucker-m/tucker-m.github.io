@@ -1,0 +1,123 @@
+<!doctype html>
+<html>
+    <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/main.css" />
+<!-- Matomo -->
+<script type="text/javascript">
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//hits.tuckerm.us/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
+  </head>
+
+  	<script type="text/javascript">
+		const htmlElement = document.getElementsByTagName("html")[0];
+    
+    const setClassForMode = {
+      "light": () => {
+        htmlElement.classList.remove("dark")
+      },
+      "dark": () => {
+        htmlElement.classList.add("dark")
+      },
+      "os": () => {
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          htmlElement.classList.add("dark")
+        }
+        else {
+          htmlElement.classList.remove("dark");
+        }
+      },
+    }
+    let currentTheme = localStorage.getItem("theme") || "os";
+    setClassForMode[currentTheme]();
+	</script>
+
+  <body>
+    <div class='content'>
+      <div class='width-constraint'>
+	    <div class='header'>
+  <div class="header-row theme-switch-container">
+	  <div id="theme-switch">&#x1F308 mode: <span id="theme-mode"></span></div>
+  </div>
+  <div class="header-row">
+    <div class="header-row-logos">
+      <div class="header-row-name">
+        <a class='main-link' href="/">Tucker McKnight</a>
+      </div>
+      <div class="header-row-logos-socials">
+        <a href="https://saltylike.us/@tuckerm" rel="me"><img src="/mastodon-logo.svg" /></a>
+      </div>
+    </div>
+    <div class="header-row-top-navigation">
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/">About me</a></li><li><a href="/tags/software">#software</a></li><li><a href="/all_tags">All tags</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+        <div class="post-list">
+          <div class="tag-text-container">
+            <h1 class="all-posts">Posts tagged with "here"</h1>
+            <a href="/tags/here/feed.xml">
+              <img src="/rss-icon.svg" class="rss-icon" />
+              <span class="rss-text">RSS</span>
+            </a>
+          </div>
+          
+          
+          <div class='all-posts-post'>
+  <h2 class='post-title'><a href="/posts/test/">Test Post</a></h2>
+  <div class='post-metadata'>
+    <span class='date'>October 17, 2021</span>
+    <span class='tags'><a href="/tags/software">#software</a><a href="/tags/here">#here</a><a href="/tags/tooAsWell">#tooAsWell</a></span>
+  </div>
+  <div class='post-intro'>
+  <p>Lorem ipsum dolor sit amet</p><p>This is a test.</p>
+  </div>
+  <span class='read-more'><a href="/posts/test/">Read more...</a></span>
+</div>
+
+          
+        </div>
+      </div>
+    </div>
+  </body>
+  	<script type="text/javascript">
+    const modes = Object.keys(setClassForMode)
+
+		const link = document.getElementById("theme-switch");
+    const themeText = document.getElementById("theme-mode");
+
+    const setTheme = (text) => {
+      localStorage.setItem("theme", text);
+      if (text === "os") {
+        themeText.innerText = "match OS"
+      }
+      else {
+        themeText.innerText = text;
+      }
+    }
+
+    setTheme(currentTheme)
+
+    link.addEventListener("click", (event) => {
+      currentTheme = modes[(modes.indexOf(currentTheme) + 1) % modes.length]
+      setTheme(currentTheme)
+      setClassForMode[currentTheme]()
+		})
+	</script>
+
+</html>
