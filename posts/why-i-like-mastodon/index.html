@@ -1,0 +1,165 @@
+<!doctype html>
+<html>
+      <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/main.css" />
+<!-- Matomo -->
+<script type="text/javascript">
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//hits.tuckerm.us/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
+  </head>
+
+    	<script type="text/javascript">
+		const htmlElement = document.getElementsByTagName("html")[0];
+    
+    const setClassForMode = {
+      "light": () => {
+        htmlElement.classList.remove("dark")
+      },
+      "dark": () => {
+        htmlElement.classList.add("dark")
+      },
+      "os": () => {
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          htmlElement.classList.add("dark")
+        }
+        else {
+          htmlElement.classList.remove("dark");
+        }
+      },
+    }
+    let currentTheme = localStorage.getItem("theme") || "os";
+    setClassForMode[currentTheme]();
+	</script>
+
+    <body>
+    <div class='content'>
+      <div class='width-constraint'>
+	    <div class='header'>
+  <div class="header-row theme-switch-container">
+	  <div id="theme-switch">&#x1F308 mode: <span id="theme-mode"></span></div>
+  </div>
+  <div class="header-row">
+    <div class="header-row-logos">
+      <div class="header-row-name">
+        <a class='main-link' href="/">Tucker McKnight</a>
+      </div>
+      <div class="header-row-logos-socials">
+        <a href="https://saltylike.us/@tuckerm" rel="me"><img src="/mastodon-logo.svg" /></a>
+      </div>
+    </div>
+    <div class="header-row-top-navigation">
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/">About me</a></li><li><a href="/all_tags">All tags</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+        <article>
+          <div class='heading-box'>
+            <h1>Why I Like Mastodon (for non-techies)</h1>
+            <p class='date'>January 9, 2023</p>
+            <span class='tags'></span>
+          </div>
+          <p class='intro'>It&#39;s not a cure for social media&#39;s problems, but it&#39;s a huge step
+in the right direction. Profit-driven, centralized social networks
+can boost profitability through bad practices. Mastodon can
+fix a lot of that.
+</p>
+          <div class='post-content'>
+            <p>I was never a big Twitter user, but after some recent decisions from the management
+(like unbanning a bunch of actual neo nazis), I decided to start
+using Mastodon. But the thing that excites me most about Mastodon is not Mastodon
+itself: it's what Mastodon represents.</p>
+<p>On the surface, Mastodon looks like a 1-for-1 clone of Twitter. Users can post short
+messages, attach photos or videos, and make replies to other posts. You choose who
+you want to follow, and Mastodon shows you their posts in chronological order. And right there
+we already see our first difference: Twitter (and Facebook, and all the others)
+will show you content &quot;related&quot; to people you follow so that you always have more posts
+to see. You can always keep scrolling; you can always keep watching.</p>
+<p>Mastodon, on the other hand, doesn't do that. As you scroll through your Mastodon feed,
+eventually you will see the last post you read the day before, and that means <em>you're done.</em>
+You did it. You read all of the social media posts you signed up to see that day; you can move
+on. Mastodon isn't going to find more posts so that you can keep scrolling. Why is that?</p>
+<p>Unlike most other social media sites, Mastodon is not run by a profit-driven company. The code
+is written by a nonprofit with help from hundreds of volunteers around the world,
+and the servers that store your data are run by additional volunteers who collect donations to
+keep their systems running. This means, unlike for-profit social media, Mastodon does not
+have the incentive to keep your eyes glued to your phone for as long as possible. For Twitter,
+the longer you look at the screen, the more ads you will see. Twitter, Facebook, YouTube, TikTok,
+and all other profit-driven social media sites spend a ton of time and effort making it
+hard for you to look away. Mastodon lets you go about your day.</p>
+<p>It's important to remember that if you are not paying for a service, you are not the customer.
+You don't pay Facebook, advertisers pay Facebook. Advertisers are Facebook's real customers.
+You are the <em>product</em>
+that Facebook is selling to advertisers. (Or, more specifically, your attention span is.) And the more you
+stare at Facebook, the more product Facebook can offer to those who want to buy your attention span.</p>
+<p>Profit driven social media sites have been making tweaks for years to harvest your attention span,
+and some of these tweaks have had surprising effects. A major realization
+they've had in the last few years is that, if you only want to make your users stare at the screen longer,
+the users don't necessarily have to like what they are seeing. In fact, outrageous content can make
+people even <em>more</em> likely to keep using social media. Twitter doesn't care if you are using Twitter
+because you feel informed by what you are reading or if you feel infuriated by it. Either way, you are on Twitter looking
+at ads. Plus, the outrageous content makes you even more likely to post something yourself, since you need
+to tell that other person that they are an idiot. So not only does social media show you an endless stream of
+content, but it actually skews towards content that makes you angry.</p>
+<p>It is often said that if a company wants your business, they will improve the quality of their service
+for their customers. But remember, you are not the customer of social media, you are the product. These companies have massively
+increased their revenue by creating the most infuriating, frustrating product that they can.
+They aren't catering to you, they are selling your attention span
+to others. Making you mad is great for business.</p>
+<p>When considering whether some service should be provided by a for-profit business, many
+people will ask, &quot;Who cares if someone is making money off of it?&quot; -- suggesting that making money itself
+is the ethical issue, and they aren't bothered by it. A better question is, &quot;If they are making money off of this, what
+will they be incentivized to do to make more money?&quot;</p>
+<p>This may sound dramatic, but opting out of profit-driven social media feels like an act
+of self respect. I decide that my attention span is for me to use on my own interests, not
+to be pushed and pulled by the interests of a Fortune 500 company. If you like the idea of taking your attention
+span off of someone else's shelves, there are a few places to sign up for an account. There's a
+list of them at <a href="https://joinmastodon.org/servers">joinmastodon.org/servers</a>. If you don't have
+a particular niche you're looking for, you can just pick any general purpose server there.</p>
+
+          </div>
+        </article>
+      </div>
+    </div>
+  </body>
+  	<script type="text/javascript">
+    const modes = Object.keys(setClassForMode)
+
+		const link = document.getElementById("theme-switch");
+    const themeText = document.getElementById("theme-mode");
+
+    const setTheme = (text) => {
+      localStorage.setItem("theme", text);
+      if (text === "os") {
+        themeText.innerText = "match OS"
+      }
+      else {
+        themeText.innerText = text;
+      }
+    }
+
+    setTheme(currentTheme)
+
+    link.addEventListener("click", (event) => {
+      currentTheme = modes[(modes.indexOf(currentTheme) + 1) % modes.length]
+      setTheme(currentTheme)
+      setClassForMode[currentTheme]()
+		})
+	</script>
+
+</html>

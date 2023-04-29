@@ -82,12 +82,12 @@ h1, .post-title {
 	margin-right: 1rem;
 }
 p {
-    color: #657b83;
-    font-size: 1.2rem;
-    line-height: 1.75rem;
+    color: #566970;
+    font-size: 1.3rem;
+    line-height: 1.9rem;
 }
 .dark p {
-	color: #839496;
+	color: #98abad;
 }
 .width-constraint {
     padding: 0 1rem;

@@ -3,28 +3,67 @@
   <title>Tucker McKnight's blog</title>
   <link href="https://tuckerm.us/feed.xml" rel="self"/>
   <link href="https://tuckerm.us/"/>
-  <updated>2023-01-18T00:00:00Z</updated>
+  <updated>2023-01-10T00:00:00Z</updated>
   <id>https://tuckerm.us/</id>
   <author>
     <name>Tucker McKnight</name>
   </author>
   <entry>
-    <title>A Second Post</title>
-    <link href="https://tuckerm.us/posts/another/"/>
-    <updated>2023-01-18T00:00:00Z</updated>
-    <id>https://tuckerm.us/posts/another/</id>
-    <content xml:lang="en" type="html">&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec lorem felis, posuere nec nunc nec, euismod molestie nunc. Nulla eu tellus metus. Sed placerat vitae velit vel feugiat. Aenean nec nibh urna. Pellentesque quis eros aliquam, faucibus dui quis, venenatis mi. Sed fringilla lorem mi, quis rhoncus est sagittis eget. Curabitur ut maximus tellus, eu interdum felis. Nunc vel venenatis felis. Pellentesque ipsum diam, finibus non tellus at, suscipit eleifend nulla.&lt;/p&gt;
-&lt;p&gt;Mauris arcu turpis, ornare in elementum sed, finibus non ipsum. Phasellus vulputate, elit mollis volutpat fermentum, massa urna rutrum quam, euismod accumsan purus ex ut elit. Cras in massa semper, sodales dui eu, ullamcorper metus. Morbi sapien dolor, tempus ac finibus ac, sollicitudin a urna. Duis felis elit, elementum in elit ac, sollicitudin malesuada ligula. Suspendisse ut pulvinar odio. Sed sit amet rutrum mauris. Mauris accumsan lacus a orci dictum elementum. Integer porttitor nulla in elit rutrum, id ullamcorper ipsum ornare.&lt;/p&gt;
-&lt;p&gt;Sed tincidunt commodo odio, quis vehicula ex tincidunt eget. Nam at ultrices nisl, commodo aliquet ligula. Morbi dapibus sodales aliquet. Aenean sit amet viverra leo, in dapibus nunc. Proin vel velit quis erat suscipit posuere. Fusce aliquet turpis varius dolor finibus, ac mattis orci aliquet. Fusce posuere velit sed ipsum consequat luctus. Mauris maximus, mi rutrum luctus blandit, nunc tortor sagittis sapien, in hendrerit est leo vel felis. Ut porttitor, elit non feugiat convallis, mauris ligula fringilla tortor, non elementum massa elit in tellus. Praesent ultricies arcu diam, non commodo dolor venenatis eget. Vestibulum quis dui vehicula, efficitur sem non, ultrices libero. Nulla maximus placerat nunc, eget lobortis purus iaculis id. Fusce ut ante vel nisi ornare laoreet. Cras convallis, mauris eget mollis suscipit, velit magna viverra lorem, id tempus justo arcu sit amet enim. Sed ornare sodales nisi, eget elementum nisi bibendum at. Quisque consequat laoreet ultrices.&lt;/p&gt;
-&lt;p&gt;Donec molestie malesuada risus ut pellentesque. Cras tempus augue id maximus mollis. Vivamus accumsan volutpat sem bibendum blandit. Morbi condimentum ligula dictum diam viverra, accumsan porta arcu malesuada. Vivamus et lorem enim. Fusce mattis dictum consectetur. Fusce ut metus ut libero maximus sollicitudin quis eu eros. Vivamus ullamcorper sem ut pharetra facilisis.&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <title>Test Post</title>
-    <link href="https://tuckerm.us/posts/test/"/>
-    <updated>2021-10-18T00:00:00Z</updated>
-    <id>https://tuckerm.us/posts/test/</id>
-    <content xml:lang="en" type="html">&lt;p&gt;This is a test.&lt;/p&gt;
+    <title>Why I Like Mastodon (for non-techies)</title>
+    <link href="https://tuckerm.us/posts/why-i-like-mastodon/"/>
+    <updated>2023-01-10T00:00:00Z</updated>
+    <id>https://tuckerm.us/posts/why-i-like-mastodon/</id>
+    <content xml:lang="en" type="html">&lt;p&gt;I was never a big Twitter user, but after some recent decisions from the management
+(like unbanning a bunch of actual neo nazis), I decided to start
+using Mastodon. But the thing that excites me most about Mastodon is not Mastodon
+itself: it&#39;s what Mastodon represents.&lt;/p&gt;
+&lt;p&gt;On the surface, Mastodon looks like a 1-for-1 clone of Twitter. Users can post short
+messages, attach photos or videos, and make replies to other posts. You choose who
+you want to follow, and Mastodon shows you their posts in chronological order. And right there
+we already see our first difference: Twitter (and Facebook, and all the others)
+will show you content &amp;quot;related&amp;quot; to people you follow so that you always have more posts
+to see. You can always keep scrolling; you can always keep watching.&lt;/p&gt;
+&lt;p&gt;Mastodon, on the other hand, doesn&#39;t do that. As you scroll through your Mastodon feed,
+eventually you will see the last post you read the day before, and that means &lt;em&gt;you&#39;re done.&lt;/em&gt;
+You did it. You read all of the social media posts you signed up to see that day; you can move
+on. Mastodon isn&#39;t going to find more posts so that you can keep scrolling. Why is that?&lt;/p&gt;
+&lt;p&gt;Unlike most other social media sites, Mastodon is not run by a profit-driven company. The code
+is written by a nonprofit with help from hundreds of volunteers around the world,
+and the servers that store your data are run by additional volunteers who collect donations to
+keep their systems running. This means, unlike for-profit social media, Mastodon does not
+have the incentive to keep your eyes glued to your phone for as long as possible. For Twitter,
+the longer you look at the screen, the more ads you will see. Twitter, Facebook, YouTube, TikTok,
+and all other profit-driven social media sites spend a ton of time and effort making it
+hard for you to look away. Mastodon lets you go about your day.&lt;/p&gt;
+&lt;p&gt;It&#39;s important to remember that if you are not paying for a service, you are not the customer.
+You don&#39;t pay Facebook, advertisers pay Facebook. Advertisers are Facebook&#39;s real customers.
+You are the &lt;em&gt;product&lt;/em&gt;
+that Facebook is selling to advertisers. (Or, more specifically, your attention span is.) And the more you
+stare at Facebook, the more product Facebook can offer to those who want to buy your attention span.&lt;/p&gt;
+&lt;p&gt;Profit driven social media sites have been making tweaks for years to harvest your attention span,
+and some of these tweaks have had surprising effects. A major realization
+they&#39;ve had in the last few years is that, if you only want to make your users stare at the screen longer,
+the users don&#39;t necessarily have to like what they are seeing. In fact, outrageous content can make
+people even &lt;em&gt;more&lt;/em&gt; likely to keep using social media. Twitter doesn&#39;t care if you are using Twitter
+because you feel informed by what you are reading or if you feel infuriated by it. Either way, you are on Twitter looking
+at ads. Plus, the outrageous content makes you even more likely to post something yourself, since you need
+to tell that other person that they are an idiot. So not only does social media show you an endless stream of
+content, but it actually skews towards content that makes you angry.&lt;/p&gt;
+&lt;p&gt;It is often said that if a company wants your business, they will improve the quality of their service
+for their customers. But remember, you are not the customer of social media, you are the product. These companies have massively
+increased their revenue by creating the most infuriating, frustrating product that they can.
+They aren&#39;t catering to you, they are selling your attention span
+to others. Making you mad is great for business.&lt;/p&gt;
+&lt;p&gt;When considering whether some service should be provided by a for-profit business, many
+people will ask, &amp;quot;Who cares if someone is making money off of it?&amp;quot; -- suggesting that making money itself
+is the ethical issue, and they aren&#39;t bothered by it. A better question is, &amp;quot;If they are making money off of this, what
+will they be incentivized to do to make more money?&amp;quot;&lt;/p&gt;
+&lt;p&gt;This may sound dramatic, but opting out of profit-driven social media feels like an act
+of self respect. I decide that my attention span is for me to use on my own interests, not
+to be pushed and pulled by the interests of a Fortune 500 company. If you like the idea of taking your attention
+span off of someone else&#39;s shelves, there are a few places to sign up for an account. There&#39;s a
+list of them at &lt;a href=&quot;https://joinmastodon.org/servers&quot;&gt;joinmastodon.org/servers&lt;/a&gt;. If you don&#39;t have
+a particular niche you&#39;re looking for, you can just pick any general purpose server there.&lt;/p&gt;
 </content>
   </entry>
 </feed>
