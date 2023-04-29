@@ -1,11 +1,11 @@
 <!doctype html>
 <html>
-    <head>
+      <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/main.css" />
   </head>
 
-  	<script type="text/javascript">
+    	<script type="text/javascript">
 		const htmlElement = document.getElementsByTagName("html")[0];
     
     const setClassForMode = {
@@ -28,10 +28,10 @@
     setClassForMode[currentTheme]();
 	</script>
 
-  <body>
-	  <div class='content'>
-		  <div class='width-constraint'>
-			  <div class='header'>
+    <body>
+    <div class='content'>
+      <div class='width-constraint'>
+	    <div class='header'>
   <div class="header-row theme-switch-container">
 	  <div id="theme-switch">&#x1F308 mode: <span id="theme-mode"></span></div>
   </div>
@@ -53,35 +53,37 @@
   </div>
 </div>
 
-			  <div class='post-list'>
-          <div class="tag-text-container">
-			      <h1 class='all-posts'>All posts</h1>
-            <a href="/feed.xml">
-              <img src="/rss-icon.png" class="rss-icon" />
-              <span class="rss-text">RSS</span>
-            </a>
-          </div><div class='all-posts-post'>
-  <h2 class='post-title'><a href="/posts/why-i-like-mastodon/">Why I Like Mastodon (for non-techies)</a></h2>
-  <div class='post-metadata'>
-    <span class='date'>January 9, 2023</span>
-    <span class='tags'></span>
-  </div>
-  <div class='post-intro'>
-  <p>It's not a cure for social media's problems, but it's a huge step
-in the right direction. Profit-driven, centralized social networks
-can boost profitability through bad practices. Mastodon can
-fix a lot of that.
-</p><p>I was never a big Twitter user, but after some recent decisions from the management
-(like unbanning a bunch of actual neo nazis), I decided to start
-using Mastodon. But the thing that excites me most about Mastodon is not Mastodon
-itself: it's what Mastodon represents.</p>
-  </div>
-  <span class='read-more'><a href="/posts/why-i-like-mastodon/">Read more...</a></span>
-</div>
-</div>
-			  </div>
-		  </div>
-	  </div>
+        <article>
+          <div class='heading-box'>
+            <h1></h1>
+            <p class='date'>April 29, 2023</p>
+            <span class='tags'></span>
+          </div>
+          <p class='intro'></p>
+          <div class='post-content'>
+            <h1>About Me</h1>
+<ul>
+<li>Software developer from Salt Lake City, USA</li>
+<li>Slowly starting to get into woodworking and building physical things, not
+just digital things</li>
+<li>Running a small Mastodon server at <a href="https://saltylike.us">saltylike.us</a>
+<ul>
+<li>It's intended for people from Salt Lake, but signups are open if
+you want to join anyway.</li>
+</ul>
+</li>
+</ul>
+<h2>Socials &amp; Contact</h2>
+<ul>
+<li><a href="https://saltylike.us/@tuckerm">@tuckerm@saltylike.us</a> on Mastodon</li>
+<li><a href="https://www.reddit.com/user/tucker-m">/u/tucker-m</a> on Reddit</li>
+<li>@tuckerm:matrix.org on Matrix/Element</li>
+</ul>
+
+          </div>
+        </article>
+      </div>
+    </div>
   </body>
   	<script type="text/javascript">
     const modes = Object.keys(setClassForMode)
