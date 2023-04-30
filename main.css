@@ -91,7 +91,7 @@ p, article li {
     font-size: 1.3rem;
     line-height: 1.9rem;
 }
-.dark p {
+.dark p, .dark li {
 	color: #98abad;
 }
 .width-constraint {
