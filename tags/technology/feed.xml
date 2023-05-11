@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom" xml:base="https://tuckerm.us/">
-  <title>Tucker McKnight's posts about post</title>
-  <link href="https://tuckerm.us/tags/post/feed.xml" rel="self"/>
+  <title>Tucker McKnight's posts about technology</title>
+  <link href="https://tuckerm.us/tags/technology/feed.xml" rel="self"/>
   <link href="https://tuckerm.us/"/>
   
   <updated>2023-05-11T18:34:34Z</updated>
