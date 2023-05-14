@@ -95,6 +95,7 @@ p, article li {
 	color: #98abad;
 }
 .width-constraint {
+    overflow: hidden;
     padding: 0 1rem;
     flex-direction: column;
     flex-basis: 45rem;
@@ -221,6 +222,9 @@ body .intro {
     line-height: 2.25rem;
     color: #2aa198;
 }
+.post-content > *, .post-intro > * {
+  max-width: 100%;
+}
 .post-content > p:first-of-type:first-letter {
     color: #fdf6e3;
     background-color: #2aa198;
@@ -268,5 +272,64 @@ body .intro {
   color: #657b83;
   font-family: Consolas, Menlo, Ubuntu Mono, Liberation Mono, monospace;
   font-size: 0.8rem;
+}
+
+/* Things related to SVGs and graphviz dot */
+
+g.graph > polygon {
+  fill: transparent;
+}
+g.edge polygon,
+g.edge path {
+  fill: #566970;
+  stroke: #566970;
+}
+g.node text {
+  fill: #566970;
+}
+g.node :not(text) {
+  stroke: #566970;
+}
+
+g.node [fill=lightgrey] {
+  fill: #e2d9be;
+}
+g.node [fill=orangered] {
+  fill: #dc322f;
+}
+g.node [fill=yellowgreen] {
+  fill: #859900;
+}
+g.node [fill=goldenrod] {
+  fill: #b58900;
+}
+g.node [fill=cyan] {
+  fill: #268bd2;
+}
+
+g.node [fill=orangered] ~ text,
+g.node [fill=yellowgreen] ~ text,
+g.node [fill=goldenrod] ~ text,
+g.node [fill=cyan] ~ text {
+  fill: #fdf6e3 !important;
+}
+
+/* dark mode svgs */
+.dark g.edge polygon,
+.dark g.edge path {
+  fill: #98abad;
+  stroke: #98abad;
+}
+.dark g.node text {
+  fill: #98abad;
+}
+.dark g.node ellipse,
+.dark g.node polygon {
+  stroke: #98abad;
+}
+
+.dark g.node ellipse[fill=lightgrey],
+.dark g.node polygon[fill=lightgrey] {
+  fill: #073a47;
 }
 
