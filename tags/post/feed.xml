@@ -4,7 +4,7 @@
   <link href="https://tuckerm.us/tags/post/feed.xml" rel="self"/>
   <link href="https://tuckerm.us/"/>
   
-  <updated>2023-05-14T23:21:51Z</updated>
+  <updated>2023-05-30T06:34:28Z</updated>
   <id>https://tuckerm.us/</id>
   <author>
     <name>Tucker McKnight</name>
@@ -14,7 +14,11 @@
     <link href="https://tuckerm.us/posts/why-i-like-mastodon/"/>
     <updated>2023-05-14T00:00:00Z</updated>
     <id>https://tuckerm.us/posts/why-i-like-mastodon/</id>
-    <content xml:lang="en" type="html">&lt;p&gt;I was never a big Twitter user, but after some recent decisions from the management
+    <content xml:lang="en" type="html">&lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;May 30th, 2023 update:&lt;/strong&gt; A show on NPR today aired an episode about our attention spans and they
+can be affected be social media. You can give it a listen here: &lt;a href=&quot;https://the1a.org/segments/how-much-are-we-paying-attention-really-2/&quot;&gt;https://the1a.org/segments/how-much-are-we-paying-attention-really-2/&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I was never a big Twitter user, but after some recent decisions from the management
 (like unbanning a bunch of actual neo nazis), I decided to start
 using Mastodon. But the thing that excites me most about Mastodon is not Mastodon
 itself: it&#39;s what Mastodon represents.&lt;/p&gt;

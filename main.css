@@ -88,10 +88,24 @@ h2 {
 }
 p, article li {
     color: #566970;
+}
+p, article li {
     font-size: 1.3rem;
     line-height: 1.9rem;
 }
-.dark p, .dark li {
+pre, code {
+  font-size: 1.0rem;
+  line-height: 1.3rem;
+  color: #6c71c4;
+}
+
+blockquote {
+  border-left: 0.2rem solid #2aa198;
+  margin-left: 1rem;
+  padding-left: 1rem;
+}
+
+.dark p, .dark li, .dark pre {
 	color: #98abad;
 }
 .width-constraint {
@@ -118,13 +132,29 @@ p, article li {
 }
 .header-row-logos-socials {
   padding-top: 0.5rem;
-}
-.header-row-logos-socials img {
-  width: 1.2rem;
+  display: flex;
+  align-items: center;
 }
 .header-row-logos-socials a {
+  display: flex;
+  height: 1.2rem;
+  width: 1.2rem;
+  padding-right: 0.75rem;
   border-bottom: none;
+  background-repeat: no-repeat;
+  background-position: center left;
+  background-size: contain;
 }
+.mastodon-logo {
+  background-image: url("/mastodon-logo.svg");
+}
+.github-logo {
+  background-image: url("/github-mark.svg");
+}
+.dark .github-logo {
+  background-image: url("/github-mark-white.svg");
+}
+
 .header-row-top-navigation {
   display: flex;
   flex: 1 1 200px;
@@ -234,6 +264,9 @@ body .intro {
     font-family: Consolas, Menlo, Ubuntu Mono, Liberation Mono, monospace;
     font-size: 3rem;
     box-shadow: -.4rem .4rem 0 #6c71c4;
+}
+.dark .post-content > p:first-of-type:first-letter {
+  color: #00222b;
 }
 .all-tags-table {
   color: #657b83;
