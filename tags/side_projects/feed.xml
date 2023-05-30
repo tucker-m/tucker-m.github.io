@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom" xml:base="https://tuckerm.us/">
-  <title>Tucker McKnight's posts about post</title>
-  <link href="https://tuckerm.us/tags/post/feed.xml" rel="self"/>
+  <title>Tucker McKnight's posts about side_projects</title>
+  <link href="https://tuckerm.us/tags/side_projects/feed.xml" rel="self"/>
   <link href="https://tuckerm.us/"/>
   
   <updated>2023-05-30T07:12:33Z</updated>
@@ -72,68 +72,6 @@ made it much more convenient.&lt;/p&gt;
 &lt;p&gt;Unfortunately, both of the plugins I mentioned here rely on features that are specific to Obsidian;
 they can&#39;t be run outside of it. Some kind of command-line tool that can query markdown files like
 Dataview would be a real holy grail for editor-agnostic, text-based task management.&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <title>Why I Like Mastodon (for non-techies)</title>
-    <link href="https://tuckerm.us/posts/why-i-like-mastodon/"/>
-    <updated>2023-05-14T00:00:00Z</updated>
-    <id>https://tuckerm.us/posts/why-i-like-mastodon/</id>
-    <content xml:lang="en" type="html">&lt;blockquote&gt;
-&lt;p&gt;&lt;em&gt;&lt;strong&gt;May 30th, 2023 update:&lt;/strong&gt; A show on NPR today aired an episode about our attention spans and how they
-can be affected be social media. You can give it a listen here: &lt;a href=&quot;https://the1a.org/segments/how-much-are-we-paying-attention-really-2/&quot;&gt;https://the1a.org/segments/how-much-are-we-paying-attention-really-2/&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;I was never a big Twitter user, but after some recent decisions from the management
-(like unbanning a bunch of actual neo nazis), I decided to start
-using Mastodon. But the thing that excites me most about Mastodon is not Mastodon
-itself: it&#39;s what Mastodon represents.&lt;/p&gt;
-&lt;p&gt;On the surface, Mastodon looks like a 1-for-1 clone of Twitter. Users can post short
-messages, attach photos or videos, and make replies to other posts. You choose who
-you want to follow, and Mastodon shows you their posts in chronological order. And right there
-we already see our first difference: Twitter (and Facebook, and all the others)
-will show you content &amp;quot;related&amp;quot; to people you follow so that you always have more posts
-to see. You can always keep scrolling; you can always keep watching.&lt;/p&gt;
-&lt;p&gt;Mastodon, on the other hand, doesn&#39;t do that. As you scroll through your Mastodon feed,
-eventually you will see the last post you read the day before, and that means &lt;em&gt;you&#39;re done.&lt;/em&gt;
-You did it. You read all of the social media posts you signed up to see that day; you can move
-on. Mastodon isn&#39;t going to find more posts so that you can keep scrolling. Why is that?&lt;/p&gt;
-&lt;p&gt;Unlike most other social media sites, Mastodon is not run by a profit-driven company. The code
-is written by a nonprofit with help from hundreds of volunteers around the world,
-and the servers that store your data are run by additional volunteers who collect donations to
-keep their systems running. This means, unlike for-profit social media, Mastodon does not
-have the incentive to keep your eyes glued to your phone for as long as possible. For Twitter,
-the longer you look at the screen, the more ads you will see. Twitter, Facebook, YouTube, TikTok,
-and all other profit-driven social media sites spend a ton of time and effort making it
-hard for you to look away. Mastodon lets you go about your day.&lt;/p&gt;
-&lt;p&gt;It&#39;s important to remember that if you are not paying for a service, you are not the customer.
-You don&#39;t pay Facebook, advertisers pay Facebook. Advertisers are Facebook&#39;s real customers.
-You are the &lt;em&gt;product&lt;/em&gt;
-that Facebook is selling to advertisers. (Or, more specifically, your attention span is.) And the more you
-stare at Facebook, the more product Facebook can offer to those who want to buy your attention span.&lt;/p&gt;
-&lt;p&gt;Profit driven social media sites have been making tweaks for years to harvest your attention span,
-and some of these tweaks have had surprising effects. A major realization
-they&#39;ve had in the last few years is that, if you only want to make your users stare at the screen longer,
-the users don&#39;t necessarily have to like what they are seeing. In fact, outrageous content can make
-people even &lt;em&gt;more&lt;/em&gt; likely to keep using social media. Twitter doesn&#39;t care if you are using Twitter
-because you feel informed by what you are reading or if you feel infuriated by it. Either way, you are on Twitter looking
-at ads. Plus, the outrageous content makes you even more likely to post something yourself, since you need
-to tell that other person that they are an idiot. So not only does social media show you an endless stream of
-content, but it actually skews towards content that makes you angry.&lt;/p&gt;
-&lt;p&gt;It is often said that if a company wants your business, they will improve the quality of their service
-for their customers. But remember, you are not the customer of social media, you are the product. These companies have massively
-increased their revenue by creating the most infuriating, frustrating product that they can.
-They aren&#39;t catering to you, they are selling your attention span
-to others. Making you mad is great for business.&lt;/p&gt;
-&lt;p&gt;When considering whether some service should be provided by a for-profit business, many
-people will ask, &amp;quot;Who cares if someone is making money off of it?&amp;quot; -- suggesting that making money itself
-is the ethical issue, and they aren&#39;t bothered by it. A better question is, &amp;quot;If they are making money off of this, what
-will they be incentivized to do to make more money?&amp;quot;&lt;/p&gt;
-&lt;p&gt;This may sound dramatic, but opting out of profit-driven social media feels like an act
-of self respect. I decide that my attention span is for me to use on my own interests, not
-to be pushed and pulled by the interests of a Fortune 500 company. If you like the idea of taking your attention
-span off of someone else&#39;s shelves, there are a few places to sign up for an account. There&#39;s a
-list of them at &lt;a href=&quot;https://joinmastodon.org/servers&quot;&gt;joinmastodon.org/servers&lt;/a&gt;. If you don&#39;t have
-a particular niche you&#39;re looking for, you can just pick any general purpose server there.&lt;/p&gt;
 </content>
   </entry>
 </feed>

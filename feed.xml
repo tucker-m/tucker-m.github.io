@@ -3,11 +3,76 @@
   <title>Tucker McKnight's blog</title>
   <link href="https://tuckerm.us/feed.xml" rel="self"/>
   <link href="https://tuckerm.us/"/>
-  <updated>2023-05-14T00:00:00Z</updated>
+  <updated>2023-05-26T00:00:00Z</updated>
   <id>https://tuckerm.us/</id>
   <author>
     <name>Tucker McKnight</name>
   </author>
+  <entry>
+    <title>Using Obsidian as an Org-Mode Replacement</title>
+    <link href="https://tuckerm.us/posts/using-osbidian-as-an-org-mode-replacement/"/>
+    <updated>2023-05-26T00:00:00Z</updated>
+    <id>https://tuckerm.us/posts/using-osbidian-as-an-org-mode-replacement/</id>
+    <content xml:lang="en" type="html">&lt;p&gt;I was an Emacs user for several years before switching to Neovim, and then recently switched to Kakoune. I&#39;ve been getting more serious about using the note-taking app &lt;a href=&quot;https://obsidian.md/&quot;&gt;Obsidian&lt;/a&gt; as an editor-agnostic replacement for org-mode, and so far it has filled that role nicely.&lt;/p&gt;
+&lt;p&gt;I plan on writing a series of blog posts about how I&#39;m recreating my org-mode usage in Obsidian. Some of the things I used org-mode for are not really possible in Obsidian right now, so writing some plugins might be part of this work.&lt;/p&gt;
+&lt;h2 id=&quot;recreating-org-mode&#39;s-agenda-view&quot; tabindex=&quot;-1&quot;&gt;Recreating Org-mode&#39;s Agenda View&lt;/h2&gt;
+&lt;p&gt;One of my favorite features in org-mode was the agenda view. There are two community-made plugins for Obsidian that allow you to create an agenda view: Tasks and Dataview.&lt;/p&gt;
+&lt;p&gt;Let&#39;s say we have this list of tasks somewhere in our Obsidian vault:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;- [ ] Dentist appointment [due:: 2023-05-22]
+- [ ] Sweep the kitchen floor [due:: 2023-05-23]
+- [ ] Do laundry [due:: 2023-05-23]
+- [ ] Make post about Obsidian [due:: 2023-05-25]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Ordinarily, the &lt;code&gt;[due:: 2023-05-23]&lt;/code&gt; syntax is meaningless to Obsidian. However, both Tasks and Dataview know how to parse that format and use it for displaying lists of tasks elsewhere in your notes.&lt;/p&gt;
+&lt;h3 id=&quot;tasks-plugin&quot; tabindex=&quot;-1&quot;&gt;Tasks Plugin&lt;/h3&gt;
+&lt;p&gt;Tasks is the more simple option here. Dataview allows you to add custom values to your notes that you can query for later; if that sounds unnecessary to you, go with Tasks.&lt;/p&gt;
+&lt;p&gt;Once your tasks are labeled with due dates, in a fence (that&#39;s what those three backtick characters are called) labeled &amp;quot;tasks&amp;quot;, you can tell it to show you your upcoming tasks, sorted by day of the week.&lt;/p&gt;
+&lt;p&gt;We can display an agenda view like org-mode by putting this in a note:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;```tasks
+not done
+due before next week
+group by due
+```
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;When you preview that note, Obsidian will replace the &lt;code&gt; ```tasks&lt;/code&gt; block with this:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;2023-05-22 Monday&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Dentist appointment 📅 2023-05-22&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;2023-05-23 Tuesday&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Sweep the kitchen floor 📅 2023-05-23&lt;/li&gt;
+&lt;li&gt;Do laundry 📅 2023-05-23&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Viola -- there is your agenda view. I like to have a &amp;quot;home note&amp;quot; that serves as a kind of dashboard, and I have that agenda view code block in it. But you can use more filters to get an agenda view for a specific project -- see &lt;a href=&quot;https://publish.obsidian.md/tasks/Queries/Filters&quot;&gt;the plugin&#39;s documentation&lt;/a&gt; to get an idea of what you can do.&lt;/p&gt;
+&lt;h3 id=&quot;dataview-plugin&quot; tabindex=&quot;-1&quot;&gt;Dataview Plugin&lt;/h3&gt;
+&lt;p&gt;Dataview comes highly recommended by Obsidian power users. If you simply want an agenda view for your tasks, it&#39;s overkill. But if you&#39;re trying to replace Emacs, it&#39;s exactly-the-right-amount-of-kill. To stay focused, I&#39;ll only show how to create a basic agenda view here.&lt;/p&gt;
+&lt;p&gt;The same syntax for defining due dates works with Dataview, so our task list looks the same as before. The agenda view query is:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;```dataview
+TASK
+WHERE due
+AND due - date(today) &amp;lt; dur(7days)
+GROUP BY due
+```
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The syntax is not as English-like as with the Tasks plugin, but in return you can use Dataview for more types of queries beyond just task items.&lt;/p&gt;
+&lt;h2 id=&quot;i-just-wish-it-worked-outside-of-obsidian&quot; tabindex=&quot;-1&quot;&gt;I Just Wish It Worked Outside of Obsidian&lt;/h2&gt;
+&lt;p&gt;The biggest thing I miss about using Emacs is that just about everything you do
+can be done inside of Emacs. Sharing the same UI, the same shortcuts, the same everything
+for both coding and taking notes is fantastic. While I can edit my Obsidian notes
+in my new text editor of choice (Kakoune), there are still plenty of features that only
+work within Obsidian itself. These agenda view examples are such features.&lt;/p&gt;
+&lt;p&gt;In a sense, this isn&#39;t much different from org-mode, which requires you to use Emacs. Both
+Emacs and Obsidian offer an agenda view, and to see them, you must be using those respective
+applications. But the fact that Emacs was &lt;em&gt;also&lt;/em&gt; the same application I used to edit code
+made it much more convenient.&lt;/p&gt;
+&lt;p&gt;Unfortunately, both of the plugins I mentioned here rely on features that are specific to Obsidian;
+they can&#39;t be run outside of it. Some kind of command-line tool that can query markdown files like
+Dataview would be a real holy grail for editor-agnostic, text-based task management.&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <title>Why I Like Mastodon (for non-techies)</title>
     <link href="https://tuckerm.us/posts/why-i-like-mastodon/"/>

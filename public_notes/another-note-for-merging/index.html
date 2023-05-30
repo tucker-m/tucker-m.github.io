@@ -1,6 +1,6 @@
 <!doctype html>
 <html>
-    <head>
+      <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/main.css" />
     
@@ -9,7 +9,7 @@
     <title></title>
   </head>
 
-  	<script type="text/javascript">
+    	<script type="text/javascript">
 		const htmlElement = document.getElementsByTagName("html")[0];
     
     const setClassForMode = {
@@ -32,10 +32,10 @@
     setClassForMode[currentTheme]();
 	</script>
 
-  <body>
-	  <div class='content'>
-		  <div class='width-constraint'>
-			  <div class='header'>
+    <body>
+    <div class='content'>
+      <div class='width-constraint'>
+	    <div class='header'>
   <div class="header-row theme-switch-container">
 	  <div id="theme-switch">&#x1F308 mode: <span id="theme-mode"></span></div>
   </div>
@@ -58,45 +58,19 @@
   </div>
 </div>
 
-			  <div class='post-list'>
-          <div class="tag-text-container">
-			      <h1 class='all-posts'>All posts</h1>
-            <a href="/feed.xml">
-              <img src="/rss-icon.png" class="rss-icon" />
-              <span class="rss-text">RSS</span>
-            </a>
-          </div><div class='all-posts-post'>
-  <h2 class='post-title'><a href="/posts/using-osbidian-as-an-org-mode-replacement/">Using Obsidian as an Org-Mode Replacement</a></h2>
-  <div class='post-metadata'>
-    <span class='date'>May 25, 2023</span>
-    <span class='tags'><a href="/tags/side_projects">#side_projects</a><a href="/tags/obsidian">#obsidian</a></span>
-  </div>
-  <div class='post-intro'>
-  <p>I was an Emacs user for several years before switching to Neovim, and then recently switched to Kakoune. I've been getting more serious about using the note-taking app <a href="https://obsidian.md">Obsidian</a> as an editor-agnostic replacement for org-mode, and so far it has filled that role nicely.</p>
-  </div>
-  <span class='read-more'><a href="/posts/using-osbidian-as-an-org-mode-replacement/">Read more...</a></span>
-</div>
-<div class='all-posts-post'>
-  <h2 class='post-title'><a href="/posts/why-i-like-mastodon/">Why I Like Mastodon (for non-techies)</a></h2>
-  <div class='post-metadata'>
-    <span class='date'>May 13, 2023</span>
-    <span class='tags'><a href="/tags/technology">#technology</a><a href="/tags/fediverse">#fediverse</a></span>
-  </div>
-  <div class='post-intro'>
-  <p>It's not a cure for social media's problems, but it's a huge step
-in the right direction. Profit-driven, centralized social networks
-can boost profitability through bad practices. Mastodon can
-fix a lot of that.
-</p><blockquote>
-<p><em><strong>May 30th, 2023 update:</strong> A show on NPR today aired an episode about our attention spans and how they
-can be affected be social media. You can give it a listen here: <a href="https://the1a.org/segments/how-much-are-we-paying-attention-really-2/">https://the1a.org/segments/how-much-are-we-paying-attention-really-2/</a>.</em></p>
-  </div>
-  <span class='read-more'><a href="/posts/why-i-like-mastodon/">Read more...</a></span>
-</div>
-</div>
-			  </div>
-		  </div>
-	  </div>
+        <article>
+          <div class='note-content'>
+            <h1>heading one</h1>
+<ul>
+<li>another note text goes here</li>
+<li>another list item here</li>
+</ul>
+<h2>heading two</h2>
+
+          </div>
+        </article>
+      </div>
+    </div>
   </body>
   	<script type="text/javascript">
     const modes = Object.keys(setClassForMode)

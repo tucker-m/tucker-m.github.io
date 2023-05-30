@@ -103,6 +103,7 @@ blockquote {
   border-left: 0.2rem solid #2aa198;
   margin-left: 1rem;
   padding-left: 1rem;
+  margin-bottom: 1.75rem;
 }
 
 .dark p, .dark li, .dark pre {
@@ -249,7 +250,7 @@ blockquote {
 
 body .intro {
     font-size: 2em;
-    line-height: 2.25rem;
+    line-height: 2.5rem;
     color: #2aa198;
 }
 .post-content > *, .post-intro > * {

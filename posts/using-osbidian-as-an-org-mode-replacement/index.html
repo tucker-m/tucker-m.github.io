@@ -1,0 +1,158 @@
+<!doctype html>
+<html>
+      <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/main.css" />
+    
+    <link rel="alternate" type="application/rss+xml" href="/feed.xml" title="Tucker McKnight's Blog" />
+    
+    <title>Using Obsidian as an Org-Mode Replacement</title>
+  </head>
+
+    	<script type="text/javascript">
+		const htmlElement = document.getElementsByTagName("html")[0];
+    
+    const setClassForMode = {
+      "light": () => {
+        htmlElement.classList.remove("dark")
+      },
+      "dark": () => {
+        htmlElement.classList.add("dark")
+      },
+      "os": () => {
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          htmlElement.classList.add("dark")
+        }
+        else {
+          htmlElement.classList.remove("dark");
+        }
+      },
+    }
+    let currentTheme = localStorage.getItem("theme") || "os";
+    setClassForMode[currentTheme]();
+	</script>
+
+    <body>
+    <div class='content'>
+      <div class='width-constraint'>
+	    <div class='header'>
+  <div class="header-row theme-switch-container">
+	  <div id="theme-switch">&#x1F308 mode: <span id="theme-mode"></span></div>
+  </div>
+  <div class="header-row">
+    <div class="header-row-logos">
+      <div class="header-row-name">
+        <a class='main-link' href="/">Tucker McKnight</a>
+      </div>
+      <div class="header-row-logos-socials">
+        <a href="https://saltylike.us/@tuckerm" rel="me" class="mastodon-logo"></a>
+        <a href="https://github.com/tucker-m" rel="me" class="github-logo"></a>
+      </div>
+    </div>
+    <div class="header-row-top-navigation">
+      <ul>
+        <li><a href="/">home</a></li>
+        <li><a href="/about">about_me</a></li>
+        <li><a href="/all_tags">all_tags</a></li><li><a href="/tags/technology">#technology</a></li></ul>
+    </div>
+  </div>
+</div>
+
+        <article>
+          <div class='heading-box'>
+            <h1>Using Obsidian as an Org-Mode Replacement</h1>
+            <p class='date'>May 25, 2023</p>
+            <span class='tags'><a href="/tags/side_projects">#side_projects</a><a href="/tags/obsidian">#obsidian</a></span>
+          </div>
+          <p class='intro'></p>
+          <div class='post-content'>
+            <p>I was an Emacs user for several years before switching to Neovim, and then recently switched to Kakoune. I've been getting more serious about using the note-taking app <a href="https://obsidian.md">Obsidian</a> as an editor-agnostic replacement for org-mode, and so far it has filled that role nicely.</p>
+<p>I plan on writing a series of blog posts about how I'm recreating my org-mode usage in Obsidian. Some of the things I used org-mode for are not really possible in Obsidian right now, so writing some plugins might be part of this work.</p>
+<h2 id="recreating-org-mode's-agenda-view" tabindex="-1">Recreating Org-mode's Agenda View</h2>
+<p>One of my favorite features in org-mode was the agenda view. There are two community-made plugins for Obsidian that allow you to create an agenda view: Tasks and Dataview.</p>
+<p>Let's say we have this list of tasks somewhere in our Obsidian vault:</p>
+<pre><code>- [ ] Dentist appointment [due:: 2023-05-22]
+- [ ] Sweep the kitchen floor [due:: 2023-05-23]
+- [ ] Do laundry [due:: 2023-05-23]
+- [ ] Make post about Obsidian [due:: 2023-05-25]
+</code></pre>
+<p>Ordinarily, the <code>[due:: 2023-05-23]</code> syntax is meaningless to Obsidian. However, both Tasks and Dataview know how to parse that format and use it for displaying lists of tasks elsewhere in your notes.</p>
+<h3 id="tasks-plugin" tabindex="-1">Tasks Plugin</h3>
+<p>Tasks is the more simple option here. Dataview allows you to add custom values to your notes that you can query for later; if that sounds unnecessary to you, go with Tasks.</p>
+<p>Once your tasks are labeled with due dates, in a fence (that's what those three backtick characters are called) labeled &quot;tasks&quot;, you can tell it to show you your upcoming tasks, sorted by day of the week.</p>
+<p>We can display an agenda view like org-mode by putting this in a note:</p>
+<pre><code>```tasks
+not done
+due before next week
+group by due
+```
+</code></pre>
+<p>When you preview that note, Obsidian will replace the <code> ```tasks</code> block with this:</p>
+<blockquote>
+<p><strong>2023-05-22 Monday</strong></p>
+<ul>
+<li>Dentist appointment 📅 2023-05-22</li>
+</ul>
+<p><strong>2023-05-23 Tuesday</strong></p>
+<ul>
+<li>Sweep the kitchen floor 📅 2023-05-23</li>
+<li>Do laundry 📅 2023-05-23</li>
+</ul>
+</blockquote>
+<p>Viola -- there is your agenda view. I like to have a &quot;home note&quot; that serves as a kind of dashboard, and I have that agenda view code block in it. But you can use more filters to get an agenda view for a specific project -- see <a href="https://publish.obsidian.md/tasks/Queries/Filters">the plugin's documentation</a> to get an idea of what you can do.</p>
+<h3 id="dataview-plugin" tabindex="-1">Dataview Plugin</h3>
+<p>Dataview comes highly recommended by Obsidian power users. If you simply want an agenda view for your tasks, it's overkill. But if you're trying to replace Emacs, it's exactly-the-right-amount-of-kill. To stay focused, I'll only show how to create a basic agenda view here.</p>
+<p>The same syntax for defining due dates works with Dataview, so our task list looks the same as before. The agenda view query is:</p>
+<pre><code>```dataview
+TASK
+WHERE due
+AND due - date(today) &lt; dur(7days)
+GROUP BY due
+```
+</code></pre>
+<p>The syntax is not as English-like as with the Tasks plugin, but in return you can use Dataview for more types of queries beyond just task items.</p>
+<h2 id="i-just-wish-it-worked-outside-of-obsidian" tabindex="-1">I Just Wish It Worked Outside of Obsidian</h2>
+<p>The biggest thing I miss about using Emacs is that just about everything you do
+can be done inside of Emacs. Sharing the same UI, the same shortcuts, the same everything
+for both coding and taking notes is fantastic. While I can edit my Obsidian notes
+in my new text editor of choice (Kakoune), there are still plenty of features that only
+work within Obsidian itself. These agenda view examples are such features.</p>
+<p>In a sense, this isn't much different from org-mode, which requires you to use Emacs. Both
+Emacs and Obsidian offer an agenda view, and to see them, you must be using those respective
+applications. But the fact that Emacs was <em>also</em> the same application I used to edit code
+made it much more convenient.</p>
+<p>Unfortunately, both of the plugins I mentioned here rely on features that are specific to Obsidian;
+they can't be run outside of it. Some kind of command-line tool that can query markdown files like
+Dataview would be a real holy grail for editor-agnostic, text-based task management.</p>
+
+          </div>
+        </article>
+      </div>
+    </div>
+  </body>
+  	<script type="text/javascript">
+    const modes = Object.keys(setClassForMode)
+
+		const link = document.getElementById("theme-switch");
+    const themeText = document.getElementById("theme-mode");
+
+    const setTheme = (text) => {
+      localStorage.setItem("theme", text);
+      if (text === "os") {
+        themeText.innerText = "match OS"
+      }
+      else {
+        themeText.innerText = text;
+      }
+    }
+
+    setTheme(currentTheme)
+
+    link.addEventListener("click", (event) => {
+      currentTheme = modes[(modes.indexOf(currentTheme) + 1) % modes.length]
+      setTheme(currentTheme)
+      setClassForMode[currentTheme]()
+		})
+	</script>
+
+</html>

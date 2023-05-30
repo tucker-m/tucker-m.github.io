@@ -1,6 +1,6 @@
 <!doctype html>
 <html>
-    <head>
+      <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/main.css" />
     
@@ -9,7 +9,7 @@
     <title></title>
   </head>
 
-  	<script type="text/javascript">
+    	<script type="text/javascript">
 		const htmlElement = document.getElementsByTagName("html")[0];
     
     const setClassForMode = {
@@ -32,10 +32,10 @@
     setClassForMode[currentTheme]();
 	</script>
 
-  <body>
-	  <div class='content'>
-		  <div class='width-constraint'>
-			  <div class='header'>
+    <body>
+    <div class='content'>
+      <div class='width-constraint'>
+	    <div class='header'>
   <div class="header-row theme-switch-container">
 	  <div id="theme-switch">&#x1F308 mode: <span id="theme-mode"></span></div>
   </div>
@@ -58,45 +58,43 @@
   </div>
 </div>
 
-			  <div class='post-list'>
-          <div class="tag-text-container">
-			      <h1 class='all-posts'>All posts</h1>
-            <a href="/feed.xml">
-              <img src="/rss-icon.png" class="rss-icon" />
-              <span class="rss-text">RSS</span>
-            </a>
-          </div><div class='all-posts-post'>
-  <h2 class='post-title'><a href="/posts/using-osbidian-as-an-org-mode-replacement/">Using Obsidian as an Org-Mode Replacement</a></h2>
-  <div class='post-metadata'>
-    <span class='date'>May 25, 2023</span>
-    <span class='tags'><a href="/tags/side_projects">#side_projects</a><a href="/tags/obsidian">#obsidian</a></span>
-  </div>
-  <div class='post-intro'>
-  <p>I was an Emacs user for several years before switching to Neovim, and then recently switched to Kakoune. I've been getting more serious about using the note-taking app <a href="https://obsidian.md">Obsidian</a> as an editor-agnostic replacement for org-mode, and so far it has filled that role nicely.</p>
-  </div>
-  <span class='read-more'><a href="/posts/using-osbidian-as-an-org-mode-replacement/">Read more...</a></span>
-</div>
-<div class='all-posts-post'>
-  <h2 class='post-title'><a href="/posts/why-i-like-mastodon/">Why I Like Mastodon (for non-techies)</a></h2>
-  <div class='post-metadata'>
-    <span class='date'>May 13, 2023</span>
-    <span class='tags'><a href="/tags/technology">#technology</a><a href="/tags/fediverse">#fediverse</a></span>
-  </div>
-  <div class='post-intro'>
-  <p>It's not a cure for social media's problems, but it's a huge step
-in the right direction. Profit-driven, centralized social networks
-can boost profitability through bad practices. Mastodon can
-fix a lot of that.
-</p><blockquote>
-<p><em><strong>May 30th, 2023 update:</strong> A show on NPR today aired an episode about our attention spans and how they
-can be affected be social media. You can give it a listen here: <a href="https://the1a.org/segments/how-much-are-we-paying-attention-really-2/">https://the1a.org/segments/how-much-are-we-paying-attention-really-2/</a>.</em></p>
-  </div>
-  <span class='read-more'><a href="/posts/why-i-like-mastodon/">Read more...</a></span>
-</div>
-</div>
-			  </div>
-		  </div>
-	  </div>
+        <article>
+          <div class='note-content'>
+            <p>[[productivity]] [[side projects]] [[obsidian]]</p>
+<h1 id="creating-side-tools-to-make-obsidian-an-org-mode-replacement" tabindex="-1">Creating Side Tools to Make Obsidian an Org-Mode Replacement</h1>
+<h2 id="general-idea" tabindex="-1">General idea</h2>
+<p>Writing notes in a plain text editor, I should be able to:</p>
+<ol>
+<li>Define tasks</li>
+<li>Assign a due date, start date, and completion date for that task</li>
+</ol>
+<p>Using a plain command-line tool (so that it can become a text editor plugin), I should be able to:</p>
+<ol>
+<li>See an &quot;agenda&quot; list of tasks, sorted by the upcoming days of the week, with a list of tasks that are due on each day</li>
+<li>Print out a Gantt chart showing when tasks were done</li>
+</ol>
+<h2 id="existing-work" tabindex="-1">Existing work</h2>
+<p>It would be great if this was compatible with existing Obsidian plugins that already do some of this.</p>
+<h3 id="obsidian-tasks" tabindex="-1">Obsidian Tasks</h3>
+<ul>
+<li>Allows you to query for tasks by due date</li>
+<li>Allows you to attach start/end/due dates to a task</li>
+</ul>
+<h3 id="obsidian-dataview" tabindex="-1">Obsidian Dataview</h3>
+<ul>
+<li>Specify words on the page as data</li>
+<li>Query for that later</li>
+<li>
+<h2 id="has-a-javascript-api.-can-that-be-used-externally%3F" tabindex="-1">Has a javascript API. Can that be used externally?</h2>
+</li>
+</ul>
+<h2 id="example" tabindex="-1">Example</h2>
+<p>[[org mode like sample document]]</p>
+
+          </div>
+        </article>
+      </div>
+    </div>
   </body>
   	<script type="text/javascript">
     const modes = Object.keys(setClassForMode)
