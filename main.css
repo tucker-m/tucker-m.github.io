@@ -97,6 +97,7 @@ pre, code {
   font-size: 1.0rem;
   line-height: 1.3rem;
   color: #6c71c4;
+  overflow-x: scroll;
 }
 
 blockquote {
