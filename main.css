@@ -1,9 +1,33 @@
 body {
     background: #fdf6e3;
     font-family: serif;
+    margin: 0;
 }
 .dark body {
 	background: #00222b;
+}
+.toc ol {
+  list-style-type: none;
+  padding-left: 0.75rem;
+  margin: 0;
+}
+.toc > ol {
+  padding-left: 0;
+}
+.toc a {
+  font-family: Consolas, Menlo, Ubuntu Mono, Liberation Mono, monospace;
+}
+.toc a, .toc a:visited {
+  color: #999;
+  border: none;
+  font-size: 0.8rem;
+}
+.toc a:hover {
+  color: #cb4b16;
+}
+.toc li {
+  margin: 0.75rem 0;
+  color: #999;
 }
 article {
     margin: 2rem 0;
@@ -26,8 +50,10 @@ a:visited {
 }
 .content {
     display: flex;
-    flex-direction: row;
     justify-content: center;
+    max-width: 1350px;
+    margin-left: auto;
+    margin-right: auto;
 }
 .post-list .post-title {
     font-size: 1.5rem;
@@ -110,11 +136,79 @@ blockquote {
 .dark p, .dark li, .dark pre {
 	color: #98abad;
 }
+.left {
+  flex-shrink: 1;
+  flex-grow: 0;
+  flex-basis: 1050px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  flex-direction: row-reverse;
+  max-width: 100%;
+}
+.sidebar {
+  order: 2;
+  box-sizing: border-box;
+  align-self: start;
+  padding-top: 1rem;
+  top: 0;
+  padding-left: 4rem;
+  display: flex;
+  justify-content: end;
+}
+.sidebar.sticky {
+  position: sticky;
+}
+.short-sidebar {
+  height: calc(30px + 1rem);
+}
+.toc-button {
+  display: none;
+  height: 30px;
+  font-family: Consolas, Menlo, Ubuntu Mono, Liberation Mono, monospace;
+  font-size: 0.8rem;
+  color: #6c71c4;
+  border: 1px solid #6c71c4;
+  background: #fdf6e3;
+}
+.dark .toc-button {
+  background: #00222b;
+}
+.sidebar, .spacer, .sidebar-heading {
+  flex-shrink: 0;
+  flex-grow: 1;
+  flex-basis: 300px;
+  max-width: 750px;
+}
+
+.sidebar-heading {
+  height: 30px;
+  font-weight: bold;
+  color: #999;
+  font-family: Consolas, Menlo, Ubuntu Mono, Liberation Mono, monospace;
+}
+.sidebar.sticky .sidebar-heading {
+  text-align: right;
+}
+.spacer {
+  order: 0;
+}
+.header-container {
+  flex-basis: 750px;
+  order: 1;
+  box-sizing: border-box;
+  padding: 0 0.5rem;
+}
 .width-constraint {
-    overflow: hidden;
-    padding: 0 1rem;
-    flex-direction: column;
-    flex-basis: 45rem;
+  order: 3;
+  box-sizing: border-box;
+  flex-grow: 1;
+  max-width: min(100%, 750px);
+  padding: 0 0.5rem;
+}
+.right {
+  flex-shrink: 0;
+  flex-grow: 1;
 }
 .header {
     font-family: Consolas, Menlo, Ubuntu Mono, Liberation Mono, monospace;
@@ -368,3 +462,21 @@ g.node [fill=cyan] ~ text {
   fill: #073a47;
 }
 
+@media (max-width: 1050px) {
+  .sidebar {
+    overflow: hidden;
+  }
+  .toc-button {
+    display: inline;
+  }
+  .sidebar-container.popover {
+    background: #fdf6e3;
+    padding: 0.5rem;
+    margin: 0 1rem 1rem;
+    border: 1px dashed #6c71c4;
+    box-shadow: 0 0 0.5rem black;
+  }
+  .dark .sidebar-container.popover {
+    background: #00222b;
+  }
+}
