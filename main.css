@@ -1,7 +1,9 @@
 body {
     background: #fdf6e3;
     font-family: serif;
-    margin: 0;
+    margin-top: 0.5rem;
+    margin-left: 0;
+    margin-right: 0;
 }
 .dark body {
 	background: #00222b;
@@ -186,6 +188,7 @@ blockquote {
   font-weight: bold;
   color: #999;
   font-family: Consolas, Menlo, Ubuntu Mono, Liberation Mono, monospace;
+  padding-right: 1rem;
 }
 .sidebar.sticky .sidebar-heading {
   text-align: right;
@@ -197,14 +200,14 @@ blockquote {
   flex-basis: 750px;
   order: 1;
   box-sizing: border-box;
-  padding: 0 0.5rem;
+  padding: 0 1rem;
 }
 .width-constraint {
   order: 3;
   box-sizing: border-box;
   flex-grow: 1;
   max-width: min(100%, 750px);
-  padding: 0 0.5rem;
+  padding: 0 1rem;
 }
 .right {
   flex-shrink: 0;
