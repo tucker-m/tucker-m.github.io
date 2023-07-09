@@ -1,6 +1,8 @@
+
+
 <!doctype html>
 <html>
-      <head>
+    <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/main.css" />
     
@@ -9,7 +11,7 @@
     <title>Using Obsidian as an Org-Mode Replacement</title>
   </head>
 
-    	<script type="text/javascript">
+  	<script type="text/javascript">
 		const htmlElement = document.getElementsByTagName("html")[0];
     
     const setClassForMode = {
@@ -32,10 +34,15 @@
     setClassForMode[currentTheme]();
 	</script>
 
-    <body>
+  <body>
     <div class='content'>
-      <div class='width-constraint'>
-	    <div class='header'>
+      
+      <div class='right'>
+      </div>
+      
+      <div class='left'>
+        <nav class='header-container'>
+          <nav class='header'>
   <div class="header-row theme-switch-container">
 	  <div id="theme-switch">&#x1F308 mode: <span id="theme-mode"></span></div>
   </div>
@@ -57,17 +64,23 @@
       </ul>
     </div>
   </div>
-</div>
+</nav>
 
-        <article>
-          <div class='heading-box'>
-            <h1>Using Obsidian as an Org-Mode Replacement</h1>
-            <p class='date'>May 25, 2023</p>
-            <span class='tags'><a href="/tags/side_projects">#side_projects</a><a href="/tags/obsidian">#obsidian</a></span>
-          </div>
-          <p class='intro'></p>
-          <div class='post-content'>
-            <p>I was an Emacs user for several years before switching to Neovim, and then recently switched to Kakoune. I've been getting more serious about using the note-taking app <a href="https://obsidian.md">Obsidian</a> as an editor-agnostic replacement for org-mode, and so far it has filled that role nicely.</p>
+        </nav>
+        
+        <div class='spacer'>
+        </div>
+        
+        <div class='width-constraint'>
+          <article>
+  <div class='heading-box'>
+    <h1>Using Obsidian as an Org-Mode Replacement</h1>
+    <p class='date'>May 25, 2023</p>
+    <span class='tags'><a href="/tags/side_projects">#side_projects</a><a href="/tags/obsidian">#obsidian</a></span>
+  </div>
+  <p class='intro'></p>
+  <div class='post-content'>
+    <p>I was an Emacs user for several years before switching to Neovim, and then recently switched to Kakoune. I've been getting more serious about using the note-taking app <a href="https://obsidian.md">Obsidian</a> as an editor-agnostic replacement for org-mode, and so far it has filled that role nicely.</p>
 <p>I plan on writing a series of blog posts about how I'm recreating my org-mode usage in Obsidian. Some of the things I used org-mode for are not really possible in Obsidian right now, so writing some plugins might be part of this work.</p>
 <h2 id="recreating-org-mode's-agenda-view" tabindex="-1">Recreating Org-mode's Agenda View</h2>
 <p>One of my favorite features in org-mode was the agenda view. There are two community-made plugins for Obsidian that allow you to create an agenda view: Tasks and Dataview.</p>
@@ -75,7 +88,7 @@
 <pre><code>- [ ] Dentist appointment [due:: 2023-05-22]
 - [ ] Sweep the kitchen floor [due:: 2023-05-23]
 - [ ] Do laundry [due:: 2023-05-23]
-- [ ] Make post about Obsidian [due:: 2023-05-25]
+- [ ] Make post about Obsidian [due:: 2023-05-23]
 </code></pre>
 <p>Ordinarily, the <code>[due:: 2023-05-23]</code> syntax is meaningless to Obsidian. However, both Tasks and Dataview know how to parse that format and use it for displaying lists of tasks elsewhere in your notes.</p>
 <h3 id="tasks-plugin" tabindex="-1">Tasks Plugin</h3>
@@ -98,6 +111,7 @@ group by due
 <ul>
 <li>Sweep the kitchen floor 📅 2023-05-23</li>
 <li>Do laundry 📅 2023-05-23</li>
+<li>Make post about Obsidian 📅 2023-05-23</li>
 </ul>
 </blockquote>
 <p>Viola -- there is your agenda view. I like to have a &quot;home note&quot; that serves as a kind of dashboard, and I have that agenda view code block in it. But you can use more filters to get an agenda view for a specific project -- see <a href="https://publish.obsidian.md/tasks/Queries/Filters">the plugin's documentation</a> to get an idea of what you can do.</p>
@@ -126,11 +140,75 @@ made it much more convenient.</p>
 they can't be run outside of it. Some kind of command-line tool that can query markdown files like
 Dataview would be a real holy grail for editor-agnostic, text-based task management.</p>
 
+  </div>
+</article>
+
+        </div>
+        
+        <nav class='sidebar'>
+          <div class='sidebar-container'>
+            <div class='sidebar-heading'>
+              Sections
+            </div>
+            <nav class="toc">
+                <ol>
+                    
+                    <li><a href="#recreating-org-mode's-agenda-view">Recreating Org-mode's Agenda View</a>
+            
+                <ol>
+                    
+                    <li><a href="#tasks-plugin">Tasks Plugin</a>
+            		</li>
+
+                    <li><a href="#dataview-plugin">Dataview Plugin</a>
+            		</li>
+                </ol>
+            		</li>
+
+                    <li><a href="#i-just-wish-it-worked-outside-of-obsidian">I Just Wish It Worked Outside of Obsidian</a>
+            		</li>
+                </ol>
+            </nav>
           </div>
-        </article>
+        </nav>
+        
       </div>
     </div>
   </body>
+  <script>
+    const closePopover = () => {
+      sidebar.classList.add('short-sidebar')
+      tocButton.textContent = "Sections"
+      sidebarContainer.classList.remove('popover')
+    }
+
+    const sidebar = document.querySelector('.sidebar')
+    const sidebarContainer = sidebar.querySelector('.sidebar-container')
+    const sidebarHeading = sidebarContainer.querySelector('.sidebar-heading')
+    const sidebarLinks = sidebarContainer.querySelectorAll('.toc a')
+    sidebarHeading.textContent = ''
+    sidebar.classList.add('short-sidebar')
+    sidebar.classList.add('sticky')
+    const tocButton = document.createElement('button')
+    tocButton.classList.add('toc-button')
+    tocButton.textContent = 'Sections'
+    tocButton.addEventListener('click', () => {
+      if (sidebar.classList.contains('short-sidebar')) {
+        sidebar.classList.remove('short-sidebar')
+        tocButton.textContent = "Close"
+        sidebarContainer.classList.add('popover')
+      }
+      else {
+        closePopover()
+      }
+    })
+    sidebarLinks.forEach((link) => {
+      link.addEventListener('click', () => {
+        closePopover()
+      })
+    })
+    document.querySelector('.sidebar-heading').append(tocButton)
+  </script>
   	<script type="text/javascript">
     const modes = Object.keys(setClassForMode)
 

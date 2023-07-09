@@ -1,3 +1,5 @@
+
+
 <!doctype html>
 <html>
     <head>
@@ -33,9 +35,11 @@
 	</script>
 
   <body>
-	  <div class='content'>
-		  <div class='width-constraint'>
-			  <div class='header'>
+    <div class='content'>
+      
+      <div class='left'>
+        <nav class='header-container'>
+          <nav class='header'>
   <div class="header-row theme-switch-container">
 	  <div id="theme-switch">&#x1F308 mode: <span id="theme-mode"></span></div>
   </div>
@@ -57,16 +61,19 @@
       </ul>
     </div>
   </div>
-</div>
+</nav>
 
-			  <div class='post-list'>
-          <div class="tag-text-container">
-			      <h1 class='all-posts'>All posts</h1>
-            <a href="/feed.xml">
-              <img src="/rss-icon.png" class="rss-icon" />
-              <span class="rss-text">RSS</span>
-            </a>
-          </div><div class='all-posts-post'>
+        </nav>
+        
+        <div class='width-constraint'>
+          <div class='post-list'>
+  <div class="tag-text-container">
+    <h1 class='all-posts'>All posts</h1>
+    <a href="/feed.xml">
+      <img src="/rss-icon.png" class="rss-icon" />
+      <span class="rss-text">RSS</span>
+    </a>
+  </div><div class='all-posts-post'>
   <h2 class='post-title'><a href="/posts/using-osbidian-as-an-org-mode-replacement/">Using Obsidian as an Org-Mode Replacement</a></h2>
   <div class='post-metadata'>
     <span class='date'>May 25, 2023</span>
@@ -95,10 +102,46 @@ can be affected be social media. You can give it a listen here: <a href="https:/
   <span class='read-more'><a href="/posts/why-i-like-mastodon/">Read more...</a></span>
 </div>
 </div>
-			  </div>
-		  </div>
-	  </div>
+
+        </div>
+        
+      </div>
+    </div>
   </body>
+  <script>
+    const closePopover = () => {
+      sidebar.classList.add('short-sidebar')
+      tocButton.textContent = "Sections"
+      sidebarContainer.classList.remove('popover')
+    }
+
+    const sidebar = document.querySelector('.sidebar')
+    const sidebarContainer = sidebar.querySelector('.sidebar-container')
+    const sidebarHeading = sidebarContainer.querySelector('.sidebar-heading')
+    const sidebarLinks = sidebarContainer.querySelectorAll('.toc a')
+    sidebarHeading.textContent = ''
+    sidebar.classList.add('short-sidebar')
+    sidebar.classList.add('sticky')
+    const tocButton = document.createElement('button')
+    tocButton.classList.add('toc-button')
+    tocButton.textContent = 'Sections'
+    tocButton.addEventListener('click', () => {
+      if (sidebar.classList.contains('short-sidebar')) {
+        sidebar.classList.remove('short-sidebar')
+        tocButton.textContent = "Close"
+        sidebarContainer.classList.add('popover')
+      }
+      else {
+        closePopover()
+      }
+    })
+    sidebarLinks.forEach((link) => {
+      link.addEventListener('click', () => {
+        closePopover()
+      })
+    })
+    document.querySelector('.sidebar-heading').append(tocButton)
+  </script>
   	<script type="text/javascript">
     const modes = Object.keys(setClassForMode)
 

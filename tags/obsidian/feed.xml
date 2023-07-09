@@ -22,7 +22,7 @@
 &lt;pre&gt;&lt;code&gt;- [ ] Dentist appointment [due:: 2023-05-22]
 - [ ] Sweep the kitchen floor [due:: 2023-05-23]
 - [ ] Do laundry [due:: 2023-05-23]
-- [ ] Make post about Obsidian [due:: 2023-05-25]
+- [ ] Make post about Obsidian [due:: 2023-05-23]
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Ordinarily, the &lt;code&gt;[due:: 2023-05-23]&lt;/code&gt; syntax is meaningless to Obsidian. However, both Tasks and Dataview know how to parse that format and use it for displaying lists of tasks elsewhere in your notes.&lt;/p&gt;
 &lt;h3 id=&quot;tasks-plugin&quot; tabindex=&quot;-1&quot;&gt;Tasks Plugin&lt;/h3&gt;
@@ -45,6 +45,7 @@ group by due
 &lt;ul&gt;
 &lt;li&gt;Sweep the kitchen floor 📅 2023-05-23&lt;/li&gt;
 &lt;li&gt;Do laundry 📅 2023-05-23&lt;/li&gt;
+&lt;li&gt;Make post about Obsidian 📅 2023-05-23&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;Viola -- there is your agenda view. I like to have a &amp;quot;home note&amp;quot; that serves as a kind of dashboard, and I have that agenda view code block in it. But you can use more filters to get an agenda view for a specific project -- see &lt;a href=&quot;https://publish.obsidian.md/tasks/Queries/Filters&quot;&gt;the plugin&#39;s documentation&lt;/a&gt; to get an idea of what you can do.&lt;/p&gt;
