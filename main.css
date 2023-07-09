@@ -190,6 +190,9 @@ blockquote {
   font-family: Consolas, Menlo, Ubuntu Mono, Liberation Mono, monospace;
   padding-right: 1rem;
 }
+.popover .sidebar-heading {
+  padding-right: 0;
+}
 .sidebar.sticky .sidebar-heading {
   text-align: right;
 }
@@ -475,7 +478,7 @@ g.node [fill=cyan] ~ text {
   .sidebar-container.popover {
     background: #fdf6e3;
     padding: 0.5rem;
-    margin: 0 1rem 1rem;
+    margin: 0 1rem 0.5rem;
     border: 1px dashed #6c71c4;
     box-shadow: 0 0 0.5rem black;
   }
