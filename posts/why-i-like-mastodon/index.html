@@ -58,6 +58,7 @@
       <ul>
         <li><a href="/">home</a></li>
         <li><a href="/about">about_me</a></li>
+        <li><a href="/link_lists">link_lists</a></li>
         <li><a href="/all_tags">all_tags</a></li>
       </ul>
     </div>
@@ -78,7 +79,7 @@ in the right direction. Profit-driven, centralized social networks
 can boost profitability through bad practices. Mastodon can
 fix a lot of that.
 </p>
-  <div class='post-content'>
+  <div class='post-content drop-cap'>
     <blockquote>
 <p><em><strong>May 30th, 2023 update:</strong> A show on NPR today aired an episode about our attention spans and how they
 can be affected be social media. You can give it a listen here: <a href="https://the1a.org/segments/how-much-are-we-paying-attention-really-2/">https://the1a.org/segments/how-much-are-we-paying-attention-really-2/</a>.</em></p>
@@ -135,6 +136,7 @@ span off of someone else's shelves, there are a few places to sign up for an acc
 list of them at <a href="https://joinmastodon.org/servers">joinmastodon.org/servers</a>. If you don't have
 a particular niche you're looking for, you can just pick any general purpose server there.</p>
 
+    
   </div>
 </article>
 
@@ -151,12 +153,14 @@ a particular niche you're looking for, you can just pick any general purpose ser
     }
 
     const sidebar = document.querySelector('.sidebar')
-    const sidebarContainer = sidebar.querySelector('.sidebar-container')
-    const sidebarHeading = sidebarContainer.querySelector('.sidebar-heading')
-    const sidebarLinks = sidebarContainer.querySelectorAll('.toc a')
-    sidebarHeading.textContent = ''
-    sidebar.classList.add('short-sidebar')
-    sidebar.classList.add('sticky')
+    const sidebarContainer = sidebar?.querySelector('.sidebar-container')
+    const sidebarHeading = sidebarContainer?.querySelector('.sidebar-heading')
+    const sidebarLinks = sidebarContainer?.querySelectorAll('.toc a')
+    if (sidebarHeading) {
+      sidebarHeading.textContent = ''
+    }
+    sidebar?.classList.add('short-sidebar')
+    sidebar?.classList.add('sticky')
     const tocButton = document.createElement('button')
     tocButton.classList.add('toc-button')
     tocButton.textContent = 'Sections'
@@ -170,12 +174,16 @@ a particular niche you're looking for, you can just pick any general purpose ser
         closePopover()
       }
     })
-    sidebarLinks.forEach((link) => {
-      link.addEventListener('click', () => {
-        closePopover()
+    if (sidebarLinks) {
+      sidebarLinks.forEach((link) => {
+        link.addEventListener('click', () => {
+          closePopover()
+        })
       })
-    })
-    document.querySelector('.sidebar-heading').append(tocButton)
+    }
+    if (sidebarHeading) {
+      sidebarHeading.append(tocButton)
+    }
   </script>
   	<script type="text/javascript">
     const modes = Object.keys(setClassForMode)

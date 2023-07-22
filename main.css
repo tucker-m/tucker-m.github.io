@@ -210,6 +210,7 @@ blockquote {
   box-sizing: border-box;
   flex-grow: 1;
   max-width: min(100%, 750px);
+  flex-basis: 750px;
   padding: 0 1rem;
 }
 .right {
@@ -327,7 +328,7 @@ blockquote {
 .post-metadata {
   margin-bottom: 1.0rem;
 }
-.date {
+body .date {
     margin: 0 0 0.5rem;
     font-family: Consolas, Menlo, Ubuntu Mono, Liberation Mono, monospace;
     color: #6c71c4;
@@ -357,7 +358,7 @@ body .intro {
 .post-content > *, .post-intro > * {
   max-width: 100%;
 }
-.post-content > p:first-of-type:first-letter {
+.post-content.drop-cap > p:first-of-type:first-letter {
     color: #fdf6e3;
     background-color: #2aa198;
     padding: .3rem;
@@ -466,6 +467,47 @@ g.node [fill=cyan] ~ text {
 .dark g.node ellipse[fill=lightgrey],
 .dark g.node polygon[fill=lightgrey] {
   fill: #073a47;
+}
+
+ul.link-list li {
+  margin-bottom: 0.7rem;
+}
+
+.link-list-item, .link-list-archive a {
+  font-family: Consolas, Menlo, Ubuntu Mono, Liberation Mono, monospace;
+}
+.link-list-item {
+  font-size: 0.7rem;
+  color: #fdf6e3;
+  padding: 0.2rem 0.3rem;
+  margin-right: 0.5rem;
+}
+.dark .link-list-item {
+	color: #00222b;
+}
+
+.link-list-archive {
+  display: inline-block;
+}
+.link-list-archive a {
+  font-size: 0.9rem;
+  color: #98abad;
+  border-bottom-color: #98abad;
+}
+.link-list-archive a:hover {
+  color: #cb4b16;
+  border-bottom-color: #cb4b16;
+}
+.link-list-archive a:visited {
+  color: #b58900;
+  border-bottom-color: #b58900;
+}
+
+.link-list-article {
+  background-color: #6c71c4;
+}
+.link-list-podcast {
+  background-color: #2aa198;
 }
 
 @media (max-width: 1050px) {

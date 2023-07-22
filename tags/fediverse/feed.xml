@@ -4,11 +4,19 @@
   <link href="https://tuckerm.us/tags/fediverse/feed.xml" rel="self"/>
   <link href="https://tuckerm.us/"/>
   
-  <updated>2023-05-14T00:00:00Z</updated>
+  <updated>2023-07-22T07:16:15Z</updated>
   <id>https://tuckerm.us/</id>
   <author>
     <name>Tucker McKnight</name>
   </author>
+  <entry>
+    <title>Link List: Social Media &amp; Our Attention Spans</title>
+    <link href="https://tuckerm.us/posts/social-media-distraction-links/"/>
+    <updated>2023-07-22T07:16:15Z</updated>
+    <id>https://tuckerm.us/posts/social-media-distraction-links/</id>
+    <content xml:lang="en" type="html">&lt;p&gt;Some articles related to social media and how it may affect our brains.&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <title>Why I Like Mastodon (for non-techies)</title>
     <link href="https://tuckerm.us/posts/why-i-like-mastodon/"/>

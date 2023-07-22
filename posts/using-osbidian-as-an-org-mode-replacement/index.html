@@ -61,6 +61,7 @@
       <ul>
         <li><a href="/">home</a></li>
         <li><a href="/about">about_me</a></li>
+        <li><a href="/link_lists">link_lists</a></li>
         <li><a href="/all_tags">all_tags</a></li>
       </ul>
     </div>
@@ -80,7 +81,7 @@
     <span class='tags'><a href="/tags/side_projects">#side_projects</a><a href="/tags/obsidian">#obsidian</a></span>
   </div>
   <p class='intro'></p>
-  <div class='post-content'>
+  <div class='post-content drop-cap'>
     <p>I was an Emacs user for several years before switching to Neovim, and then recently switched to Kakoune. I've been getting more serious about using the note-taking app <a href="https://obsidian.md">Obsidian</a> as an editor-agnostic replacement for org-mode, and so far it has filled that role nicely.</p>
 <p>I plan on writing a series of blog posts about how I'm recreating my org-mode usage in Obsidian. Some of the things I used org-mode for are not really possible in Obsidian right now, so writing some plugins might be part of this work.</p>
 <h2 id="recreating-org-mode's-agenda-view" tabindex="-1">Recreating Org-mode's Agenda View</h2>
@@ -141,6 +142,7 @@ made it much more convenient.</p>
 they can't be run outside of it. Some kind of command-line tool that can query markdown files like
 Dataview would be a real holy grail for editor-agnostic, text-based task management.</p>
 
+    
   </div>
 </article>
 
@@ -184,12 +186,14 @@ Dataview would be a real holy grail for editor-agnostic, text-based task managem
     }
 
     const sidebar = document.querySelector('.sidebar')
-    const sidebarContainer = sidebar.querySelector('.sidebar-container')
-    const sidebarHeading = sidebarContainer.querySelector('.sidebar-heading')
-    const sidebarLinks = sidebarContainer.querySelectorAll('.toc a')
-    sidebarHeading.textContent = ''
-    sidebar.classList.add('short-sidebar')
-    sidebar.classList.add('sticky')
+    const sidebarContainer = sidebar?.querySelector('.sidebar-container')
+    const sidebarHeading = sidebarContainer?.querySelector('.sidebar-heading')
+    const sidebarLinks = sidebarContainer?.querySelectorAll('.toc a')
+    if (sidebarHeading) {
+      sidebarHeading.textContent = ''
+    }
+    sidebar?.classList.add('short-sidebar')
+    sidebar?.classList.add('sticky')
     const tocButton = document.createElement('button')
     tocButton.classList.add('toc-button')
     tocButton.textContent = 'Sections'
@@ -203,12 +207,16 @@ Dataview would be a real holy grail for editor-agnostic, text-based task managem
         closePopover()
       }
     })
-    sidebarLinks.forEach((link) => {
-      link.addEventListener('click', () => {
-        closePopover()
+    if (sidebarLinks) {
+      sidebarLinks.forEach((link) => {
+        link.addEventListener('click', () => {
+          closePopover()
+        })
       })
-    })
-    document.querySelector('.sidebar-heading').append(tocButton)
+    }
+    if (sidebarHeading) {
+      sidebarHeading.append(tocButton)
+    }
   </script>
   	<script type="text/javascript">
     const modes = Object.keys(setClassForMode)

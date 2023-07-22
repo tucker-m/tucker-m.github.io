@@ -1,3 +1,5 @@
+
+
 <!doctype html>
 <html>
     <head>
@@ -5,9 +7,9 @@
     <link rel="stylesheet" href="/main.css" />
     <link rel="icon" type="image/x-icon" href="/favicon.png">
     
-    <link rel="alternate" type="application/rss+xml" href="/tags/technology/feed.xml" title="Tucker McKnight's posts about technology" />
+    <link rel="alternate" type="application/rss+xml" href="/feed.xml" title="Tucker McKnight's Blog" />
     
-    <title>Tucker&#39;s &quot;technology&quot; posts</title>
+    <title>Tucker&#39;s Link Lists</title>
   </head>
 
   	<script type="text/javascript">
@@ -35,8 +37,10 @@
 
   <body>
     <div class='content'>
-      <div class='width-constraint'>
-	    <nav class='header'>
+      
+      <div class='left'>
+        <nav class='header-container'>
+          <nav class='header'>
   <div class="header-row theme-switch-container">
 	  <div id="theme-switch">&#x1F308 mode: <span id="theme-mode"></span></div>
   </div>
@@ -61,39 +65,60 @@
   </div>
 </nav>
 
-        <div class="post-list">
-          <div class="tag-text-container">
-            <h1 class="all-posts">Posts tagged with "technology"</h1>
-            <a href="/tags/technology/feed.xml">
-              <img src="/rss-icon.svg" class="rss-icon" />
-              <span class="rss-text">RSS</span>
-            </a>
-          </div>
+        </nav>
+        
+        <div class='width-constraint'>
           
-          
-          <div class='all-posts-post'>
-  <h2 class='post-title'><a href="/posts/why-i-like-mastodon/">Why I Like Mastodon (for non-techies)</a></h2>
-  <div class='post-metadata'>
-    <span class='date'>May 13, 2023</span>
-    <span class='tags'><a href="/tags/technology">#technology</a><a href="/tags/fediverse">#fediverse</a></span>
-  </div>
-  <div class='post-intro'>
-  <p>It's not a cure for social media's problems, but it's a huge step
-in the right direction. Profit-driven, centralized social networks
-can boost profitability through bad practices. Mastodon can
-fix a lot of that.
-</p><blockquote>
-<p><em><strong>May 30th, 2023 update:</strong> A show on NPR today aired an episode about our attention spans and how they
-can be affected be social media. You can give it a listen here: <a href="https://the1a.org/segments/how-much-are-we-paying-attention-really-2/">https://the1a.org/segments/how-much-are-we-paying-attention-really-2/</a>.</em></p>
-  </div>
-  <span class='read-more'><a href="/posts/why-i-like-mastodon/">Read more...</a></span>
+<div class='link-lists'>
+  <h1>Link Lists</h1>
+  
 </div>
 
-          
         </div>
+        
       </div>
     </div>
   </body>
+  <script>
+    const closePopover = () => {
+      sidebar.classList.add('short-sidebar')
+      tocButton.textContent = "Sections"
+      sidebarContainer.classList.remove('popover')
+    }
+
+    const sidebar = document.querySelector('.sidebar')
+    const sidebarContainer = sidebar?.querySelector('.sidebar-container')
+    const sidebarHeading = sidebarContainer?.querySelector('.sidebar-heading')
+    const sidebarLinks = sidebarContainer?.querySelectorAll('.toc a')
+    if (sidebarHeading) {
+      sidebarHeading.textContent = ''
+    }
+    sidebar?.classList.add('short-sidebar')
+    sidebar?.classList.add('sticky')
+    const tocButton = document.createElement('button')
+    tocButton.classList.add('toc-button')
+    tocButton.textContent = 'Sections'
+    tocButton.addEventListener('click', () => {
+      if (sidebar.classList.contains('short-sidebar')) {
+        sidebar.classList.remove('short-sidebar')
+        tocButton.textContent = "Close"
+        sidebarContainer.classList.add('popover')
+      }
+      else {
+        closePopover()
+      }
+    })
+    if (sidebarLinks) {
+      sidebarLinks.forEach((link) => {
+        link.addEventListener('click', () => {
+          closePopover()
+        })
+      })
+    }
+    if (sidebarHeading) {
+      sidebarHeading.append(tocButton)
+    }
+  </script>
   	<script type="text/javascript">
     const modes = Object.keys(setClassForMode)
 
