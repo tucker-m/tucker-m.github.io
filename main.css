@@ -157,6 +157,10 @@ blockquote {
   padding-left: 4rem;
   display: flex;
   justify-content: end;
+  position: sticky; /* overridden at small widths in media query */
+}
+.sidebar-container {
+  padding-right: 1rem;
 }
 .sidebar.sticky {
   position: sticky;
@@ -183,19 +187,15 @@ blockquote {
   max-width: 750px;
 }
 
-.sidebar-heading {
+.sidebar-heading .section-text {
   height: 30px;
-  font-weight: bold;
   color: #999;
   font-family: Consolas, Menlo, Ubuntu Mono, Liberation Mono, monospace;
-  padding-right: 1rem;
 }
 .popover .sidebar-heading {
   padding-right: 0;
 }
-.sidebar.sticky .sidebar-heading {
-  text-align: right;
-}
+
 .spacer {
   order: 0;
 }
@@ -513,6 +513,10 @@ ul.link-list li {
 @media (max-width: 1050px) {
   .sidebar {
     overflow: hidden;
+    position: relative;
+  }
+  .sidebar.sticky .sidebar-heading {
+    text-align: right;
   }
   .toc-button {
     display: inline;
@@ -526,5 +530,8 @@ ul.link-list li {
   }
   .dark .sidebar-container.popover {
     background: #00222b;
+  }
+  .hide-when-small {
+    display: none;
   }
 }

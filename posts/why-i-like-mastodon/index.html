@@ -155,9 +155,10 @@ a particular niche you're looking for, you can just pick any general purpose ser
     const sidebar = document.querySelector('.sidebar')
     const sidebarContainer = sidebar?.querySelector('.sidebar-container')
     const sidebarHeading = sidebarContainer?.querySelector('.sidebar-heading')
+    const sidebarHeadingText = sidebarHeading?.querySelector('.section-text')
     const sidebarLinks = sidebarContainer?.querySelectorAll('.toc a')
-    if (sidebarHeading) {
-      sidebarHeading.textContent = ''
+    if (sidebarHeadingText) {
+      sidebarHeadingText.classList.add('hide-when-small')
     }
     sidebar?.classList.add('short-sidebar')
     sidebar?.classList.add('sticky')

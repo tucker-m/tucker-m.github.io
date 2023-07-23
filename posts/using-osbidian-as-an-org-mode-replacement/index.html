@@ -151,7 +151,9 @@ Dataview would be a real holy grail for editor-agnostic, text-based task managem
         <nav class='sidebar'>
           <div class='sidebar-container'>
             <div class='sidebar-heading'>
-              Sections
+              <span class='section-text'>
+                Sections
+              </span>
             </div>
             <nav class="toc">
                 <ol>
@@ -188,9 +190,10 @@ Dataview would be a real holy grail for editor-agnostic, text-based task managem
     const sidebar = document.querySelector('.sidebar')
     const sidebarContainer = sidebar?.querySelector('.sidebar-container')
     const sidebarHeading = sidebarContainer?.querySelector('.sidebar-heading')
+    const sidebarHeadingText = sidebarHeading?.querySelector('.section-text')
     const sidebarLinks = sidebarContainer?.querySelectorAll('.toc a')
-    if (sidebarHeading) {
-      sidebarHeading.textContent = ''
+    if (sidebarHeadingText) {
+      sidebarHeadingText.classList.add('hide-when-small')
     }
     sidebar?.classList.add('short-sidebar')
     sidebar?.classList.add('sticky')
