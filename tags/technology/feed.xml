@@ -14,7 +14,8 @@
     <link href="https://tuckerm.us/posts/why-i-like-mastodon/"/>
     <updated>2023-05-14T00:00:00Z</updated>
     <id>https://tuckerm.us/posts/why-i-like-mastodon/</id>
-    <content xml:lang="en" type="html">&lt;blockquote&gt;
+    <content xml:lang="en" type="html">
+      &lt;blockquote&gt;
 &lt;p&gt;&lt;em&gt;&lt;strong&gt;May 30th, 2023 update:&lt;/strong&gt; A show on NPR today aired an episode about our attention spans and how they
 can be affected be social media. You can give it a listen here: &lt;a href=&quot;https://the1a.org/segments/how-much-are-we-paying-attention-really-2/&quot;&gt;https://the1a.org/segments/how-much-are-we-paying-attention-really-2/&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -69,6 +70,9 @@ to be pushed and pulled by the interests of a Fortune 500 company. If you like t
 span off of someone else&#39;s shelves, there are a few places to sign up for an account. There&#39;s a
 list of them at &lt;a href=&quot;https://joinmastodon.org/servers&quot;&gt;joinmastodon.org/servers&lt;/a&gt;. If you don&#39;t have
 a particular niche you&#39;re looking for, you can just pick any general purpose server there.&lt;/p&gt;
-</content>
+
+       
+
+    </content>
   </entry>
 </feed>

@@ -14,15 +14,36 @@
     <link href="https://tuckerm.us/posts/social-media-distraction-links/"/>
     <updated>2023-07-22T07:16:15Z</updated>
     <id>https://tuckerm.us/posts/social-media-distraction-links/</id>
-    <content xml:lang="en" type="html">&lt;p&gt;Some articles related to social media and how it may affect our brains.&lt;/p&gt;
-</content>
+    <content xml:lang="en" type="html">
+      &lt;p&gt;Some articles related to social media and how it may affect our brains.&lt;/p&gt;
+
+      
+<ul>
+  
+  <li>
+    article: <a href="https://themarkup.org/privacy/2023/06/23/how-your-attention-is-auctioned-off-to-advertisers">How Your Attention Span is Auctioned Off to Advertisers</a>
+  </li>
+  
+  <li>
+    article: <a href="https://lithub.com/reconstructing-our-attention-in-the-era-of-infinite-digital-rabbit-holes/">Reconstructing Our Attention in the Era of Infinite Digital Rabbit Holes</a> - <a href="https://app.wallabag.it/share/16933151">archived copy</a>
+  </li>
+  
+  <li>
+    podcast: <a href="https://the1a.org/segments/how-much-are-we-paying-attention-really-2/">How much are we paying attention, really?</a>
+  </li>
+  
+</ul>
+ 
+
+    </content>
   </entry>
   <entry>
     <title>Why I Like Mastodon (for non-techies)</title>
     <link href="https://tuckerm.us/posts/why-i-like-mastodon/"/>
     <updated>2023-05-14T00:00:00Z</updated>
     <id>https://tuckerm.us/posts/why-i-like-mastodon/</id>
-    <content xml:lang="en" type="html">&lt;blockquote&gt;
+    <content xml:lang="en" type="html">
+      &lt;blockquote&gt;
 &lt;p&gt;&lt;em&gt;&lt;strong&gt;May 30th, 2023 update:&lt;/strong&gt; A show on NPR today aired an episode about our attention spans and how they
 can be affected be social media. You can give it a listen here: &lt;a href=&quot;https://the1a.org/segments/how-much-are-we-paying-attention-really-2/&quot;&gt;https://the1a.org/segments/how-much-are-we-paying-attention-really-2/&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -77,6 +98,9 @@ to be pushed and pulled by the interests of a Fortune 500 company. If you like t
 span off of someone else&#39;s shelves, there are a few places to sign up for an account. There&#39;s a
 list of them at &lt;a href=&quot;https://joinmastodon.org/servers&quot;&gt;joinmastodon.org/servers&lt;/a&gt;. If you don&#39;t have
 a particular niche you&#39;re looking for, you can just pick any general purpose server there.&lt;/p&gt;
-</content>
+
+       
+
+    </content>
   </entry>
 </feed>

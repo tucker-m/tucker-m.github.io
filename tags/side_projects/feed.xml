@@ -14,7 +14,8 @@
     <link href="https://tuckerm.us/posts/using-osbidian-as-an-org-mode-replacement/"/>
     <updated>2023-05-26T00:00:00Z</updated>
     <id>https://tuckerm.us/posts/using-osbidian-as-an-org-mode-replacement/</id>
-    <content xml:lang="en" type="html">&lt;p&gt;I was an Emacs user for several years before switching to Neovim, and then recently switched to Kakoune. I&#39;ve been getting more serious about using the note-taking app &lt;a href=&quot;https://obsidian.md/&quot;&gt;Obsidian&lt;/a&gt; as an editor-agnostic replacement for org-mode, and so far it has filled that role nicely.&lt;/p&gt;
+    <content xml:lang="en" type="html">
+      &lt;p&gt;I was an Emacs user for several years before switching to Neovim, and then recently switched to Kakoune. I&#39;ve been getting more serious about using the note-taking app &lt;a href=&quot;https://obsidian.md/&quot;&gt;Obsidian&lt;/a&gt; as an editor-agnostic replacement for org-mode, and so far it has filled that role nicely.&lt;/p&gt;
 &lt;p&gt;I plan on writing a series of blog posts about how I&#39;m recreating my org-mode usage in Obsidian. Some of the things I used org-mode for are not really possible in Obsidian right now, so writing some plugins might be part of this work.&lt;/p&gt;
 &lt;h2 id=&quot;recreating-org-mode&#39;s-agenda-view&quot; tabindex=&quot;-1&quot;&gt;Recreating Org-mode&#39;s Agenda View&lt;/h2&gt;
 &lt;p&gt;One of my favorite features in org-mode was the agenda view. There are two community-made plugins for Obsidian that allow you to create an agenda view: Tasks and Dataview.&lt;/p&gt;
@@ -73,6 +74,9 @@ made it much more convenient.&lt;/p&gt;
 &lt;p&gt;Unfortunately, both of the plugins I mentioned here rely on features that are specific to Obsidian;
 they can&#39;t be run outside of it. Some kind of command-line tool that can query markdown files like
 Dataview would be a real holy grail for editor-agnostic, text-based task management.&lt;/p&gt;
-</content>
+
+       
+
+    </content>
   </entry>
 </feed>
