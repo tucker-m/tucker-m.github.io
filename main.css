@@ -1,12 +1,36 @@
+:root {
+  --background: #fdf6e3;
+  --opposite-background: #00222b;
+  --solarized-red: #cb4b16;
+  --solarized-magenta: #d33682;
+  --solarized-cyan: #2aa198;
+  --solarized-violet: #6c71c4;
+  --solarized-blue: #268bd2;
+  --high-contrast-lighter: #268bd2;
+  --high-contrast-darker: #6c71c4;
+  --low-contrast-lighter: #b58900;
+  --text-color: #566970;
+  --code-color: #6c71c4;
+  --light-text-color: #839496;
+}
+
+.dark {
+  --background: #00222b;
+  --opposite-background: #fdf6e3;
+  --high-contrast-lighter: #268bd2;
+  --high-contrast-darker: #b58900;
+  --low-contrast-lighter: #6c71c4;
+  --text-color: #98abad;
+  --code-color: #98abad;
+  --light-text-color: #657b83;
+}
+
 body {
-    background: #fdf6e3;
+    background: var(--background);
     font-family: serif;
     margin-top: 0.5rem;
     margin-left: 0;
     margin-right: 0;
-}
-.dark body {
-	background: #00222b;
 }
 .toc ol {
   list-style-type: none;
@@ -20,16 +44,16 @@ body {
   font-family: Consolas, Menlo, Ubuntu Mono, Liberation Mono, monospace;
 }
 .toc a, .toc a:visited {
-  color: #999;
+  color: var(--light-text-color);
   border: none;
   font-size: 0.8rem;
 }
 .toc a:hover {
-  color: #cb4b16;
+  color: var(--solarized-red);
 }
 .toc li {
   margin: 0.75rem 0;
-  color: #999;
+  color: var(--light-text-color);
 }
 article {
     margin: 2rem 0;
@@ -38,17 +62,17 @@ article {
 	margin: 2rem 0;
 }
 a {
-    color: #268bd2;
+    color: var(--high-contrast-lighter);
     text-decoration: none;
-    border-bottom: 1px solid #268bd2;
+    border-bottom: 1px solid var(--high-contrast-lighter);
 }
 a:hover {
-    color: #cb4b16;
-    border-bottom-color: #cb4b16;
+    color: var(--solarized-red);
+    border-bottom-color: var(--solarized-red);
 }
 a:visited {
-    color: #b58900;
-    border-bottom-color: #b58900;
+    color: var(--low-contrast-lighter);
+    border-bottom-color: var(--low-contrast-lighter);
 }
 .content {
     display: flex;
@@ -58,13 +82,13 @@ a:visited {
     margin-right: auto;
 }
 .post-list .post-title {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
 }
 h1, h2, h3, h4, h5, h6, h7, .post-title {
     margin: 0 0 0.5rem;
     font-weight: normal;
     font-family: Consolas, Menlo, Ubuntu Mono, Liberation Mono, monospace;
-    color: #d33682;
+    color: var(--solarized-magenta);
 }
 h1 {
   font-size: 1.8rem;
@@ -73,17 +97,17 @@ h2 {
   font-size: 1.4rem;
 }
 .post-title a {
-	border-bottom: none;
-	color: inherit;
+  border-bottom: none;
+  color: inherit;
 }
 .post-title a:visited {
-  color: #b58900;
+  color: var(--low-contrast-lighter);
 }
 .post-title a:hover {
-  color: #cb4b16;
+  color: var(--solarized-red);
 }
 .post-intro p {
-  margin-top: 1rem;
+  margin-top: 0.5rem;
   margin-bottom: 0.5rem;
   font-size: 1.1rem;
   line-height: 1.5rem;
@@ -99,7 +123,7 @@ h2 {
 	border-bottom: none;
 }
 .all-posts {
-	color: #6c71c4;
+	color: var(--high-contrast-darker);
 	font-size: 1rem;
 	margin-right: 1rem;
 }
@@ -114,8 +138,14 @@ h2 {
 .all-posts-post .date {
 	margin-right: 1rem;
 }
+.all-posts-post .tags {
+    display: inline;
+}
+.all-posts-post .tags a {
+    font-size: 1rem;
+}
 p, article li {
-    color: #566970;
+    color: var(--text-color);
 }
 p, article li {
     font-size: 1.3rem;
@@ -124,20 +154,17 @@ p, article li {
 pre, code {
   font-size: 1.0rem;
   line-height: 1.3rem;
-  color: #6c71c4;
+  color: var(--code-color);
   overflow-x: scroll;
 }
 
 blockquote {
-  border-left: 0.2rem solid #2aa198;
+  border-left: 0.2rem solid var(--solarized-cyan);
   margin-left: 1rem;
   padding-left: 1rem;
   margin-bottom: 1.75rem;
 }
 
-.dark p, .dark li, .dark pre {
-	color: #98abad;
-}
 .left {
   flex-shrink: 1;
   flex-grow: 0;
@@ -173,12 +200,9 @@ blockquote {
   height: 30px;
   font-family: Consolas, Menlo, Ubuntu Mono, Liberation Mono, monospace;
   font-size: 0.8rem;
-  color: #6c71c4;
-  border: 1px solid #6c71c4;
-  background: #fdf6e3;
-}
-.dark .toc-button {
-  background: #00222b;
+  color: var(--high-contrast-darker);
+  border: 1px solid var(--high-contrast-darker);
+  background: var(--background);
 }
 .sidebar, .spacer, .sidebar-heading {
   flex-shrink: 0;
@@ -189,7 +213,7 @@ blockquote {
 
 .sidebar-heading .section-text {
   height: 30px;
-  color: #999;
+  color: var(--light-text-color);
   font-family: Consolas, Menlo, Ubuntu Mono, Liberation Mono, monospace;
 }
 .popover .sidebar-heading {
@@ -220,12 +244,12 @@ blockquote {
 .header {
     font-family: Consolas, Menlo, Ubuntu Mono, Liberation Mono, monospace;
     font-size: 1rem;
-    border-bottom: 1px solid #6c71c4;
+    border-bottom: 1px solid var(--high-contrast-darker);
     display: flex;
     flex-direction: column;
     padding: min(2rem, calc(2rem + (100vw - 800px))) 0 1rem;
     flex-wrap: wrap;
-    color: #6c71c4;
+    color: var(--high-contrast-darker);
 }
 .header-row {
   display: flex;
@@ -272,14 +296,14 @@ blockquote {
 }
 .header .main-link {
   display: block;
-  color: #6c71c4;
+  color: var(--high-contrast-darker);
   border-bottom: none;
   margin-right: 1.5rem;
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
 }
 .header .main-link:visited {
-  color: #6c71c4;
+  color: var(--high-contrast-darker);
 }
 .header ul {
     padding: 0;
@@ -294,28 +318,22 @@ blockquote {
 .header ul li:not(:last-of-type) {
   margin-right: 1rem;
 }
-.header ul li a {
-   color: #268bd2;
+.header ul li a, .header ul li a:visited {
+   color: var(--high-contrast-lighter);
    border-bottom: none;
 }
 #theme-switch {
 	cursor: default;
-	border: 1px solid #d33682;
+	border: 1px solid var(--solarized-magenta);
 	padding: 0.3rem;
-	color: #d33682;
+	color: var(--solarized-magenta);
   margin-bottom: 0.25rem;
 }
 #theme-switch:hover {
-	background: #002b36;
-}
-.dark #theme-switch:hover {
-	background: #eee8d5;
-}
-.header a:visited {
-  color: #268bd2;
+	background: var(--opposite-background);
 }
 .header a:hover {
-  color: #cb4b16;
+  color: var(--solarized-red);
 }
 .heading-box {
     display: flex;
@@ -324,60 +342,60 @@ blockquote {
 }
 .heading-box .date {
   margin-bottom: 0.5rem;
+  display: block;
 }
 .post-metadata {
-  margin-bottom: 1.0rem;
+  line-height: 1.5rem;
 }
-body .date {
-    margin: 0 0 0.5rem;
-    font-family: Consolas, Menlo, Ubuntu Mono, Liberation Mono, monospace;
-    color: #6c71c4;
-    font-size: 1rem;
-    display: block;
+.date {
+  margin: 0 0 0.5rem;
+  font-family: Consolas, Menlo, Ubuntu Mono, Liberation Mono, monospace;
+  font-size: 1rem;
 }
+.date {
+  color: var(--high-contrast-darker);
+}
+
 .tags {
     display: block;
 }
 .tags a:visited {
-  color: #b58900;
+  color: var(--low-contrast-lighter);
 }
 .tags a {
-  font-size: 0.8rem;
-  color: #268bd2;
+  font-size: 1rem;;
+  color: var(--high-contrast-lighter);
   border-bottom: none;
   font-family: Consolas, Menlo, Ubuntu Mono, Liberation Mono, monospace;
   margin-bottom: 0.5rem;
-  margin-right: 0.5rem;
+  margin-right: 1rem;
 }
 
 body .intro {
     font-size: 2em;
     line-height: 2.5rem;
-    color: #2aa198;
+    color: var(--solarized-cyan);
 }
 .post-content > *, .post-intro > * {
   max-width: 100%;
 }
 .post-content.drop-cap > p:first-of-type:first-letter {
-    color: #fdf6e3;
-    background-color: #2aa198;
+    color: var(--background);
+    background-color: var(--solarized-cyan);
     padding: .3rem;
     margin-right: .2rem;
     float: left;
     font-family: Consolas, Menlo, Ubuntu Mono, Liberation Mono, monospace;
     font-size: 3rem;
-    box-shadow: -.4rem .4rem 0 #6c71c4;
-}
-.dark .post-content > p:first-of-type:first-letter {
-  color: #00222b;
+    box-shadow: -.4rem .4rem 0 var(--solarized-violet);
 }
 .all-tags-table {
-  color: #657b83;
+  color: var(--text-color);
   font-size: 1.2rem;
   margin-top: 2rem;
 }
 .all-tags-table thead td {
-  color: #2aa198;
+  color: var(--solarized-cyan);
 }
 .all-tags-table td {
   padding-bottom: 0.5rem;
@@ -405,7 +423,7 @@ body .intro {
   width: 1rem;
 }
 .rss-text {
-  color: #657b83;
+  color: var(--light-text-color);
   font-family: Consolas, Menlo, Ubuntu Mono, Liberation Mono, monospace;
   font-size: 0.8rem;
 }
@@ -469,6 +487,11 @@ g.node [fill=cyan] ~ text {
   fill: #073a47;
 }
 
+ul.link-list {
+  padding-left: 0;
+  list-style-type: none;
+}
+
 ul.link-list li {
   margin-bottom: 0.7rem;
 }
@@ -477,13 +500,8 @@ ul.link-list li {
   font-family: Consolas, Menlo, Ubuntu Mono, Liberation Mono, monospace;
 }
 .link-list-item {
-  font-size: 0.7rem;
-  color: #fdf6e3;
+  font-size: 1rem;
   padding: 0.2rem 0.3rem;
-  margin-right: 0.5rem;
-}
-.dark .link-list-item {
-	color: #00222b;
 }
 
 .link-list-archive {
@@ -491,23 +509,23 @@ ul.link-list li {
 }
 .link-list-archive a {
   font-size: 0.9rem;
-  color: #98abad;
-  border-bottom-color: #98abad;
+  color: var(--light-text-color);
+  border-bottom-color: var(--light-text-color);
 }
 .link-list-archive a:hover {
-  color: #cb4b16;
-  border-bottom-color: #cb4b16;
+  color: var(--solarized-red);
+  border-bottom-color: var(--solarized-red);
 }
 .link-list-archive a:visited {
-  color: #b58900;
-  border-bottom-color: #b58900;
+  color: var(--low-contrast-lighter);
+  border-bottom-color: var(--low-contrast-lighter);
 }
 
 .link-list-article {
-  background-color: #6c71c4;
+  color: var(--solarized-magenta);
 }
 .link-list-podcast {
-  background-color: #2aa198;
+  color: var(--solarized-cyan);
 }
 
 @media (max-width: 1050px) {
@@ -522,14 +540,11 @@ ul.link-list li {
     display: inline;
   }
   .sidebar-container.popover {
-    background: #fdf6e3;
+    background: var(--background);
     padding: 0.5rem;
     margin: 0 1rem 0.5rem;
-    border: 1px dashed #6c71c4;
-    box-shadow: 0 0 0.5rem black;
-  }
-  .dark .sidebar-container.popover {
-    background: #00222b;
+    border: 1px dashed var(--high-contrast-darker);
+    box-shadow: 0 0 0.5rem var(--light-text-color);
   }
   .hide-when-small {
     display: none;
